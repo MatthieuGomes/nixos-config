@@ -1,0 +1,38 @@
+menuentry 'Arch Linux' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-42020426-a6e6-4f7a-9535-81d6df53c479' {
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod btrfs
+	search --no-floppy --fs-uuid --set=root 42020426-a6e6-4f7a-9535-81d6df53c479
+	echo	'Loading Linux linux ...'
+	linux	/@/boot/vmlinuz-linux root=UUID=42020426-a6e6-4f7a-9535-81d6df53c479 rw rootflags=subvol=@  loglevel=8
+	echo	'Loading initial ramdisk ...'
+	initrd	/@/boot/intel-ucode.img /@/boot/initramfs-linux.img
+}
+submenu 'Advanced options for Arch Linux' $menuentry_id_option 'gnulinux-advanced-42020426-a6e6-4f7a-9535-81d6df53c479' {
+	menuentry 'Arch Linux, with Linux linux' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-advanced-42020426-a6e6-4f7a-9535-81d6df53c479' {
+		load_video
+		set gfxpayload=keep
+		insmod gzio
+		insmod part_gpt
+		insmod btrfs
+		search --no-floppy --fs-uuid --set=root 42020426-a6e6-4f7a-9535-81d6df53c479
+		echo	'Loading Linux linux ...'
+		linux	/@/boot/vmlinuz-linux root=UUID=42020426-a6e6-4f7a-9535-81d6df53c479 rw rootflags=subvol=@  loglevel=8
+		echo	'Loading initial ramdisk ...'
+		initrd	/@/boot/intel-ucode.img /@/boot/initramfs-linux.img
+	}
+	menuentry 'Arch Linux, with Linux linux (fallback initramfs)' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-fallback-42020426-a6e6-4f7a-9535-81d6df53c479' {
+		load_video
+		set gfxpayload=keep
+		insmod gzio
+		insmod part_gpt
+		insmod btrfs
+		search --no-floppy --fs-uuid --set=root 42020426-a6e6-4f7a-9535-81d6df53c479
+		echo	'Loading Linux linux ...'
+		linux	/@/boot/vmlinuz-linux root=UUID=42020426-a6e6-4f7a-9535-81d6df53c479 rw rootflags=subvol=@  loglevel=8
+		echo	'Loading initial ramdisk ...'
+		initrd	/@/boot/intel-ucode.img /@/boot/initramfs-linux-fallback.img
+	}
+}
