@@ -9,7 +9,7 @@ env:
 jobs:
     ff_merge:
         name : Try Fast-Forward Merge
-        if: ${{ github.event.issue.pull_request }} && contains(github.event.comment.body, '/ff-merge')
+        if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/ff-merge') }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
