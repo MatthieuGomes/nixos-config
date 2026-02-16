@@ -39,7 +39,7 @@ in {
           window-rules = [
             {
               description = "vscode-desktop-file";
-              match.window-class = "code code-url-handler";
+              match.window-class = "code code";
               apply.desktopfile = "/run/current-system/etc/profiles/per-user/matthieu/share/applications/code.desktop"; # TODO: make this dynamic
             }
           ];
