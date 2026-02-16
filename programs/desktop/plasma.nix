@@ -140,6 +140,8 @@ in {
           sddm-kcm
           qtvirtualkeyboard
           breeze
+          filelight
+          dolphin-plugins
         ];
       };
     };
