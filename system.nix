@@ -7,8 +7,8 @@
   ...
 } @ Inputs: let
   name = "system";
-  repo = "nix";
-  branch = "latest";
+  repo = "others";
+  branch = "kernel";
   packages = Inputs.pkgs-list.${repo}.${branch};
 in {
   options.${name} = {

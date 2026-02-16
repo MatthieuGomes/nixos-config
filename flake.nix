@@ -2,8 +2,9 @@
   description = "System flake";
 
   inputs = {
-    unstablePkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     latestPkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    unstablePkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    kernelPkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "latestPkgs";
@@ -85,6 +86,7 @@
     others = {
       zen-browser = Inputs.zen-browser;
       # buildable-nvidia = Inputs.lastest-buildable-nvidia;
+      kernel = Inputs.kernelPkgs;
     };
     pkgs-list = {
       inherit nix;
