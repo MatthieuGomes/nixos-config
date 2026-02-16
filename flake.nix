@@ -12,6 +12,10 @@
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "latestPkgs";
     };
+    # lastest-buildable-nvidia = {
+    #   url = "github:nixos/nixpkgs/a82ccc39b39b621151d6732718e3e250109076fa";
+    #   # sha256 = "sha256-AYqlWrX09+HvGs8zM6ebZ1pwUqjkfpnv8mewYwAo+iM=";
+    # };
     nur-klassy-version = {
       url = "github:nix-community/nur/82a02f13454ca5b23248d9fe8fb15618a11b09f0";
       # sha256 = "0d8iwisgw15ivwbd9s041fbf33mqgccsmwxcvgwf3y84i2d1rb7a";
@@ -80,6 +84,7 @@
     };
     others = {
       zen-browser = Inputs.zen-browser;
+      # buildable-nvidia = Inputs.lastest-buildable-nvidia;
     };
     pkgs-list = {
       inherit nix;
