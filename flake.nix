@@ -4,7 +4,6 @@
   inputs = {
     latestPkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     unstablePkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    kernelPkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "latestPkgs";
@@ -13,10 +12,6 @@
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "latestPkgs";
     };
-    # lastest-buildable-nvidia = {
-    #   url = "github:nixos/nixpkgs/a82ccc39b39b621151d6732718e3e250109076fa";
-    #   # sha256 = "sha256-AYqlWrX09+HvGs8zM6ebZ1pwUqjkfpnv8mewYwAo+iM=";
-    # };
     nur-klassy-version = {
       url = "github:nix-community/nur/82a02f13454ca5b23248d9fe8fb15618a11b09f0";
       # sha256 = "0d8iwisgw15ivwbd9s041fbf33mqgccsmwxcvgwf3y84i2d1rb7a";
@@ -77,7 +72,6 @@
     nur-latest = Inputs.nur-latest-pkgs.legacyPackages.${system};
     nur-unstable = Inputs.nur-unstable-pkgs.legacyPackages.${system};
     nur-klassy = Inputs.nur-klassy-version.legacyPackages.${system};
-
     nur = {
       latest = nur-latest;
       unstable = nur-unstable;
@@ -86,7 +80,6 @@
     others = {
       zen-browser = Inputs.zen-browser;
       # buildable-nvidia = Inputs.lastest-buildable-nvidia;
-      kernel = Inputs.kernelPkgs;
     };
     pkgs-list = {
       inherit nix;
