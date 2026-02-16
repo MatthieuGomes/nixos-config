@@ -36,6 +36,10 @@ in {
         # inherit (settings);
         programs.plasma = {
           enable = true;
+          configFile.kdeglobals.General = {
+            TerminalApplication = "ghostty";
+            TerminalService = "com.mitchellh.ghostty.desktop";
+          };
           window-rules = [
             {
               description = "vscode-desktop-file";
