@@ -46,6 +46,18 @@ in {
               match.window-class = "code code";
               apply.desktopfile = "/run/current-system/etc/profiles/per-user/matthieu/share/applications/code.desktop"; # TODO: make this dynamic
             }
+            {
+              description = "fix_LibreOffice_Icon";
+              match.window-class = {
+                value = "libreoffice-draw";
+                type = "substring";
+                match-whole = true;
+              };
+              apply.desktopfile = {
+                value = "/run/current-system/etc/profiles/per-user/matthieu/share/applications/draw.desktop";
+                apply = "initially";
+              };
+            }
           ];
           shortcuts = {
             "services/com.mitchellh.ghostty.desktop" = {
