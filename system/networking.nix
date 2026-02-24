@@ -34,6 +34,7 @@ in {
       #   proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     };
     services = {
+      openssh.enable = true;
     }; ## TODO : FIX OPENSSH
     environment.systemPackages = with packages; [
       openvpn
