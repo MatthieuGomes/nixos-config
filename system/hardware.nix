@@ -27,6 +27,7 @@ in {
     # services.xserver.videoDrivers =
     environment.systemPackages = with packages; [
       lshw
+      iw
     ];
   };
 }
