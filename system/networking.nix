@@ -21,6 +21,9 @@ in {
       };
 
       firewall = rec {
+        enable = true;
+        # interfaces."wlp0s20f3".allowedTCPPorts = [10022];
+        allowedTCPPorts = [10022];
         allowedTCPPortRanges = [
           {
             from = 1714;
@@ -39,6 +42,7 @@ in {
     environment.systemPackages = with packages; [
       openvpn
       iproute2
+      bridge-utils
     ];
   };
 }
