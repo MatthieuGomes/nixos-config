@@ -15,7 +15,7 @@ in {
     "sound.nix"
   ];
   config = {
-    nvidia.enable = true;
+    nvidia.enable = false;
     # Enable Ledger hardware wallet support, seeing if better options are possible
     hardware = {
       # ledger.enable = true;
