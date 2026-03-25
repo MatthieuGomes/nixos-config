@@ -77,6 +77,10 @@ in {
               rm -f -- "$tmp"
             }
 
+            function myip(){
+              echo $(ip addr show wlp0s20f3 | grep -oP 'inet \K[^/]+')
+            }
+
           '';
 
           #  zstyle ':completion:*' menu no
@@ -85,6 +89,7 @@ in {
             cfg.aliases
             // {
               yazi = "y";
+              myip = "myip";
             };
         };
       };
