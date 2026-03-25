@@ -28,6 +28,7 @@ in {
     environment.systemPackages = with packages; [
       lshw
       iw
+      usbutils
     ];
   };
 }
