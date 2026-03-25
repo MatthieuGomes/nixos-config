@@ -23,7 +23,7 @@ in {
       firewall = rec {
         enable = true;
         # interfaces."wlp0s20f3".allowedTCPPorts = [10022];
-        allowedTCPPorts = [10022];
+        allowedTCPPorts = [10022 22];
         allowedTCPPortRanges = [
           {
             from = 1714;
