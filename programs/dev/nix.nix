@@ -19,6 +19,7 @@
     nixd.enable = cfg.enable && cfg.nixd;
     alejandra.enable = cfg.enable && cfg.alejandra;
   };
+  imports = ["alejandra" "nixd"];
 in {
   config = {
     homeModule = {
@@ -27,19 +28,14 @@ in {
       ...
     }: {
       inherit options;
-      imports =
-        map (file: ./${subfolder}/${file}.nix) [
-          "nixd"
-          "alejandra"
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-          }).config.homeModule) [];
+      imports = map (file:
+        (import ./${subfolder}/${file}.nix {
+          inherit config lib;
+          inherit (Inputs) pkgs-list inputs;
+        }).config.Home)
+      imports;
       config = lib.mkIf cfg.enable {
-        inherit (settings) nixd alejandra;
+        inherit (settings) nixd alejandra; # TODO : function to inherit all settings based on imports list
       };
     };
     nixosModule = {
@@ -53,12 +49,12 @@ in {
         ]
         ++ map (file:
           (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
+            inherit config lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) [];
+          }).config.System)
+        imports;
       config = lib.mkIf cfg.enable {
-        # inherit (settings);
+        inherit (settings) nixd alejandra;
       };
     };
   };

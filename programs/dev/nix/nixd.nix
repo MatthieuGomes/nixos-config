@@ -9,14 +9,32 @@
   branch = "latest";
   packages = Inputs.pkgs-list.${main-repo}.${branch};
   cfg = config.${name};
-in {
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures Nixd.";
   };
-  imports = [];
-  config = lib.mkIf cfg.enable {
-    home.packages = with packages; [
-      nixd
-    ];
+in {
+  config = {
+    Home = {
+      lib,
+      config,
+      ...
+    }: {
+      inherit options;
+      config = lib.mkIf cfg.enable {
+        home.packages = with packages; [
+          nixd
+        ];
+      };
+    };
+    System = {
+      lib,
+      config,
+      ...
+    }: {
+      inherit options;
+      config =
+        lib.mkIf cfg.enable {
+        };
+    };
   };
 }
