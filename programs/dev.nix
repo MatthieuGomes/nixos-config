@@ -12,6 +12,7 @@
   imports = [
     "nix"
     "boot"
+    "vim"
   ];
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
@@ -63,7 +64,6 @@ in {
       inherit options;
       imports =
         map (file: ./${subfolder}/${file}.nix) [
-          "vim"
           "ghostty"
           "vscode"
           "postman"
@@ -118,7 +118,7 @@ in {
           }).config.System)
         imports;
       config = lib.mkIf cfg.enable {
-        inherit (settings) docker;
+        inherit (settings) docker vim;
       };
     };
   };
