@@ -14,6 +14,7 @@
     "boot"
     "vim"
     "docker"
+    "ghostty"
   ];
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
@@ -65,7 +66,7 @@ in {
       inherit options;
       imports =
         map (file: ./${subfolder}/${file}.nix) [
-          "ghostty"
+          # "ghostty"
           "vscode"
           "postman"
           "git"
