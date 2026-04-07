@@ -9,14 +9,32 @@
   branch = "latest";
   packages = Inputs.pkgs-list.${main-repo}.${branch};
   cfg = config.${name};
-in {
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures GRUB.";
   };
-  imports = [];
-  config = lib.mkIf cfg.enable {
-    home.packages = with packages; [
-      grub2
-    ];
+in {
+  config = {
+    Home = {
+      lib,
+      config,
+      ...
+    }: {
+      inherit options;
+      config = lib.mkIf cfg.enable {
+        home.packages = with packages; [
+          grub2
+        ];
+      };
+    };
+    System = {
+      lib,
+      config,
+      ...
+    }: {
+      inherit options;
+      config =
+        lib.mkIf cfg.enable {
+        };
+    };
   };
 }

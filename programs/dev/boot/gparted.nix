@@ -9,14 +9,32 @@
   branch = "latest";
   packages = Inputs.pkgs-list.${main-repo}.${branch};
   cfg = config.${name};
-in {
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures GParted.";
   };
-  imports = [];
-  config = lib.mkIf cfg.enable {
-    home.packages = with packages; [
-      gparted
-    ];
+in {
+  config = {
+    Home = {
+      lib,
+      config,
+      ...
+    }: {
+      inherit options;
+      config = lib.mkIf cfg.enable {
+        home.packages = with packages; [
+          gparted
+        ];
+      };
+    };
+    System = {
+      lib,
+      config,
+      ...
+    }: {
+      inherit options;
+      config =
+        lib.mkIf cfg.enable {
+        };
+    };
   };
 }

@@ -24,6 +24,12 @@
     os-prober.enable = cfg.enable && cfg.os-prober;
     enable = cfg.enable && cfg.os-prober;
   };
+  imports = [
+    "efibootmgr"
+    "grub"
+    "gparted"
+    "os-prober"
+  ];
 in {
   config = {
     homeModule = {
@@ -32,19 +38,13 @@ in {
       ...
     }: {
       inherit options;
-      imports =
-        map (file: ./${subfolder}/${file}.nix) [
-          "efibootmgr"
-          "grub"
-          "gparted"
-          "os-prober"
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-          }).config.homeModule) [];
+      imports = map (file:
+        (import ./${subfolder}/${file}.nix {
+          inherit config;
+          inherit lib;
+          inherit (Inputs) pkgs-list inputs;
+        }).config.Home)
+      imports;
       config = lib.mkIf cfg.enable {
         inherit (settings) efibootmgr grub gparted os-prober;
       };
@@ -55,17 +55,15 @@ in {
       ...
     }: {
       inherit options;
-      imports =
-        map (file: ./${subfolder}/${file}.nix) [
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) [];
+      imports = map (file:
+        (import ./${subfolder}/${file}.nix {
+          inherit config;
+          inherit lib;
+          inherit (Inputs) pkgs-list inputs;
+        }).config.System)
+      imports;
       config = lib.mkIf cfg.enable {
-        # inherit (settings);
+        inherit (settings) efibootmgr os-prober grub gparted;
       };
     };
   };
