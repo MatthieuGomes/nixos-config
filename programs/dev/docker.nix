@@ -15,43 +15,26 @@
   cfg = config.${name};
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
     }: {
       inherit options;
-      imports =
-        map (file: ./${subfolder}/${file}) [
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-          }).config.homeModule) [];
       config = lib.mkIf cfg.enable {
         home.packages = with packages; [
+          docker
           docker-compose
           lazydocker
         ];
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
     }: {
       inherit options;
-      imports =
-        map (file: ./${subfolder}/${file}.nix) [
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) [];
       config = lib.mkIf cfg.enable {
         virtualisation.docker.enable = true;
       };

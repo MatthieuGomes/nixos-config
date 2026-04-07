@@ -13,6 +13,7 @@
     "nix"
     "boot"
     "vim"
+    "docker"
   ];
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
@@ -75,7 +76,7 @@ in {
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
           }).config.homeModule) [
-          "docker"
+          # "docker"
         ]
         ++ map (file:
           (import ./${subfolder}/${file}.nix {
@@ -108,7 +109,7 @@ in {
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
           }).config.nixosModule) [
-          "docker"
+          # "docker"
         ]
         ++ map (file:
           (import ./${subfolder}/${file}.nix {
