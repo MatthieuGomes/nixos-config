@@ -22,7 +22,7 @@
   imports = ["alejandra" "nixd"];
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -38,7 +38,7 @@ in {
         inherit (settings) nixd alejandra; # TODO : function to inherit all settings based on imports list
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...

@@ -9,6 +9,10 @@
   repo = "nix";
   branch = "latest";
   packages = pkgs-list.${repo}.${branch};
+  imports = [
+    "nix"
+    "boot"
+  ];
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
     docker = lib.mkEnableOption "Enables and configures Docker.";
@@ -72,9 +76,14 @@ in {
             inherit (Inputs) pkgs-list inputs;
           }).config.homeModule) [
           "docker"
-          "nix"
-          "boot"
-        ];
+        ]
+        ++ map (file:
+          (import ./${subfolder}/${file}.nix {
+            inherit config;
+            inherit lib;
+            inherit (Inputs) pkgs-list inputs;
+          }).config.Home)
+        imports;
       config = lib.mkIf cfg.enable {
         inherit (settings) docker dev-nix ghostty git postman vscode vim boot;
         home.packages = with packages; [
@@ -100,7 +109,14 @@ in {
             inherit (Inputs) pkgs-list inputs;
           }).config.nixosModule) [
           "docker"
-        ];
+        ]
+        ++ map (file:
+          (import ./${subfolder}/${file}.nix {
+            inherit config;
+            inherit lib;
+            inherit (Inputs) pkgs-list inputs;
+          }).config.System)
+        imports;
       config = lib.mkIf cfg.enable {
         inherit (settings) docker;
       };

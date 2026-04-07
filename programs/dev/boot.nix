@@ -32,7 +32,7 @@
   ];
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -49,7 +49,7 @@ in {
         inherit (settings) efibootmgr grub gparted os-prober;
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
