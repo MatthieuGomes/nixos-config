@@ -10,6 +10,9 @@
   repo = "nix";
   branch = "latest";
   packages = pkgs-list.${repo}.${branch};
+  oldPathNames = [];
+  pathNames = oldPathNames ++ [name];
+  fullPath = lib.concatStringsSep "." pathNames;
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
     shells = {
@@ -73,7 +76,7 @@
         gparted = enable && cfg.dev.boot.gparted;
         os-prober = enable && cfg.dev.boot.os-prober;
       };
-dev-nix = rec {
+      dev-nix = rec {
         enable = cfg.enable && cfg.dev.dev-nix.enable;
         nixd = enable && cfg.dev.dev-nix.nixd;
         alejandra = enable && cfg.dev.dev-nix.alejandra;

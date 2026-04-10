@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs-list,
+  oldPathNames,
   ...
 } @ Inputs: let
   name = "dev";
@@ -16,6 +17,8 @@
     "docker"
     "ghostty"
   ];
+  pathNames = oldPathNames ++ [name];
+  fullPath = lib.concatStringsSep "." pathNames;
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
     docker = lib.mkEnableOption "Enables and configures Docker.";
@@ -76,6 +79,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
           }).config.homeModule) [
           # "docker"
@@ -85,6 +89,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
           }).config.Home)
         imports;
@@ -111,6 +116,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
           }).config.nixosModule) [
           # "docker"
@@ -120,6 +126,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
           }).config.System)
         imports;

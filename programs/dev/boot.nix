@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs-list,
+  oldPathNames,
   ...
 } @ Inputs: let
   name = "boot";
@@ -29,6 +30,7 @@
     "gparted"
     "os-prober"
   ];
+  pathNames = oldPathNames ++ [name];
 in {
   config = {
     Home = {
@@ -42,6 +44,7 @@ in {
           inherit config;
           inherit lib;
           inherit (Inputs) pkgs-list inputs;
+          oldPathNames = pathNames;
           inherit (Inputs) inheritSettings;
         }).config.Home)
       imports;
@@ -60,6 +63,7 @@ in {
           inherit config;
           inherit lib;
           inherit (Inputs) pkgs-list inputs;
+          oldPathNames = pathNames;
           inherit (Inputs) inheritSettings;
         }).config.System)
       imports;

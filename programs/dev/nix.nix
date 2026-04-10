@@ -3,6 +3,7 @@
   lib,
   pkgs-list,
   inheritSettings,
+  oldPathNames,
   ...
 } @ Inputs: let
   name = "dev-nix";
@@ -10,6 +11,8 @@
   # repo = "";
   # branch = "";
   # packages = pkgs-list.${repo}.${branch};
+  pathNames = oldPathNames ++ [name];
+  fullPath = lib.concatStringsSep "." pathNames;
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
     nixd = lib.mkEnableOption "Enables and configures Nixd.";
@@ -33,6 +36,7 @@ in {
         (import ./${subfolder}/${file}.nix {
           inherit config lib;
           inherit (Inputs) pkgs-list inputs;
+          oldPathNames = pathNames;
           inherit (Inputs) inheritSettings;
         }).config.Home)
       imports;
@@ -53,6 +57,7 @@ in {
           (import ./${subfolder}/${file}.nix {
             inherit config lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
           }).config.System)
         imports;

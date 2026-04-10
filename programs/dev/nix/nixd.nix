@@ -1,12 +1,15 @@
 {
   config,
   lib,
-  inputs,
+  pkgs-list,
+  oldPathNames,
   ...
 } @ Inputs: let
   name = "nixd";
   main-repo = "nix";
   branch = "latest";
+  pathNames = oldPathNames ++ [name];
+  fullPath = lib.concatStringsSep "." pathNames;
   packages = Inputs.pkgs-list.${main-repo}.${branch};
   cfg = config.${name};
   options.${name} = {
