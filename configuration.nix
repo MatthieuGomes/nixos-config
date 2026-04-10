@@ -6,14 +6,12 @@
   managers,
   nixos-version,
   settings,
-  inheritSettings,
   tools,
   ...
 }: let
   import_with_args = file: context:
     (import file {
       inherit config lib inputs pkgs-list;
-      inherit inheritSettings;
       inherit tools;
     }).config.${
       context

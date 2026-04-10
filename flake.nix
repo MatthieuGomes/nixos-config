@@ -95,27 +95,6 @@
     tools = import ./tools.nix {
       inherit lib;
     };
-    inheritSettings = {
-      pathNames,
-      imports,
-      settings,
-    }: let
-      first = lib.lists.last (lib.lists.take 1 pathNames);
-      last = lib.lists.last pathNames;
-    in
-      builtins.listToAttrs (map (setting: {
-          name = first;
-          value =
-            if (first == last)
-            then settings.${setting}
-            else
-              (inheritSettings {
-                pathNames = lib.lists.drop 1 pathNames;
-                imports = imports;
-                settings = settings;
-              });
-        })
-        imports);
     settings = {
       programs = {
         enable = true;
@@ -184,7 +163,6 @@
         inherit managers;
         inherit nixos-version;
         inherit settings;
-        inherit inheritSettings;
         inherit tools;
       };
       modules = [
@@ -198,7 +176,6 @@
               inherit latest;
               inherit nixos-version;
               inherit settings;
-              inherit inheritSettings;
               inherit tools;
             };
             useUserPackages = true;

@@ -81,7 +81,6 @@ in {
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
-            inherit (Inputs) inheritSettings;
             inherit tools;
           }).config.homeModule) [
           # "docker"
@@ -92,7 +91,6 @@ in {
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
-            inherit (Inputs) inheritSettings;
             inherit tools;
           }).config.Home)
         imports;

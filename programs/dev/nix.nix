@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs-list,
-  inheritSettings,
   oldPathNames,
   tools,
   ...
@@ -38,7 +37,6 @@ in {
           inherit config lib;
           inherit (Inputs) pkgs-list inputs;
           oldPathNames = pathNames;
-          inherit (Inputs) inheritSettings;
           inherit tools;
         }).config.Home)
       imports;
@@ -60,7 +58,6 @@ in {
             inherit config lib;
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
-            inherit (Inputs) inheritSettings;
             inherit tools;
           }).config.System)
         imports;
