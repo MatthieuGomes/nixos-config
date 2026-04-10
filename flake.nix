@@ -152,8 +152,6 @@
         };
       };
     };
-    testProgramOptions = {
-    };
   in {
     nixosConfigurations.NixOs = latestPkgs.lib.nixosSystem {
       pkgs = pkgs-list.nix.latest;
