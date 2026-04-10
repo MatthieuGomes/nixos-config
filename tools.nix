@@ -58,7 +58,6 @@
     imports,
     settings,
   }: let
-    importsWithEnable = imports ++ ["enable"];
     first = lib.lists.last (lib.lists.take 1 pathNames);
     last = lib.lists.last pathNames;
   in
@@ -70,12 +69,12 @@
           else
             (inheritSettings {
               pathNames = lib.lists.drop 1 pathNames;
-              imports = importsWithEnable;
+              imports = imports;
               settings = settings;
             });
       })
-      importsWithEnable);
-  unversialModule = {
+      imports);
+  universalModule = {
     lib,
     config,
     pkgs-list,
@@ -85,12 +84,15 @@
     options,
     imports ? [],
     settings ? {},
-    pathNames ? [name],
+    oldPathNames ? [name],
     Home ? {},
     System ? {},
   } @ Inputs: let
     cfg = config.${name};
-    fullPathNames = pathNames ++ [name];
+    pathNames = oldPathNames ++ [name];
+    fullPath = lib.concatStringsSep "." pathNames;
+    options.${fullPath} = options;
+    settings.${fullPath} = settings;
   in {
     config = {
       Home = {
@@ -112,7 +114,7 @@
           else [];
         config =
           lib.mkIf cfg.enable (inheritSettings {
-            pathNames = fullPathNames;
+            pathNames = pathNames;
             imports = imports;
             settings = settings;
           })
@@ -133,7 +135,7 @@
         imports;
         config =
           lib.mkIf cfg.enable (inheritSettings {
-            pathNames = fullPathNames;
+            pathNames = pathNames;
             imports = imports;
             settings = settings;
           })
@@ -142,6 +144,6 @@
     };
   };
 in {
-  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings;
+  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule;
   # multiContextModule;
 }
