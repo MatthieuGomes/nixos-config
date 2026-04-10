@@ -4,7 +4,7 @@
   inputs,
   pkgs-list,
   nixos-version,
-  opt,
+  settings,
   inheritSettings,
   ...
 } @ Inputs: let
@@ -18,7 +18,7 @@ in {
     ++ [
       pkgs-list.others.zen-browser.homeModules.beta
     ];
-  inherit (opt) programs;
+  inherit (settings) programs;
 
   home.stateVersion = nixos-version;
   home.username = "matthieu";

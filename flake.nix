@@ -113,7 +113,7 @@
               });
         })
         imports);
-    opt = {
+    settings = {
       programs = {
         enable = true;
         shells = {
@@ -180,7 +180,7 @@
         inherit Inputs;
         inherit managers;
         inherit nixos-version;
-        inherit opt;
+        inherit settings;
         inherit inheritSettings;
       };
       modules = [
@@ -193,7 +193,7 @@
               inherit pkgs-list;
               inherit latest;
               inherit nixos-version;
-              inherit opt;
+              inherit settings;
               inherit inheritSettings;
             };
             useUserPackages = true;

@@ -5,7 +5,7 @@
   pkgs-list,
   managers,
   nixos-version,
-  opt,
+  settings,
   inheritSettings,
   ...
 }: let
@@ -28,7 +28,7 @@ in {
         ./programs.nix
         "nixosModule")
     ];
-  inherit (opt) programs;
+  inherit (settings) programs;
 
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
   system.version = nixos-version;
