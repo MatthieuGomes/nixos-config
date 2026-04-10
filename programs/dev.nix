@@ -3,6 +3,7 @@
   lib,
   pkgs-list,
   oldPathNames,
+  tools,
   ...
 } @ Inputs: let
   name = "dev";
@@ -81,6 +82,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
+            inherit tools;
           }).config.homeModule) [
           # "docker"
         ]
@@ -91,6 +93,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
+            inherit tools;
           }).config.Home)
         imports;
       config = lib.mkIf cfg.enable {
@@ -118,6 +121,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
+            inherit tools;
           }).config.nixosModule) [
           # "docker"
         ]
@@ -128,6 +132,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
+            inherit tools;
           }).config.System)
         imports;
       config = lib.mkIf cfg.enable {

@@ -92,6 +92,9 @@
     };
     inherit (Inputs) home-manager plasma-manager;
     lib = latest.lib;
+    tools = import ./tools.nix {
+      inherit lib;
+    };
     inheritSettings = {
       pathNames,
       imports,
@@ -182,6 +185,7 @@
         inherit nixos-version;
         inherit settings;
         inherit inheritSettings;
+        inherit tools;
       };
       modules = [
         ./configuration.nix
@@ -195,6 +199,7 @@
               inherit nixos-version;
               inherit settings;
               inherit inheritSettings;
+              inherit tools;
             };
             useUserPackages = true;
             useGlobalPkgs = true;
