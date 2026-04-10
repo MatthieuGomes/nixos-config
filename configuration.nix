@@ -16,7 +16,6 @@
     }).config.${
       context
     };
-  test = tools.inheritSettings;
 in {
   imports =
     [
