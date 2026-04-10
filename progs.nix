@@ -121,7 +121,7 @@
   };
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -139,7 +139,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             inherit tools;
             oldPathNames = pathNames;
-          }).config.homeModule) ["dev" "misc" "shells" "office" "browsers" "desktop"];
+          }).config.Home) ["dev" "misc" "shells" "office" "browsers" "desktop"];
       config = lib.mkIf cfg.enable {
         inherit (settings) dev shells misc office browsers desktop;
         programs = {

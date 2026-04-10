@@ -26,7 +26,7 @@
   };
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...

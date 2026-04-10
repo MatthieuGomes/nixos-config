@@ -23,7 +23,7 @@
   };
 in {
   config = {
-    homeModule = {
+    Home = {
       config,
       lib,
       ...
@@ -34,7 +34,7 @@ in {
           inherit config;
           inherit lib;
           inherit (Inputs) pkgs-list inputs;
-        }).config.homeModule
+        }).config.Home
       ];
       config = {
         inherit (settings) zsh;

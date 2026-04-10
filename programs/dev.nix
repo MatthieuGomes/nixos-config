@@ -62,7 +62,7 @@
   };
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -82,7 +82,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
             inherit tools;
-          }).config.homeModule) [
+          }).config.Home) [
           # "docker"
         ]
         ++ map (file:

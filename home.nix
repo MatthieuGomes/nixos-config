@@ -13,7 +13,7 @@
 in {
   imports =
     [
-      (import ./progs.nix {inherit config lib inputs pkgs-list tools;}).config.homeModule
+      (import ./progs.nix {inherit config lib inputs pkgs-list tools;}).config.Home
     ]
     ++ [
       pkgs-list.others.zen-browser.homeModules.beta

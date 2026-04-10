@@ -21,7 +21,7 @@
   };
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -36,7 +36,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.homeModule) [
+          }).config.Home) [
           "plasma"
         ];
       config = lib.mkIf cfg.enable {

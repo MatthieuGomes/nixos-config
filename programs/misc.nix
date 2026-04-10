@@ -31,7 +31,7 @@
   };
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -50,7 +50,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.homeModule) ["ledger" "kdeconnect"];
+          }).config.Home) ["ledger" "kdeconnect"];
       config = lib.mkIf cfg.enable {
         inherit (settings) ledger bambu-studio bitwarden fastfetch iso-image-writer vesktop kdeconnect;
       };

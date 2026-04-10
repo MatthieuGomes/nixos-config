@@ -17,7 +17,7 @@
   # };
 in {
   config = {
-    homeModule = {
+    Home = {
       lib,
       config,
       ...
@@ -31,7 +31,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.homeModule) [];
+          }).config.Home) [];
       config = lib.mkIf cfg.enable {
         # inherit (settings);
       };
