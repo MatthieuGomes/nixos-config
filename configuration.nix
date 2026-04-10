@@ -26,7 +26,7 @@ in {
     ++ [
       (import_with_args
         ./progs.nix
-        "nixosModule")
+        "System")
     ];
   inherit (settings) progs;
 

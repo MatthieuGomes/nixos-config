@@ -94,7 +94,7 @@ in {
         };
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...

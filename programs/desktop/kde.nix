@@ -43,7 +43,7 @@ in {
         inherit (settings) plasma klassy;
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
@@ -57,7 +57,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) [
+          }).config.System) [
           "plasma"
         ];
       config = lib.mkIf cfg.enable {

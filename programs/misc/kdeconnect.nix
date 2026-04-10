@@ -52,7 +52,7 @@ in {
         services.${name}.enable = true;
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
@@ -66,7 +66,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) [];
+          }).config.System) [];
       config = lib.mkIf cfg.enable {
         networking.firewall = rec {
           allowedTCPPortRanges = [

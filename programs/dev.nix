@@ -103,7 +103,7 @@ in {
         ];
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
@@ -120,7 +120,7 @@ in {
             oldPathNames = pathNames;
             inherit (Inputs) inheritSettings;
             inherit tools;
-          }).config.nixosModule) [
+          }).config.System) [
           # "docker"
         ]
         ++ map (file:

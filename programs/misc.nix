@@ -55,7 +55,7 @@ in {
         inherit (settings) ledger bambu-studio bitwarden fastfetch iso-image-writer vesktop kdeconnect;
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
@@ -69,7 +69,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) ["ledger" "kdeconnect"];
+          }).config.System) ["ledger" "kdeconnect"];
       config = lib.mkIf cfg.enable {
         inherit (settings) ledger kdeconnect;
       };

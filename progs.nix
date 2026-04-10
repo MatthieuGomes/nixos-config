@@ -153,7 +153,7 @@ in {
         # };
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
@@ -169,7 +169,7 @@ in {
             inherit (Inputs) pkgs-list inputs;
             oldPathNames = pathNames;
             inherit tools;
-          }).config.nixosModule) ["dev" "misc" "shells" "office" "desktop"];
+          }).config.System) ["dev" "misc" "shells" "office" "desktop"];
       config = lib.mkIf cfg.enable {
         inherit (settings) dev shells misc office desktop;
         environment.systemPackages = with packages; [

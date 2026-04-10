@@ -40,7 +40,7 @@ in {
         inherit (settings) zsh;
       };
     };
-    nixosModule = {
+    System = {
       config,
       lib,
       ...
@@ -51,7 +51,7 @@ in {
           inherit config;
           inherit lib;
           inherit (Inputs) pkgs-list inputs;
-        }).config.nixosModule
+        }).config.System
       ];
       config = {
         inherit (settings) zsh;

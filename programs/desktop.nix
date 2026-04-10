@@ -62,7 +62,7 @@ in {
         inherit (settings) rofi plasma klassy;
       };
     };
-    nixosModule = {
+    System = {
       lib,
       config,
       ...
@@ -76,7 +76,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
-          }).config.nixosModule) ["plasma"];
+          }).config.System) ["plasma"];
       config = lib.mkIf cfg.enable {
         inherit (settings) plasma;
       };
