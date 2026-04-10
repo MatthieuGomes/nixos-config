@@ -22,7 +22,6 @@
     grub.enable = cfg.enable && cfg.grub;
     gparted.enable = cfg.enable && cfg.gparted;
     os-prober.enable = cfg.enable && cfg.os-prober;
-    enable = cfg.enable && cfg.os-prober;
   };
   imports = [
     "efibootmgr"
@@ -43,6 +42,7 @@ in {
           inherit config;
           inherit lib;
           inherit (Inputs) pkgs-list inputs;
+          inherit (Inputs) inheritSettings;
         }).config.Home)
       imports;
       config = lib.mkIf cfg.enable {
@@ -60,6 +60,7 @@ in {
           inherit config;
           inherit lib;
           inherit (Inputs) pkgs-list inputs;
+          inherit (Inputs) inheritSettings;
         }).config.System)
       imports;
       config = lib.mkIf cfg.enable {

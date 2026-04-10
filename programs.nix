@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs-list,
+  inheritSettings,
   ...
 } @ Inputs: let
   name = "programs";
@@ -133,6 +134,8 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
+            inherit inheritSettings;
           }).config.homeModule) ["dev" "misc" "shells" "office" "browsers" "desktop"];
       config = lib.mkIf cfg.enable {
         inherit (settings) dev shells misc office browsers desktop;
@@ -161,6 +164,8 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            oldPathNames = pathNames;
+            inherit (Inputs) inheritSettings;
           }).config.nixosModule) ["dev" "misc" "shells" "office" "desktop"];
       config = lib.mkIf cfg.enable {
         inherit (settings) dev shells misc office desktop;

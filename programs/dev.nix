@@ -76,6 +76,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            inherit (Inputs) inheritSettings;
           }).config.homeModule) [
           # "docker"
         ]
@@ -84,6 +85,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            inherit (Inputs) inheritSettings;
           }).config.Home)
         imports;
       config = lib.mkIf cfg.enable {
@@ -109,6 +111,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            inherit (Inputs) inheritSettings;
           }).config.nixosModule) [
           # "docker"
         ]
@@ -117,6 +120,7 @@ in {
             inherit config;
             inherit lib;
             inherit (Inputs) pkgs-list inputs;
+            inherit (Inputs) inheritSettings;
           }).config.System)
         imports;
       config = lib.mkIf cfg.enable {

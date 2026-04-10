@@ -6,11 +6,13 @@
   managers,
   nixos-version,
   opt,
+  inheritSettings,
   ...
 }: let
   import_with_args = file: context:
     (import file {
       inherit config lib inputs pkgs-list;
+      inherit inheritSettings;
     }).config.${
       context
     };

@@ -5,6 +5,7 @@
   pkgs-list,
   nixos-version,
   opt,
+  inheritSettings,
   ...
 } @ Inputs: let
   folder = "programs";
@@ -12,7 +13,7 @@
 in {
   imports =
     [
-      (import ./programs.nix {inherit config lib inputs pkgs-list;}).config.homeModule
+      (import ./programs.nix {inherit config lib inputs pkgs-list inheritSettings;}).config.homeModule
     ]
     ++ [
       pkgs-list.others.zen-browser.homeModules.beta

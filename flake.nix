@@ -91,6 +91,28 @@
       plasma = Inputs.plasma-manager;
     };
     inherit (Inputs) home-manager plasma-manager;
+    lib = latest.lib;
+    inheritSettings = {
+      pathNames,
+      imports,
+      settings,
+    }: let
+      first = lib.lists.last (lib.lists.take 1 pathNames);
+      last = lib.lists.last pathNames;
+    in
+      builtins.listToAttrs (map (setting: {
+          name = first;
+          value =
+            if (first == last)
+            then settings.${setting}
+            else
+              (inheritSettings {
+                pathNames = lib.lists.drop 1 pathNames;
+                imports = imports;
+                settings = settings;
+              });
+        })
+        imports);
     opt = {
       programs = {
         enable = true;
@@ -159,6 +181,7 @@
         inherit managers;
         inherit nixos-version;
         inherit opt;
+        inherit inheritSettings;
       };
       modules = [
         ./configuration.nix
@@ -171,6 +194,7 @@
               inherit latest;
               inherit nixos-version;
               inherit opt;
+              inherit inheritSettings;
             };
             useUserPackages = true;
             useGlobalPkgs = true;

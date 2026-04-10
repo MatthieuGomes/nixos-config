@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs-list,
+  inheritSettings,
   ...
 } @ Inputs: let
   name = "dev-nix";
@@ -32,6 +33,7 @@ in {
         (import ./${subfolder}/${file}.nix {
           inherit config lib;
           inherit (Inputs) pkgs-list inputs;
+          inherit (Inputs) inheritSettings;
         }).config.Home)
       imports;
       config = lib.mkIf cfg.enable {
@@ -51,6 +53,7 @@ in {
           (import ./${subfolder}/${file}.nix {
             inherit config lib;
             inherit (Inputs) pkgs-list inputs;
+            inherit (Inputs) inheritSettings;
           }).config.System)
         imports;
       config = lib.mkIf cfg.enable {
