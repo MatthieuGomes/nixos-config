@@ -96,7 +96,7 @@
       inherit lib;
     };
     settings = {
-      programs = {
+      progs = {
         enable = true;
         shells = {
           enable = true;

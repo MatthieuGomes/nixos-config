@@ -5,7 +5,7 @@
   tools,
   ...
 } @ Inputs: let
-  name = "programs";
+  name = "progs";
   subfolder = "programs";
   repo = "nix";
   branch = "latest";

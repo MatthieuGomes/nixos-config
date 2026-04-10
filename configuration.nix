@@ -26,10 +26,10 @@ in {
     ]
     ++ [
       (import_with_args
-        ./programs.nix
+        ./progs.nix
         "nixosModule")
     ];
-  inherit (settings) programs;
+  inherit (settings) progs;
 
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
   system.version = nixos-version;

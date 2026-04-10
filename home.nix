@@ -13,12 +13,12 @@
 in {
   imports =
     [
-      (import ./programs.nix {inherit config lib inputs pkgs-list tools;}).config.homeModule
+      (import ./progs.nix {inherit config lib inputs pkgs-list tools;}).config.homeModule
     ]
     ++ [
       pkgs-list.others.zen-browser.homeModules.beta
     ];
-  inherit (settings) programs;
+  inherit (settings) progs;
 
   home.stateVersion = nixos-version;
   home.username = "matthieu";
