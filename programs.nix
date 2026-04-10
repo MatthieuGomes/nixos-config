@@ -38,7 +38,7 @@
         type = lib.types.attrsOf lib.types.bool;
         description = "Enables and configures boot related tools.";
       };
-      nix = lib.mkOption {
+      dev-nix = lib.mkOption {
         type = lib.types.attrsOf lib.types.bool;
         description = "Enables and configures Nix related tools.";
       };
@@ -73,10 +73,10 @@
         gparted = enable && cfg.dev.boot.gparted;
         os-prober = enable && cfg.dev.boot.os-prober;
       };
-      nix = rec {
-        enable = cfg.enable && cfg.dev.nix.enable;
-        nixd = enable && cfg.dev.nix.nixd;
-        alejandra = enable && cfg.dev.nix.alejandra;
+dev-nix = rec {
+        enable = cfg.enable && cfg.dev.dev-nix.enable;
+        nixd = enable && cfg.dev.dev-nix.nixd;
+        alejandra = enable && cfg.dev.dev-nix.alejandra;
       };
       network = cfg.enable && cfg.dev.network;
       git = cfg.enable && cfg.dev.git;

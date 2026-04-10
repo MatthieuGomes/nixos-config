@@ -23,7 +23,7 @@
       type = lib.types.attrsOf lib.types.bool;
       description = "Enables and configures boot related tools.";
     };
-    nix = lib.mkOption {
+    dev-nix = lib.mkOption {
       type = lib.types.attrsOf lib.types.bool;
       description = "Enables and configures Nix related tools.";
     };
@@ -45,9 +45,9 @@
       os-prober = cfg.enable && cfg.boot.os-prober;
     };
     dev-nix = {
-      enable = cfg.enable && cfg.nix.enable;
-      nixd = cfg.enable && cfg.nix.nixd;
-      alejandra = cfg.enable && cfg.nix.alejandra;
+      enable = cfg.enable && cfg.dev-nix.enable;
+      nixd = cfg.enable && cfg.dev-nix.nixd;
+      alejandra = cfg.enable && cfg.dev-nix.alejandra;
     };
     # network.enable = cfg.enable && cfg.network;
     ghostty.enable = cfg.enable && cfg.ghostty;

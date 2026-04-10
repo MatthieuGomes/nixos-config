@@ -144,7 +144,7 @@
             gparted = true;
             os-prober = true;
           };
-          nix = {
+          dev-nix = {
             enable = true;
             nixd = true;
             alejandra = true;
