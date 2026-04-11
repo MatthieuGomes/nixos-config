@@ -1,17 +1,32 @@
 {
   config,
   lib,
-  inputs,
+  pkgs-list,
+  oldPathNames,
+  tools,
   ...
 } @ Inputs: let
   name = "gparted";
   main-repo = "nix";
   branch = "latest";
-  packages = Inputs.pkgs-list.${main-repo}.${branch};
+  packages = pkgs-list.${main-repo}.${branch};
+  pathNames = oldPathNames ++ [name];
+  fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.${name};
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures GParted.";
   };
+  Common = {
+  };
+  Home = {
+    home.packages = with packages; [
+      gparted
+    ];
+  };
+  System = {
+  };
+  HomeConfig = Common // Home;
+  SystemConfig = Common // System;
 in {
   config = {
     Home = {
@@ -20,11 +35,7 @@ in {
       ...
     }: {
       inherit options;
-      config = lib.mkIf cfg.enable {
-        home.packages = with packages; [
-          gparted
-        ];
-      };
+      config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
       lib,
@@ -32,9 +43,7 @@ in {
       ...
     }: {
       inherit options;
-      config =
-        lib.mkIf cfg.enable {
-        };
+      config = lib.mkIf cfg.enable SystemConfig;
     };
   };
 }

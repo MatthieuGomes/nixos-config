@@ -3,6 +3,7 @@
   lib,
   pkgs-list,
   oldPathNames,
+  tools,
   ...
 } @ Inputs: let
   name = "efibootmgr";
@@ -15,6 +16,17 @@
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures EFIBOOTMGR.";
   };
+  Common = {
+  };
+  Home = {
+    home.packages = with packages; [
+      efibootmgr
+    ];
+  };
+  System = {
+  };
+  HomeConfig = Common // Home;
+  SystemConfig = Common // System;
 in {
   config = {
     Home = {
@@ -23,11 +35,7 @@ in {
       ...
     }: {
       inherit options;
-      config = lib.mkIf cfg.enable {
-        home.packages = with packages; [
-          efibootmgr
-        ];
-      };
+      config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
       lib,
@@ -35,9 +43,7 @@ in {
       ...
     }: {
       inherit options;
-      config =
-        lib.mkIf cfg.enable {
-        };
+      config = lib.mkIf cfg.enable SystemConfig;
     };
   };
 }

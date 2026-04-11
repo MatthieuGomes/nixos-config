@@ -1,17 +1,32 @@
 {
   config,
   lib,
-  inputs,
+  pkgs-list,
+  oldPathNames,
+  tools,
   ...
 } @ Inputs: let
   name = "os-prober";
   main-repo = "nix";
   branch = "latest";
-  packages = Inputs.pkgs-list.${main-repo}.${branch};
+  packages = pkgs-list.${main-repo}.${branch};
+  pathNames = oldPathNames ++ [name];
+  fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.${name};
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures OS Prober.";
   };
+  Common = {
+  };
+  Home = {
+    home.packages = with packages; [
+      os-prober
+    ];
+  };
+  System = {
+  };
+  HomeConfig = Common // Home;
+  SystemConfig = Common // System;
 in {
   config = {
     Home = {
@@ -20,11 +35,7 @@ in {
       ...
     }: {
       inherit options;
-      config = lib.mkIf cfg.enable {
-        home.packages = with packages; [
-          os-prober
-        ];
-      };
+      config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
       lib,
@@ -33,8 +44,7 @@ in {
     }: {
       inherit options;
       config =
-        lib.mkIf cfg.enable {
-        };
+        lib.mkIf cfg.enable SystemConfig;
     };
   };
 }
