@@ -59,12 +59,14 @@
     settings,
   }: let
     first = lib.lists.last (lib.lists.take 1 pathNames);
-    last = lib.lists.last pathNames;
   in
     builtins.listToAttrs (map (setting: {
-        name = first;
+        name =
+          if (pathNames == [])
+          then setting
+          else first;
         value =
-          if (first == last)
+          if (pathNames == [])
           then settings.${setting}
           else
             (inheritSettings {
@@ -74,6 +76,7 @@
             });
       })
       imports);
+
   universalModule = {
     lib,
     config,
