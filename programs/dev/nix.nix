@@ -13,6 +13,7 @@
   # packages = pkgs-list.${repo}.${branch};
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
+  imports = ["alejandra" "nixd"];
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
     nixd = lib.mkEnableOption "Enables and configures Nixd.";
@@ -23,7 +24,6 @@
     nixd.enable = cfg.enable && cfg.nixd;
     alejandra.enable = cfg.enable && cfg.alejandra;
   };
-  imports = ["alejandra" "nixd"];
   inheritedSettings = tools.inheritSettings {
     inherit pathNames imports settings;
   };
