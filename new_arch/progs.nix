@@ -145,7 +145,7 @@ in {
       imports =
         map (file:
           (import ./${subfolder}/${file}.nix {
-            inherit config lib packages tools;
+            inherit config lib pkgs-list tools;
             inherit (Inputs) inputs;
             oldPathNames = pathNames;
           }).config.Home)
@@ -161,7 +161,7 @@ in {
       inherit options;
       imports = map (file:
         (import ./${subfolder}/${file}.nix {
-          inherit config lib packages tools;
+          inherit config lib pkgs-list tools;
           inherit (Inputs) inputs;
           oldPathNames = pathNames;
         }).config.System)
