@@ -1,34 +1,32 @@
 {
   config,
   lib,
-  inputs,
   pkgs-list,
   nixos-version,
   settings,
   tools,
   ...
 } @ Inputs: let
-  folder = "programs";
-  context = "home";
-in {
-  imports =
-    [
-      (import ./progs.nix {inherit config lib inputs pkgs-list tools;}).config.Home
-    ]
-    ++ [
-      pkgs-list.others.zen-browser.homeModules.beta
-    ];
-  inherit (settings) progs;
+  name = "home";
+  mainModule = "progs"; ## Exceptional structure since home NEEDS to exist but only imports progs
+  imports = ["progs"];
 
-  home.stateVersion = nixos-version;
-  home.username = "matthieu";
-  home.homeDirectory = "/home/matthieu";
-  # TODO: Move to another folder later
-  # home.packages = with Inputs.pkgs-list.nix.latest; [
-  #   ntfs3g
-  #   ntfsprogs
-  #   btrfs-progs
-  #   exfat
-  #   exfatprogs
-  # ];
-}
+  inheritedSettings = tools.inheritSettings {
+    pathNames = [];
+    imports = imports;
+    settings = settings;
+  };
+in
+  inheritedSettings
+  // {
+    imports = map (file:
+      (import ./${mainModule}.nix {
+        inherit config lib pkgs-list tools;
+        inherit (Inputs) inputs;
+      }).config.Home)
+    imports;
+
+    home.stateVersion = nixos-version;
+    home.username = "matthieu";
+    home.homeDirectory = "/home/matthieu";
+  }
