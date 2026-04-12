@@ -131,13 +131,28 @@
             nixd = true;
             alejandra = true;
           };
+          misc = {
+            enable = true;
+            git = true;
+            postman = true;
+          };
+          editors = {
+            enable = true;
+            vscode = true;
+            vim = true;
+          };
+          terminals = {
+            enable = true;
+            ghostty = true;
+          };
+          virtualization = {
+            enable = true;
+            docker = true;
+          };
+          network = {
+            enable = true;
+          };
           # network = true;
-          docker = true;
-          ghostty = true;
-          git = true;
-          postman = true;
-          vscode = true;
-          vim = true;
         };
         browsers = {
           enable = true;
