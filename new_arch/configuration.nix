@@ -11,8 +11,8 @@
 }: let
   import_with_args = file: context:
     (import file {
-      inherit config lib inputs pkgs-list;
-      inherit tools;
+      inherit config lib inputs pkgs-list tools;
+      oldPathNames = [];
     }).config.${
       context
     };
@@ -20,7 +20,7 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      ./system.nix
+      ./sys.nix
       managers.home.nixosModules.default
     ]
     ++ [
@@ -36,6 +36,6 @@ in {
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
-  };
-  fonts.packages = with pkgs-list.nix.latest; [nerd-fonts.jetbrains-mono];
+  }; # FIXME : Move to somewhere else
+  fonts.packages = with pkgs-list.nix.latest; [nerd-fonts.jetbrains-mono]; # FIXME : Move to somewhere else
 }
