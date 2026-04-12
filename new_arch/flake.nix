@@ -166,6 +166,25 @@
           rofi = true;
         };
       };
+      sys = {
+        enable = true;
+        version = nixos-version;
+        lang = {
+          enable = true;
+        };
+        users = {
+          enable = true;
+        };
+        hardware = {
+          enable = true;
+        };
+        networking = {
+          enable = true;
+        };
+        filesystems = {
+          enable = true;
+        };
+      };
     };
   in {
     nixosConfigurations.NixOs = latestPkgs.lib.nixosSystem {
