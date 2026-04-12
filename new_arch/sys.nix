@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   system,
   pkgs-list,
   tools,
@@ -110,7 +109,7 @@ in {
   imports = map (file:
     (import ./${subfolder}/${file}.nix
       {
-        inherit config lib packages tools;
+        inherit config lib pkgs-list tools;
         inherit (Inputs) inputs;
         oldPathNames = pathNames;
       }).config.System)

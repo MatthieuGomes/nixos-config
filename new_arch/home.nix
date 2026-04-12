@@ -23,6 +23,7 @@ in
       (import ./${mainModule}.nix {
         inherit config lib pkgs-list tools;
         inherit (Inputs) inputs;
+        oldPathNames = [];
       }).config.Home)
     imports;
 
