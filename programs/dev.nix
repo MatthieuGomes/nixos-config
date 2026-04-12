@@ -60,6 +60,22 @@
     vscode.enable = cfg.enable && cfg.vscode;
     vim.enable = cfg.enable && cfg.vim;
   };
+  Common = {
+    inherit (settings) docker vim;
+  };
+  Home = {
+    inherit (settings) dev-nix ghostty git postman vscode boot;
+    home.packages = with packages; [
+      python3
+      nmap # for network
+      netcat-openbsd # for network
+    ];
+  };
+  System = {
+  };
+
+  HomeConfig = Common // Home;
+  SystemConfig = Common // System;
 in {
   config = {
     Home = {
@@ -77,31 +93,12 @@ in {
         ]
         ++ map (file:
           (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
+            inherit config lib pkgs-list tools;
+            inherit (Inputs) inputs;
             oldPathNames = pathNames;
-            inherit tools;
-          }).config.Home) [
-          # "docker"
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-            oldPathNames = pathNames;
-            inherit tools;
           }).config.Home)
         imports;
-      config = lib.mkIf cfg.enable {
-        inherit (settings) docker dev-nix ghostty git postman vscode vim boot;
-        home.packages = with packages; [
-          python3
-          nmap # for network
-          netcat-openbsd # for network
-        ];
-      };
+      config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
       lib,
@@ -109,33 +106,14 @@ in {
       ...
     }: {
       inherit options;
-      imports =
-        map (file: ./${subfolder}/${file}.nix) [
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-            oldPathNames = pathNames;
-            inherit (Inputs) inheritSettings;
-            inherit tools;
-          }).config.System) [
-          # "docker"
-        ]
-        ++ map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config;
-            inherit lib;
-            inherit (Inputs) pkgs-list inputs;
-            oldPathNames = pathNames;
-            inherit (Inputs) inheritSettings;
-            inherit tools;
-          }).config.System)
-        imports;
-      config = lib.mkIf cfg.enable {
-        inherit (settings) docker vim;
-      };
+      imports = map (file:
+        (import ./${subfolder}/${file}.nix {
+          inherit config lib pkgs-list tools;
+          inherit (Inputs) inputs;
+          oldPathNames = pathNames;
+        }).config.System)
+      imports;
+      config = lib.mkIf cfg.enable SystemConfig;
     };
   };
 }
