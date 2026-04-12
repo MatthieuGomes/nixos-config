@@ -1,0 +1,3 @@
+menuentry 'UEFI Firmware Settings' $menuentry_id_option 'uefi-firmware' {
+	fwsetup
+}
