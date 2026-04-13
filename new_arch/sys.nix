@@ -1,9 +1,9 @@
 {
   config,
   lib,
-  system,
   pkgs-list,
   tools,
+  settings,
   ...
 } @ Inputs: let
   name = "sys";
@@ -21,88 +21,21 @@
   ];
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames;
-  cfg = config.${fullPath};
-  options.${fullPath} = {
-    enable = lib.mkEnableOption "Enables and configures system related settings.";
+  fullPath = lib.concatStringsSep "." pathNames; # NOTE : Doesnt work as intended, need a function to generate the full path
+  options.sys = {
     version = lib.mkOption {
       type = lib.types.str;
       default = "25.11";
       description = "The system state version.";
     };
-    bootloader = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures bootloader related settings.";
-      default =
-        cfg.bootloader
-        // {
-          enable = lib.mkEnableOption "Enables bootloader related settings.";
-        };
-    };
-    lang = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures language related settings.";
-      default =
-        cfg.lang
-        // {
-          enable = lib.mkEnableOption "Enables language related settings.";
-        };
-    };
-    users = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures user related settings.";
-      default =
-        cfg.users
-        // {
-          enable = lib.mkEnableOption "Enables user related settings.";
-        };
-    };
-    hardware = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures hardware related settings.";
-      default =
-        cfg.hardware
-        // {
-          enable = lib.mkEnableOption "Enables hardware related settings.";
-        };
-    };
-    networking = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures networking related settings.";
-      default =
-        cfg.networking
-        // {
-          enable = lib.mkEnableOption "Enables networking related settings.";
-        };
-    };
-    filesystems = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures filesystem related settings.";
-      default =
-        cfg.filesystems
-        // {
-          enable = lib.mkEnableOption "Enables filesystem related settings.";
-        };
-    };
   };
-  settings.${fullPath} = {
-    lang = {
-      enable = cfg.enable && cfg.lang.enable;
-    };
-    users = {
-      enable = cfg.enable && cfg.users.enable;
-    };
-    hardware = {
-      enable = cfg.enable && cfg.hardware.enable;
-    };
-    networking = {
-      enable = cfg.enable && cfg.networking.enable;
-    };
-  };
-  inheritSettings = tools.inheritSettings {
-    pathNames = pathNames;
-    imports = imports;
-    settings = settings;
+  inheritedSettings.sys = {
+    bootloaders.enable = settings.sys.bootloaders.enable;
+    lang.enable = settings.sys.lang.enable;
+    users.enable = settings.sys.users.enable;
+    hardware.enable = settings.sys.hardware.enable;
+    networking.enable = settings.sys.networking.enable;
+    filesystems.enable = settings.sys.filesystems.enable;
   };
 in {
   inherit options;
@@ -115,9 +48,9 @@ in {
       }).config.System)
   imports;
   config =
-    inheritSettings
+    inheritedSettings
     // {
-      system.stateVersion = config.${fullPath}.version;
+      system.stateVersion = config.sys.version;
       nix.settings.experimental-features = ["nix-command" "flakes"];
       boot.kernelPackages = packages.linuxPackages_latest;
     };

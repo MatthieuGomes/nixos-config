@@ -3,6 +3,7 @@
   lib,
   pkgs-list,
   tools,
+  settings,
   ...
 } @ Inputs: let
   name = "progs";
@@ -24,84 +25,19 @@
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
-  cfg = config.${fullPath};
-  options.${fullPath} = {
-    enable = lib.mkEnableOption "Enables and configures ${name}";
-    dev = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures development tools.";
-      default =
-        cfg.dev
-        // {
-          enable = lib.mkEnableOption "Enables development tools.";
-        };
-    };
-    shells = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures shells.";
-      default =
-        cfg.shells
-        // {
-          enable = lib.mkEnableOption "Enables shells.";
-        };
-    };
-    misc = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures miscellaneous tools.";
-      default =
-        cfg.misc
-        // {
-          enable = lib.mkEnableOption "Enables miscellaneous tools.";
-        };
-    };
-    office = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures office tools.";
-      default =
-        cfg.office
-        // {
-          enable = lib.mkEnableOption "Enables office tools.";
-        };
-    };
-    browsers = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures browsers.";
-      default =
-        cfg.browsers
-        // {
-          enable = lib.mkEnableOption "Enables browsers.";
-        };
-    };
-    desktop = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      description = "Enables and configures desktop environment.";
-      default =
-        cfg.desktop
-        // {
-          enable = lib.mkEnableOption "Enables desktop environment.";
-        };
-    };
-  };
-  settings.${fullPath} = {
-    enable = cfg.${fullPath}.enable;
-    dev = cfg.${fullPath}.dev;
-    shells = cfg.${fullPath}.shells;
-    misc = cfg.${fullPath}.misc;
-    office = cfg.${fullPath}.office;
-    browsers = cfg.${fullPath}.browsers;
-    desktop = cfg.${fullPath}.desktop;
-  };
-  inheritedSettings = tools.inheritSettings {
-    pathNames = pathNames;
-    imports = imports;
-    settings = settings;
+  inheritedSettings.progs = {
+    shells.enable = settings.progs.shells.enable;
+    misc.enable = settings.progs.misc.enable;
+    office.enable = settings.progs.office.enable;
+    dev.enable = settings.progs.dev.enable;
+    browsers.enable = settings.progs.browsers.enable;
+    desktop.enable = settings.progs.desktop.enable;
   };
   Common =
     inheritedSettings
     // {
     };
   Home = {
-    progs.browsers = settings.${fullPath}.browsers;
     programs = {
       thunderbird = {
         enable = true;
@@ -141,7 +77,6 @@ in {
       config,
       ...
     }: {
-      inherit options;
       imports =
         map (file:
           (import ./${subfolder}/${file}.nix {
@@ -151,14 +86,13 @@ in {
           }).config.Home)
         (imports
           ++ homeImport);
-      config = lib.mkIf cfg.enable HomeConfig;
+      config = HomeConfig;
     };
     System = {
       lib,
       config,
       ...
     }: {
-      inherit options;
       imports = map (file:
         (import ./${subfolder}/${file}.nix {
           inherit config lib pkgs-list tools;
@@ -166,7 +100,7 @@ in {
           oldPathNames = pathNames;
         }).config.System)
       imports;
-      config = lib.mkIf cfg.enable SystemConfig;
+      config = SystemConfig;
     };
   };
 }

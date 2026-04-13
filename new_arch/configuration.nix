@@ -19,8 +19,15 @@
 in {
   imports =
     [
+      (import
+        ./sys.nix
+        {
+          inherit config lib pkgs-list tools inputs settings;
+          oldPathNames = [];
+        })
+    ]
+    ++ [
       ./hardware-configuration.nix
-      ./sys.nix
       managers.home.nixosModules.default
     ]
     ++ [
@@ -28,10 +35,8 @@ in {
         ./progs.nix
         "System")
     ];
-  inherit (settings) progs;
-
+  sys.version = settings.sys.version;
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
-  system.version = nixos-version;
   networking.hostName = "NixOs";
   virtualisation = {
     libvirtd.enable = true;

@@ -97,93 +97,21 @@
     };
     settings = {
       progs = {
-        enable = true;
-        shells = {
-          enable = true;
-          zsh = true;
-        };
-        misc = {
-          enable = true;
-          ledger = true;
-          bambu-studio = true;
-          bitwarden = true;
-          fastfetch = true;
-          iso-image-writer = true;
-          vesktop = true;
-          kdeconnect = true;
-        };
-        office = {
-          enable = true;
-          libreoffice = true;
-          qualculate = true;
-        };
-        dev = {
-          enable = true;
-          boot = {
-            enable = true;
-            efibootmgr = true;
-            grub = true;
-            gparted = true;
-            os-prober = true;
-          };
-          dev-nix = {
-            enable = true;
-            nixd = true;
-            alejandra = true;
-          };
-          misc = {
-            enable = true;
-            git = true;
-            postman = true;
-          };
-          editors = {
-            enable = true;
-            vscode = true;
-            vim = true;
-          };
-          terminals = {
-            enable = true;
-            ghostty = true;
-          };
-          virtualization = {
-            enable = true;
-            docker = true;
-          };
-          network = {
-            enable = true;
-          };
-          # network = true;
-        };
-        browsers = {
-          enable = true;
-          firefox = true;
-          chromium = true;
-        };
-        desktop = {
-          enable = true;
-          plasma = true;
-          klassy = true;
-          rofi = true;
-        };
+        shells.enable = true;
+        misc.enable = true;
+        office.enable = true;
+        dev.enable = true;
+        browsers.enable = true;
+        desktop.enable = true;
       };
       sys = {
-        enable = true;
         version = nixos-version;
-        lang = {
-          enable = true;
-        };
-        users = {
-          enable = true;
-        };
-        hardware = {
-          enable = true;
-        };
-        networking = {
-          enable = true;
-        };
-        filesystems = {
-          enable = true;
-        };
+        bootloaders.enable = true;
+        lang.enable = true;
+        users.enable = true;
+        hardware.enable = true;
+        networking.enable = true;
+        filesystems.enable = true;
       };
     };
   in {
