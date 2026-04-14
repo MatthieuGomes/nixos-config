@@ -14,7 +14,7 @@
   fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.${name};
   options.sys.${name} = {
-    enable = lib.mkEnableOption "Enables and configures user related settings.";
+    enable = lib.mkEnableOption "Enables ${name} related settings.";
   };
   Common = {
   };
