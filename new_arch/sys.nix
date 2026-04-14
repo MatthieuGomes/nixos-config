@@ -16,7 +16,7 @@
     "lang"
     "users"
     # "hardware"
-    # "networking"
+    "networking"
     # "filesystems"
   ];
   oldPathNames = [];
