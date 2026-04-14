@@ -76,6 +76,20 @@
             });
       })
       imports);
+  contextModuleImport = {
+    imports,
+    subfolder,
+    context,
+    ...
+  } @ basicDependencies:
+    map (file:
+      (import ./${subfolder}/${file}.nix {
+        inherit (basicDependencies) inputs config lib pkgs-list tools;
+        oldPathNames = basicDependencies.pathNames;
+      }).config.${
+        context
+      })
+    imports;
 
   universalModule = {
     lib,
@@ -147,6 +161,6 @@
     };
   };
 in {
-  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule;
+  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule contextModuleImport;
   # multiContextModule;
 }
