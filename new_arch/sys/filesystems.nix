@@ -26,9 +26,9 @@
     # btrfs.enable = lib.mkEnableOption "Enables and configures Btrfs filesystem support.";
   };
   settings = {
-    ntfs.enable = cfg.ntfs.enable;
-    exfat.enable = cfg.exfat.enable;
-    btrfs.enable = cfg.btrfs.enable;
+    ntfs.enable = true;
+    exfat.enable = true;
+    btrfs.enable = true;
   };
   inheritedSettings = tools.inheritSettings {
     inherit pathNames imports settings;
