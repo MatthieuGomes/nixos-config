@@ -71,7 +71,7 @@ in {
           inherit config lib pkgs-list tools;
           inherit (Inputs) inputs;
           oldPathNames = pathNames;
-        }).config.Home)
+        }).config.System)
       imports;
       config = lib.mkIf cfg.enable SystemConfig;
     };
