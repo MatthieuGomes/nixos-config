@@ -121,7 +121,6 @@
         inherit pkgs-list;
         inherit Inputs;
         inherit managers;
-        inherit nixos-version;
         inherit settings;
         inherit tools;
       };

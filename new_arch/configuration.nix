@@ -4,7 +4,6 @@
   inputs,
   pkgs-list,
   managers,
-  nixos-version,
   settings,
   tools,
   ...
