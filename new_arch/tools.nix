@@ -91,6 +91,20 @@
       })
     imports;
 
+  inheritConfig = {
+    pathNames,
+    config,
+  }: let
+    first = lib.lists.last (lib.lists.take 1 pathNames);
+  in
+    if (pathNames == [])
+    then config
+    else
+      inheritConfig {
+        pathNames = lib.lists.drop 1 pathNames;
+        config = config.${first};
+      };
+
   universalModule = {
     lib,
     config,
@@ -161,6 +175,6 @@
     };
   };
 in {
-  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule contextModuleImport;
+  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule contextModuleImport inheritConfig;
   # multiContextModule;
 }
