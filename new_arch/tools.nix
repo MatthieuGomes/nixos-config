@@ -54,23 +54,23 @@
     };
   };
   inheritSettings = {
-    pathNames,
+    currentPathAsList,
     imports,
     settings,
   }: let
-    first = lib.lists.last (lib.lists.take 1 pathNames);
+    first = lib.lists.last (lib.lists.take 1 currentPathAsList);
   in
     builtins.listToAttrs (map (setting: {
         name =
-          if (pathNames == [])
+          if (currentPathAsList == [])
           then setting
           else first;
         value =
-          if (pathNames == [])
+          if (currentPathAsList == [])
           then settings.${setting}
           else
             (inheritSettings {
-              pathNames = lib.lists.drop 1 pathNames;
+              currentPathAsList = lib.lists.drop 1 currentPathAsList;
               imports = imports;
               settings = settings;
             });
@@ -86,40 +86,40 @@
     map (file:
       (import ./${currentDirPath}/${subfolder}/${file}.nix {
         inherit (basicDependencies) inputs config lib pkgs-list tools;
-        parentsPathList = basicDependencies.pathNames;
+        parentsPathList = basicDependencies.currentPathAsList;
       }).config.${
         context
       })
     imports;
 
   inheritConfig = {
-    pathNames,
+    currentPathAsList,
     config,
   }: let
-    first = lib.lists.last (lib.lists.take 1 pathNames);
+    first = lib.lists.last (lib.lists.take 1 currentPathAsList);
   in
-    if (pathNames == [])
+    if (currentPathAsList == [])
     then config
     else
       inheritConfig {
-        pathNames = lib.lists.drop 1 pathNames;
+        currentPathAsList = lib.lists.drop 1 currentPathAsList;
         config = config.${first};
       };
 
   inheritOptions = {
-    pathNames,
+    currentPathAsList,
     options,
   }: let
-    first = lib.lists.last (lib.lists.take 1 pathNames);
+    first = lib.lists.last (lib.lists.take 1 currentPathAsList);
   in (lib.listToAttrs [
     {
       name = first;
       value =
-        if (pathNames == [first])
+        if (currentPathAsList == [first])
         then options
         else
           inheritOptions {
-            pathNames = lib.lists.drop 1 pathNames;
+            currentPathAsList = lib.lists.drop 1 currentPathAsList;
             inherit options;
           };
     }

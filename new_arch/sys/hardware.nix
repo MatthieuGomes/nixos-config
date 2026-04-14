@@ -11,7 +11,7 @@
   main-repo = "nix";
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
-  pathNames = parentsPathList ++ [name];
+  currentPathAsList = parentsPathList ++ [name];
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentsPathList]);
   cfg = config.sys.${name};
   imports = [
@@ -30,7 +30,7 @@
     # bluetooth.enable = true; #TODO : move bluetooth to its own module
   };
   inheritedSettings = tools.inheritSettings {
-    inherit pathNames imports settings;
+    inherit currentPathAsList imports settings;
   };
   Common =
     inheritedSettings
@@ -65,10 +65,10 @@ in {
       ...
     }: {
       options = tools.inheritOptions {
-        inherit pathNames options;
+        inherit currentPathAsList options;
       };
       imports = tools.contextModuleImport {
-        inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
         inherit (Inputs) inputs;
         context = "Home";
       };
@@ -80,10 +80,10 @@ in {
       ...
     }: {
       options = tools.inheritOptions {
-        inherit pathNames options;
+        inherit currentPathAsList options;
       };
       imports = tools.contextModuleImport {
-        inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
         inherit (Inputs) inputs;
         context = "System";
       };

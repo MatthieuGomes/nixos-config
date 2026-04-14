@@ -10,7 +10,7 @@
   main-repo = "nix";
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
-  pathNames = parentsPathList ++ [name];
+  currentPathAsList = parentsPathList ++ [name];
   cfg = config.sys.filesystems.${name};
   options = {
     enable = lib.mkEnableOption "Enables and configures ${name} filesystem support.";
@@ -38,7 +38,7 @@ in {
       ...
     }: {
       options = tools.inheritOptions {
-        inherit pathNames options;
+        inherit currentPathAsList options;
       };
       config = lib.mkIf cfg.enable HomeConfig;
     };
@@ -48,7 +48,7 @@ in {
       ...
     }: {
       options = tools.inheritOptions {
-        inherit pathNames options;
+        inherit currentPathAsList options;
       };
       config = lib.mkIf cfg.enable SystemConfig;
     };

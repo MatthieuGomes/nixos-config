@@ -20,7 +20,7 @@
     "filesystems"
   ];
   parentsPathList = [];
-  pathNames = parentsPathList ++ [name];
+  currentPathAsList = parentsPathList ++ [name];
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentsPathList]);
   options = {
     version = lib.mkOption {
@@ -39,15 +39,15 @@
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
   inheritedSettings = tools.inheritSettings {
     inherit settings;
-    inherit pathNames;
+    inherit currentPathAsList;
     inherit imports;
   };
 in {
   options = tools.inheritOptions {
-    inherit pathNames options;
+    inherit currentPathAsList options;
   };
   imports = tools.contextModuleImport {
-    inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+    inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
     inherit (Inputs) inputs;
     context = "System";
   };

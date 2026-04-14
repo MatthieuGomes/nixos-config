@@ -23,14 +23,14 @@
     # "browsers"
   ];
   parentsPathList = [];
-  pathNames = parentsPathList ++ [name];
+  currentPathAsList = parentsPathList ++ [name];
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentsPathList]);
   newSettings.${name} = {
   };
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
   inheritedSettings = tools.inheritSettings {
     inherit settings;
-    inherit pathNames;
+    inherit currentPathAsList;
     inherit imports;
   };
   Common =
@@ -81,7 +81,7 @@ in {
         imports =
           imports
           ++ homeImport;
-        inherit subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
         inherit (Inputs) inputs;
         context = "Home";
       };
@@ -93,7 +93,7 @@ in {
       ...
     }: {
       imports = tools.contextModuleImport {
-        inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
         inherit (Inputs) inputs;
         context = "System";
       };
