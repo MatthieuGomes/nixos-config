@@ -107,7 +107,7 @@
 
   inheritOptions = {
     pathNames,
-    opt,
+    options,
   }: let
     first = lib.lists.last (lib.lists.take 1 pathNames);
   in (lib.listToAttrs [
@@ -115,11 +115,11 @@
       name = first;
       value =
         if (pathNames == [first])
-        then opt
+        then options
         else
           inheritOptions {
             pathNames = lib.lists.drop 1 pathNames;
-            inherit opt;
+            inherit options;
           };
     }
   ]);
