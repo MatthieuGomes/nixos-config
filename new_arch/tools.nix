@@ -80,10 +80,11 @@
     imports,
     subfolder,
     context,
+    currentDirPath,
     ...
   } @ basicDependencies:
     map (file:
-      (import ./${subfolder}/${file}.nix {
+      (import ./${currentDirPath}/${subfolder}/${file}.nix {
         inherit (basicDependencies) inputs config lib pkgs-list tools;
         oldPathNames = basicDependencies.pathNames;
       }).config.${
