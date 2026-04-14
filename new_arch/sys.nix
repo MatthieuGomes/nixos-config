@@ -15,7 +15,7 @@
     "bootloader"
     "lang"
     "users"
-    # "hardware"
+    "hardware"
     "networking"
     "filesystems"
   ];
