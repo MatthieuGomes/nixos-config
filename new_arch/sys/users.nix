@@ -26,7 +26,7 @@
       defaultUserShell = packages.zsh;
       users = {
         matthieu = {
-          password = "password"; # BAZINGA
+          password = ""; # BAZINGA
           ignoreShellProgramCheck = true; # BAZINGA
           description = "Moi";
           isNormalUser = true;
