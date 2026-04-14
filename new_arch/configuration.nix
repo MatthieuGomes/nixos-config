@@ -10,7 +10,7 @@
 }: let
   import_with_args = file: context:
     (import file {
-      inherit config lib inputs pkgs-list tools;
+      inherit config lib inputs pkgs-list tools settings;
       oldPathNames = [];
     }).config.${
       context
