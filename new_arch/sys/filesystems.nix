@@ -13,6 +13,7 @@
   packages = pkgs-list.${main-repo}.${branch};
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten (lib.lists.flatten ["./." oldPathNames]));
   cfg = config.sys.${name};
   imports = [
     "ntfs"
@@ -48,13 +49,11 @@ in {
       ...
     }: {
       inherit options;
-      imports = map (file:
-        (import ./${subfolder}/${file}.nix {
-          inherit config lib pkgs-list tools;
-          inherit (Inputs) inputs;
-          oldPathNames = pathNames;
-        }).config.Home)
-      imports;
+      imports = tools.contextModuleImport {
+        inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit (Inputs) inputs;
+        context = "Home";
+      };
       config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
@@ -63,13 +62,11 @@ in {
       ...
     }: {
       inherit options;
-      imports = map (file:
-        (import ./${subfolder}/${file}.nix {
-          inherit config lib pkgs-list tools;
-          inherit (Inputs) inputs;
-          oldPathNames = pathNames;
-        }).config.System)
-      imports;
+      imports = tools.contextModuleImport {
+        inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit (Inputs) inputs;
+        context = "System";
+      };
       config = lib.mkIf cfg.enable SystemConfig;
     };
   };

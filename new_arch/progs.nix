@@ -25,6 +25,7 @@
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
   newSettings.${name} = {
   };
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
@@ -77,15 +78,14 @@ in {
       config,
       ...
     }: {
-      imports =
-        map (file:
-          (import ./${subfolder}/${file}.nix {
-            inherit config lib pkgs-list tools;
-            inherit (Inputs) inputs;
-            oldPathNames = pathNames;
-          }).config.Home)
-        (imports
-          ++ homeImport);
+      imports = tools.contextModuleImport {
+        imports =
+          imports
+          ++ homeImport;
+        inherit subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit (Inputs) inputs;
+        context = "Home";
+      };
       config = HomeConfig;
     };
     System = {
@@ -93,13 +93,11 @@ in {
       config,
       ...
     }: {
-      imports = map (file:
-        (import ./${subfolder}/${file}.nix {
-          inherit config lib pkgs-list tools;
-          inherit (Inputs) inputs;
-          oldPathNames = pathNames;
-        }).config.System)
-      imports;
+      imports = tools.contextModuleImport {
+        inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
+        inherit (Inputs) inputs;
+        context = "System";
+      };
       config = SystemConfig;
     };
   };
