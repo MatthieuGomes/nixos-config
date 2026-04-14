@@ -3,7 +3,7 @@
   lib,
   pkgs-list,
   nixos-version,
-  settings,
+  baseSettings,
   tools,
   ...
 } @ Inputs: let
@@ -13,7 +13,7 @@
 in {
   imports = map (file:
     (import ./${mainModule}.nix {
-      inherit config lib pkgs-list tools settings;
+      inherit config lib pkgs-list tools baseSettings;
       inherit (Inputs) inputs;
       oldPathNames = [];
     }).config.Home)

@@ -3,7 +3,7 @@
   lib,
   pkgs-list,
   tools,
-  settings,
+  baseSettings,
   ...
 } @ Inputs: let
   name = "sys";
@@ -29,9 +29,11 @@
       description = "The system state version.";
     };
   };
-  inhritedSettings.sys.users.enable = settings.sys.users.enable;
+  newSettings.${name} = {
+  };
+  settings = (lib.recursiveUpdate baseSettings newSettings).${name};
   inheritedSettings = tools.inheritSettings {
-    settings = settings.sys;
+    inherit settings;
     inherit pathNames;
     inherit imports;
   };

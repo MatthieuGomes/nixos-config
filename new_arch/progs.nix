@@ -3,7 +3,7 @@
   lib,
   pkgs-list,
   tools,
-  settings,
+  baseSettings,
   ...
 } @ Inputs: let
   name = "progs";
@@ -25,8 +25,11 @@
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
+  newSettings.${name} = {
+  };
+  settings = (lib.recursiveUpdate baseSettings newSettings).${name};
   inheritedSettings = tools.inheritSettings {
-    settings = settings.progs;
+    inherit settings;
     inherit pathNames;
     inherit imports;
   };

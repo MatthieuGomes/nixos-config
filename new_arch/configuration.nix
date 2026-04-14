@@ -4,13 +4,13 @@
   inputs,
   pkgs-list,
   managers,
-  settings,
+  baseSettings,
   tools,
   ...
 }: let
   import_with_args = file: context:
     (import file {
-      inherit config lib inputs pkgs-list tools settings;
+      inherit config lib inputs pkgs-list tools baseSettings;
       oldPathNames = [];
     }).config.${
       context
@@ -21,7 +21,7 @@ in {
       (import
         ./sys.nix
         {
-          inherit config lib pkgs-list tools inputs settings;
+          inherit config lib pkgs-list tools inputs baseSettings;
           oldPathNames = [];
         })
     ]
@@ -34,7 +34,7 @@ in {
         ./progs.nix
         "System")
     ];
-  sys.version = settings.sys.version;
+  sys.version = baseSettings.sys.version;
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
   networking.hostName = "NixOs";
   virtualisation = {

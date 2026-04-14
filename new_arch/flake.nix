@@ -95,7 +95,7 @@
     tools = import ./tools.nix {
       inherit lib;
     };
-    settings = {
+    baseSettings = {
       progs = {
         shells.enable = true;
         misc.enable = true;
@@ -121,7 +121,7 @@
         inherit pkgs-list;
         inherit Inputs;
         inherit managers;
-        inherit settings;
+        inherit baseSettings;
         inherit tools;
       };
       modules = [
@@ -134,7 +134,7 @@
               inherit pkgs-list;
               inherit latest;
               inherit nixos-version;
-              inherit settings;
+              inherit baseSettings;
               inherit tools;
             };
             useUserPackages = true;
