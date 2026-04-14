@@ -6,9 +6,9 @@
 } @ Inputs: let
   name = "misc";
   subfolder = "misc";
-  # repo = "nix";
-  # branch = "latest";
-  # packages = pkgs-list.${repo}.${branch};
+  repo = "nix";
+  branch = "latest";
+  packages = pkgs-list.${repo}.${branch};
   options.${name} = {
     enable = lib.mkEnableOption "Enables and configures ${name}";
     ledger = lib.mkEnableOption "Enables and configures Ledger support.";
@@ -53,6 +53,9 @@ in {
           }).config.Home) ["ledger" "kdeconnect"];
       config = lib.mkIf cfg.enable {
         inherit (settings) ledger bambu-studio bitwarden fastfetch iso-image-writer vesktop kdeconnect;
+        home.packages = with packages; [
+          vlc
+        ];
       };
     };
     System = {

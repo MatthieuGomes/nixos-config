@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs-list,
-  parentsPathList,
+  parentPathAsList,
   tools,
   ...
 } @ Inputs: let
@@ -11,8 +11,8 @@
   main-repo = "nix";
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
-  currentPathAsList = parentsPathList ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentsPathList]);
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
   cfg = config.sys.${name};
   imports = [
     "nvidia"

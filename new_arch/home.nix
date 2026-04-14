@@ -15,7 +15,7 @@ in {
     (import ./${mainModule}.nix {
       inherit config lib pkgs-list tools baseSettings;
       inherit (Inputs) inputs;
-      parentsPathList = [];
+      parentPathAsList = [];
     }).config.Home)
   imports;
 
