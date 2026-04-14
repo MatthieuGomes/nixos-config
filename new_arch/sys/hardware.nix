@@ -17,7 +17,7 @@
   imports = [
     "nvidia"
     # "printer"
-    # "sound"
+    "sound"
     # "bluetooth"
   ];
   options.sys.${name} = {
