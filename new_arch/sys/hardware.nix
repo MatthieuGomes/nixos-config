@@ -6,14 +6,11 @@
   tools,
   ...
 } @ Inputs: let
+  # Defined by user
   name = "hardware";
   subfolder = "hardware";
   main-repo = "nix";
   branch = "latest";
-  packages = pkgs-list.${main-repo}.${branch};
-  currentPathAsList = parentPathAsList ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
-  cfg = config.sys.${name};
   imports = [
     "nvidia"
     "printer"
@@ -29,6 +26,12 @@
     sound.enable = true;
     # bluetooth.enable = true; #TODO : move bluetooth to its own module
   };
+  #####
+  # programmatically generated first
+  packages = pkgs-list.${main-repo}.${branch};
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  cfg = config.sys.${name};
   inheritedSettings = tools.inheritSettings {
     inherit currentPathAsList imports settings;
   };
@@ -36,6 +39,8 @@
     inheritedSettings
     // {
     };
+  #####
+  # Second definition by user (can use packages and cfg)
   Home = {
   };
   System = {
@@ -55,6 +60,8 @@
       usbutils
     ];
   };
+  #####
+  # programmatically generated then
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
 in {

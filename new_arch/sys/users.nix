@@ -2,22 +2,32 @@
   config,
   lib,
   pkgs-list,
-  oldPathNames,
+  parentPathAsList,
   tools,
   ...
 } @ Inputs: let
+  # Defined by user
   name = "users";
+  # subfolder = "";
   main-repo = "nix";
   branch = "latest";
-  packages = pkgs-list.${main-repo}.${branch};
-  pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames;
-  cfg = config.sys.${name};
-  options.sys.${name} = {
+  imports = [];
+  options = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
+  };
+  #####
+  # programmatically generated first
+  packages = pkgs-list.${main-repo}.${branch};
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  cfg = tools.inheritConfig {
+    inherit config currentPathAsList;
   };
   Common = {
   };
+  #####
+  # Second definition by user (can use packages and cfg)
+  settings = {};
   Home = {
   };
   System = {
@@ -51,8 +61,11 @@
       };
     };
   };
+  #####
+  # programmatically generated then
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
+  ###
 in {
   config = {
     Home = {
@@ -60,7 +73,9 @@ in {
       config,
       ...
     }: {
-      inherit options;
+      options = tools.inheritOptions {
+        inherit currentPathAsList options;
+      };
       config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
@@ -68,7 +83,9 @@ in {
       config,
       ...
     }: {
-      inherit options;
+      options = tools.inheritOptions {
+        inherit currentPathAsList options;
+      };
       config = lib.mkIf cfg.enable SystemConfig;
     };
   };
