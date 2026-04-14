@@ -12,15 +12,15 @@
   branch = "latest";
   packages = pkgs-list.${repo}.${branch};
   imports = [
-    "dev"
-    "misc"
-    "shells"
-    "office"
-    "desktop"
+    # "dev"
+    # "misc"
+    # "shells"
+    # "office"
+    # "desktop"
   ];
   # Temporary
   homeImport = [
-    "browsers"
+    # "browsers"
   ];
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];

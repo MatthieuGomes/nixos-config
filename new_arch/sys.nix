@@ -12,12 +12,12 @@
   branch = "unstable";
   packages = pkgs-list.${repo}.${branch};
   imports = [
-    "bootloader"
-    "lang"
+    # "bootloader"
+    # "lang"
     "users"
-    "hardware"
-    "networking"
-    "filesystems"
+    # "hardware"
+    # "networking"
+    # "filesystems"
   ];
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
