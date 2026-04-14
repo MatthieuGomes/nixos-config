@@ -22,17 +22,20 @@
   };
   System = {
     users = {
+      mutableUsers = false; # BAZINGA
       defaultUserShell = packages.zsh;
       users = {
         matthieu = {
+          password = "password"; # BAZINGA
+          ignoreShellProgramCheck = true; # BAZINGA
           description = "Moi";
           isNormalUser = true;
           group = "users";
           extraGroups = [
-            "wheel"
+            "wheel" # Enable sudo for the user.
             "docker"
             "libvirtd"
-          ]; # Enable ‘sudo’ for the user.
+          ];
           createHome = true;
           home = "/home/matthieu";
           /*
@@ -41,6 +44,7 @@
           ];
           */
         };
+        root.ignoreShellProgramCheck = true; # BAZINGA
       };
       groups = {
         libvirtd.members = ["matthieu"];

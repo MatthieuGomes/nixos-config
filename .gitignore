@@ -4,3 +4,6 @@ test
 programs/browsers/toolbar.json
 programs/browsers/test.json
 .vscode/settings.json
+testfirefox
+result
+NixOs.qcow2
