@@ -15,10 +15,10 @@
   fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.${name};
   imports = [
-    # "nvidia.nix"
-    # "printer.nix"
-    # "sound.nix"
-    # "bluetooth.nix"
+    "nvidia"
+    # "printer"
+    # "sound"
+    # "bluetooth"
   ];
   options.sys.${name} = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
