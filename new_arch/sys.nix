@@ -12,7 +12,7 @@
   branch = "unstable";
   packages = pkgs-list.${repo}.${branch};
   imports = [
-    # "bootloader"
+    "bootloader"
     "lang"
     "users"
     # "hardware"

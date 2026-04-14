@@ -106,7 +106,7 @@
       };
       sys = {
         version = nixos-version;
-        bootloaders.enable = true;
+        bootloader.enable = true;
         lang.enable = true;
         users.enable = true;
         hardware.enable = true;
