@@ -16,12 +16,11 @@
   cfg = config.sys.${name};
   imports = [
     "ntfs"
-    # "exfat"
+    "exfat"
     # "btrfs"
   ];
   options.sys.${name} = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
-    # exfat.enable = lib.mkEnableOption "Enables and configures exFAT filesystem support.";
     # btrfs.enable = lib.mkEnableOption "Enables and configures Btrfs filesystem support.";
   };
   settings = {
