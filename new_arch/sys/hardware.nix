@@ -21,7 +21,7 @@
     "sound"
     # "bluetooth"
   ];
-  options.sys.${name} = {
+  options = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
   };
   settings = {
@@ -65,7 +65,9 @@ in {
       config,
       ...
     }: {
-      inherit options;
+      options = tools.inheritOptions {
+        inherit pathNames options;
+      };
       imports = tools.contextModuleImport {
         inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
         inherit (Inputs) inputs;
@@ -78,7 +80,9 @@ in {
       config,
       ...
     }: {
-      inherit options;
+      options = tools.inheritOptions {
+        inherit pathNames options;
+      };
       imports = tools.contextModuleImport {
         inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
         inherit (Inputs) inputs;

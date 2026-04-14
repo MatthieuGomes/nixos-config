@@ -13,7 +13,7 @@
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.hardware.${name};
-  options.sys.hardware.${name} = {
+  options = {
     enable = lib.mkEnableOption "Enables and configures ${name} hardware support.";
   };
   Common = {
@@ -35,7 +35,9 @@ in {
       config,
       ...
     }: {
-      inherit options;
+      options = tools.inheritOptions {
+        inherit pathNames options;
+      };
       config = lib.mkIf cfg.enable HomeConfig;
     };
     System = {
@@ -43,7 +45,9 @@ in {
       config,
       ...
     }: {
-      inherit options;
+      options = tools.inheritOptions {
+        inherit pathNames options;
+      };
       config = lib.mkIf cfg.enable SystemConfig;
     };
   };

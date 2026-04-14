@@ -23,7 +23,7 @@
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames; # NOTE : Doesnt work as intended, need a function to generate the full path
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
-  options.sys = {
+  options = {
     version = lib.mkOption {
       type = lib.types.str;
       default = "25.11";
@@ -44,7 +44,9 @@
     inherit imports;
   };
 in {
-  inherit options;
+  options = tools.inheritOptions {
+    inherit pathNames options;
+  };
   imports = tools.contextModuleImport {
     inherit imports subfolder tools pathNames lib config pkgs-list currentDirPath;
     inherit (Inputs) inputs;
