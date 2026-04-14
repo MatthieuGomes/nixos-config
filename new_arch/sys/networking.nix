@@ -22,7 +22,7 @@
   };
   System = {
     networking = {
-      hostName = "NixOs";
+      hostName = "NixOs"; # FEAT : make this part of baseSettings
       networkmanager = {
         enable = true;
         plugins = with packages; [
@@ -46,6 +46,7 @@
       #   proxy.default = "http://user:password@proxy:port/";
       #   proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     };
+    # FEAT : maybe something dedicated to ssh ?
     services = {
       openssh.enable = true;
     }; ## TODO : FIX OPENSSH
@@ -54,6 +55,7 @@
       iproute2
       bridge-utils
     ];
+    ## FEAT : maybe move somewhere else ?
   };
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
