@@ -13,7 +13,7 @@
   packages = pkgs-list.${repo}.${branch};
   imports = [
     # "bootloader"
-    # "lang"
+    "lang"
     "users"
     # "hardware"
     # "networking"
@@ -30,6 +30,11 @@
     };
   };
   newSettings.${name} = {
+    lang = {
+      timeZone = "America/Toronto";
+      defaultLang = "en_US.UTF-8";
+      keyboardLayout = "fr";
+    };
   };
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
   inheritedSettings = tools.inheritSettings {
