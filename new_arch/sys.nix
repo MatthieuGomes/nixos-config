@@ -17,7 +17,7 @@
     "users"
     # "hardware"
     "networking"
-    # "filesystems"
+    "filesystems"
   ];
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
