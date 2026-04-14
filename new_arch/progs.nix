@@ -25,13 +25,10 @@
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
   fullPath = lib.concatStringsSep "." pathNames;
-  inheritedSettings.progs = {
-    shells.enable = settings.progs.shells.enable;
-    misc.enable = settings.progs.misc.enable;
-    office.enable = settings.progs.office.enable;
-    dev.enable = settings.progs.dev.enable;
-    browsers.enable = settings.progs.browsers.enable;
-    desktop.enable = settings.progs.desktop.enable;
+  inheritedSettings = tools.inheritSettings {
+    settings = settings.progs;
+    inherit pathNames;
+    inherit imports;
   };
   Common =
     inheritedSettings

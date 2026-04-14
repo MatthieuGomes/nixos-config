@@ -29,13 +29,11 @@
       description = "The system state version.";
     };
   };
-  inheritedSettings.sys = {
-    bootloaders.enable = settings.sys.bootloaders.enable;
-    lang.enable = settings.sys.lang.enable;
-    users.enable = settings.sys.users.enable;
-    hardware.enable = settings.sys.hardware.enable;
-    networking.enable = settings.sys.networking.enable;
-    filesystems.enable = settings.sys.filesystems.enable;
+  inhritedSettings.sys.users.enable = settings.sys.users.enable;
+  inheritedSettings = tools.inheritSettings {
+    settings = settings.sys;
+    inherit pathNames;
+    inherit imports;
   };
 in {
   inherit options;
