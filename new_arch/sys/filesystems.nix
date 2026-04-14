@@ -15,13 +15,12 @@
   fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.${name};
   imports = [
-    # "ntfs"
+    "ntfs"
     # "exfat"
     # "btrfs"
   ];
   options.sys.${name} = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
-    # ntfs.enable = lib.mkEnableOption "Enables and configures NTFS filesystem support.";
     # exfat.enable = lib.mkEnableOption "Enables and configures exFAT filesystem support.";
     # btrfs.enable = lib.mkEnableOption "Enables and configures Btrfs filesystem support.";
   };
