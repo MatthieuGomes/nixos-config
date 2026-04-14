@@ -12,7 +12,6 @@
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
   pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames;
   currentDirPath = lib.path.subpath.join (lib.lists.flatten (lib.lists.flatten ["./." oldPathNames]));
   cfg = config.sys.${name};
   imports = [

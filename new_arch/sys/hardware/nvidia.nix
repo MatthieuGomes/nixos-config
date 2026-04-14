@@ -12,7 +12,6 @@
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
   pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.hardware.${name};
   options = {
     enable = lib.mkEnableOption "Enables and configures ${name} hardware support.";

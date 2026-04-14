@@ -24,7 +24,6 @@
   ];
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames;
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
   newSettings.${name} = {
   };

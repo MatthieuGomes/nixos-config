@@ -13,7 +13,6 @@
   packages = pkgs-list.${main-repo}.${branch};
   pathNames = oldPathNames ++ [name];
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
-  fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.${name};
   imports = [
     "nvidia"

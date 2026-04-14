@@ -21,7 +21,6 @@
   ];
   oldPathNames = [];
   pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames; # NOTE : Doesnt work as intended, need a function to generate the full path
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
   options = {
     version = lib.mkOption {

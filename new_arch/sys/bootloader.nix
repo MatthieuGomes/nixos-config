@@ -11,7 +11,6 @@
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
   pathNames = oldPathNames ++ [name];
-  fullPath = lib.concatStringsSep "." pathNames;
   cfg = config.sys.${name};
   options = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
