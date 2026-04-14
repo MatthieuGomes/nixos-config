@@ -17,11 +17,10 @@
   imports = [
     "ntfs"
     "exfat"
-    # "btrfs"
+    "btrfs"
   ];
   options.sys.${name} = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
-    # btrfs.enable = lib.mkEnableOption "Enables and configures Btrfs filesystem support.";
   };
   settings = {
     ntfs.enable = true;
