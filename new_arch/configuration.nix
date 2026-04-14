@@ -11,7 +11,7 @@
   import_with_args = file: context:
     (import file {
       inherit config lib inputs pkgs-list tools baseSettings;
-      oldPathNames = [];
+      parentsPathList = [];
     }).config.${
       context
     };
@@ -22,7 +22,7 @@ in {
         ./sys.nix
         {
           inherit config lib pkgs-list tools inputs baseSettings;
-          oldPathNames = [];
+          parentsPathList = [];
         })
     ]
     ++ [

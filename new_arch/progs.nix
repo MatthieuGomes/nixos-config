@@ -22,9 +22,9 @@
   homeImport = [
     # "browsers"
   ];
-  oldPathNames = [];
-  pathNames = oldPathNames ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
+  parentsPathList = [];
+  pathNames = parentsPathList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentsPathList]);
   newSettings.${name} = {
   };
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};

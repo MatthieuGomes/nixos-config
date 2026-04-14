@@ -19,9 +19,9 @@
     "networking"
     "filesystems"
   ];
-  oldPathNames = [];
-  pathNames = oldPathNames ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." oldPathNames]);
+  parentsPathList = [];
+  pathNames = parentsPathList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentsPathList]);
   options = {
     version = lib.mkOption {
       type = lib.types.str;

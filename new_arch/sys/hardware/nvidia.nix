@@ -3,7 +3,7 @@
   config,
   lib,
   pkgs-list,
-  oldPathNames,
+  parentsPathList,
   tools,
   ...
 } @ Inputs: let
@@ -11,7 +11,7 @@
   main-repo = "nix";
   branch = "latest";
   packages = pkgs-list.${main-repo}.${branch};
-  pathNames = oldPathNames ++ [name];
+  pathNames = parentsPathList ++ [name];
   cfg = config.sys.hardware.${name};
   options = {
     enable = lib.mkEnableOption "Enables and configures ${name} hardware support.";

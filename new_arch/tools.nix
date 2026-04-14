@@ -86,7 +86,7 @@
     map (file:
       (import ./${currentDirPath}/${subfolder}/${file}.nix {
         inherit (basicDependencies) inputs config lib pkgs-list tools;
-        oldPathNames = basicDependencies.pathNames;
+        parentsPathList = basicDependencies.pathNames;
       }).config.${
         context
       })
