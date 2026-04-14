@@ -16,7 +16,7 @@
   cfg = config.sys.${name};
   imports = [
     "nvidia"
-    # "printer"
+    "printer"
     "sound"
     # "bluetooth"
   ];
@@ -27,7 +27,7 @@
     nvidia.enable = false; # FIX : module to fix once a stable and working nvidia version is available
     printer.enable = true;
     sound.enable = true;
-    bluetooth.enable = true;
+    # bluetooth.enable = true; #TODO : move bluetooth to its own module
   };
   inheritedSettings = tools.inheritSettings {
     inherit pathNames imports settings;
