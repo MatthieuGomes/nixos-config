@@ -61,6 +61,7 @@
     };
   ######  # user defined
   Home = {
+    home.file.".p10k.zsh".text = "${builtins.readFile "${./${subfolder}/static/.p10k.zsh}"}";
     programs.zsh = {
       enable = true;
       enableCompletion = true;
