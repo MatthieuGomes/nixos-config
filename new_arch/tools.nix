@@ -74,6 +74,7 @@
   contextualModule = {
     options ? null,
     imports ? null,
+    togglable ? true,
     Config,
     context,
     ...
@@ -82,7 +83,7 @@
     config,
     ...
   }: let
-    inherit (deps) subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs cfg;
+    inherit (deps) subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs;
   in
     (
       if options != null
@@ -106,7 +107,10 @@
       }
     )
     // {
-      config = lib.mkIf cfg.enable Config;
+      config =
+        if togglable
+        then (lib.mkIf deps.cfg.enable Config)
+        else Config;
     };
 in {
   inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule;
