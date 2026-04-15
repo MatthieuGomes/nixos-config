@@ -38,21 +38,6 @@
   }: (
     contextArgsImport file context args
   );
-  contextualModule = {
-    name,
-    config,
-    lib,
-    options,
-    import-list ? [],
-    context,
-  }: let
-    cfg = config.${name};
-  in {
-    config = lib.mkIf cfg.enable {
-      inherit options;
-      imports = import-list;
-    };
-  };
   inheritSettings = {
     currentPathAsList,
     imports,
@@ -124,6 +109,43 @@
           };
     }
   ]);
+  contextualModule = {
+    options ? null,
+    imports ? null,
+    Config,
+    context,
+    ...
+  } @ deps: {
+    lib,
+    config,
+    ...
+  }: let
+    inherit (deps) subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs cfg;
+  in
+    (
+      if options != null
+      then {
+        options = tools.inheritOptions {
+          inherit currentPathAsList options;
+        };
+      }
+      else {
+      }
+    )
+    // (
+      if imports != null
+      then {
+        imports = tools.contextModuleImport {
+          inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs;
+          context = context;
+        };
+      }
+      else {
+      }
+    )
+    // {
+      config = lib.mkIf cfg.enable Config;
+    };
 
   universalModule = {
     lib,
@@ -195,6 +217,6 @@
     };
   };
 in {
-  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule contextModuleImport inheritConfig inheritOptions;
+  inherit importWithArgs contextArgsImport defaultContextArgsImport inheritSettings universalModule contextModuleImport inheritConfig inheritOptions contextualModule;
   # multiContextModule;
 }
