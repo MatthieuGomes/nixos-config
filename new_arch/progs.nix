@@ -17,7 +17,7 @@
     # "misc"
     "shells"
     # "office"
-    # "desktop"
+    "desktop"
   ];
   homeImport = [
     # "browsers"
