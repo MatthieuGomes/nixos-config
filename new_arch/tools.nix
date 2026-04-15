@@ -1,4 +1,20 @@
 {lib, ...}: let
+  contextModuleImport = {
+    imports,
+    subfolder,
+    context,
+    currentDirPath,
+    ...
+  } @ deps:
+    map (file:
+      (import ./${currentDirPath}/${subfolder}/${file}.nix {
+        inherit (deps) inputs config lib pkgs-list tools;
+        parentPathAsList = deps.currentPathAsList;
+      }).config.${
+        context
+      })
+    imports;
+
   inheritSettings = {
     currentPathAsList,
     imports,
@@ -22,21 +38,6 @@
             });
       })
       imports);
-  contextModuleImport = {
-    imports,
-    subfolder,
-    context,
-    currentDirPath,
-    ...
-  } @ basicDependencies:
-    map (file:
-      (import ./${currentDirPath}/${subfolder}/${file}.nix {
-        inherit (basicDependencies) inputs config lib pkgs-list tools;
-        parentPathAsList = basicDependencies.currentPathAsList;
-      }).config.${
-        context
-      })
-    imports;
 
   inheritConfig = {
     currentPathAsList,
