@@ -4,6 +4,7 @@
   pkgs-list,
   tools,
   baseSettings,
+  parentPathAsList ? [],
   ...
 }: let
   ######  # user defined
@@ -27,12 +28,8 @@
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
   ######  # computed
   packages = pkgs-list.${repo}.${branch};
-  parentPathAsList = [];
   currentPathAsList = parentPathAsList ++ [name];
   currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
-  # cfg = tools.inheritConfig {
-  #   inherit config currentPathAsList;
-  # };
   inheritedSettings =
     if imports != null || settings != null
     then

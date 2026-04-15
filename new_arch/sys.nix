@@ -4,13 +4,14 @@
   pkgs-list,
   tools,
   baseSettings,
+  parentPathAsList ? [],
   ...
-} @ Inputs: let
+}: let
+  ######  # user defined
   name = "sys";
   subfolder = "sys";
   repo = "nix";
   branch = "unstable";
-  packages = pkgs-list.${repo}.${branch};
   imports = [
     "bootloader"
     "lang"
@@ -19,9 +20,6 @@
     "networking"
     "filesystems"
   ];
-  parentPathAsList = [];
-  currentPathAsList = parentPathAsList ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
   options = {
     version = lib.mkOption {
       type = lib.types.str;
@@ -37,25 +35,38 @@
     };
   };
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
-  inheritedSettings = tools.inheritSettings {
-    inherit settings;
-    inherit currentPathAsList;
-    inherit imports;
-  };
-in {
-  options = tools.inheritOptions {
-    inherit currentPathAsList options;
-  };
-  imports = tools.contextModuleImport {
-    inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
-    inherit (Inputs) inputs;
-    context = "System";
-  };
-  config =
+  ######  # computed
+  packages = pkgs-list.${repo}.${branch};
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  inheritedSettings =
+    if imports != null || settings != null
+    then
+      tools.inheritSettings {
+        inherit currentPathAsList imports settings;
+      }
+    else {
+    };
+  Common =
     inheritedSettings
     // {
-      system.stateVersion = config.sys.version;
-      nix.settings.experimental-features = ["nix-command" "flakes"];
-      boot.kernelPackages = packages.linuxPackages_latest;
     };
-}
+  ######  # user defined
+  System = {
+    system.stateVersion = config.sys.version;
+    nix.settings.experimental-features = ["nix-command" "flakes"];
+    boot.kernelPackages = packages.linuxPackages_latest;
+  };
+  ######  # computed
+  SystemConfig =
+    Common
+    // System;
+in
+  tools.contextualModule {
+    inherit lib config tools; # deps
+    inherit subfolder currentPathAsList pkgs-list currentDirPath; # generated
+    inherit options imports; # user defined
+    togglable = false;
+    context = "System";
+    Config = SystemConfig;
+  }
