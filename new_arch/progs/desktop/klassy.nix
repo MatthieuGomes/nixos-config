@@ -7,25 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "desktop";
-  subfolder = "desktop";
-  main-repo = "nix";
-  branch = "latest";
-  imports = [
-    "plasma"
-    "klassy"
-    # "rofi"
-  ];
+  name = "klassy";
+  subfolder = null;
+  main-repo = "nur";
+  branch = "klassy";
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    plasma.enable = cfg.enable;
-    klassy.enable = cfg.enable;
-    rofi.enable = cfg.enable;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -50,6 +42,9 @@
     };
   ######  # user defined
   Home = {
+    home.packages = with packages.repos; [
+      shadowrz.klassy-qt6
+    ];
   };
   System = {
   };
