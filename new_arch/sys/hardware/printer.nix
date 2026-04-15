@@ -5,18 +5,38 @@
   parentPathAsList,
   tools,
   ...
-} @ Inputs: let
+}: let
+  ######  # user defined
   name = "printer";
+  subfolder = null;
   main-repo = "nix";
   branch = "latest";
-  packages = pkgs-list.${main-repo}.${branch};
-  currentPathAsList = parentPathAsList ++ [name];
-  cfg = config.sys.hardware.${name};
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables and configures ${name} hardware support.";
   };
-  Common = {
+  settings = null;
+  ######  # computed
+  packages = pkgs-list.${main-repo}.${branch};
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  cfg = tools.inheritConfig {
+    inherit config currentPathAsList;
   };
+  inheritedSettings =
+    if imports != null || settings != null
+    then
+      tools.inheritSettings {
+        inherit currentPathAsList imports settings;
+      }
+    else {
+    };
+
+  Common =
+    inheritedSettings
+    // {
+    };
+  ######  # user defined
   Home = {
   };
   System = {
@@ -25,29 +45,24 @@
       cnijfilter2
     ];
   };
+  ######  # computed
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
 in {
   config = {
-    Home = {
-      lib,
-      config,
-      ...
-    }: {
-      options = tools.inheritOptions {
-        inherit currentPathAsList options;
-      };
-      config = lib.mkIf cfg.enable HomeConfig;
+    Home = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+      inherit imports options; # user defined
+      context = "Home";
+      Config = HomeConfig;
     };
-    System = {
-      lib,
-      config,
-      ...
-    }: {
-      options = tools.inheritOptions {
-        inherit currentPathAsList options;
-      };
-      config = lib.mkIf cfg.enable SystemConfig;
+    System = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+      inherit imports options; # user defined
+      context = "System";
+      Config = SystemConfig;
     };
   };
 }

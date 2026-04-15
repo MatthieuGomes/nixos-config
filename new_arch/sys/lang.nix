@@ -5,13 +5,13 @@
   parentPathAsList,
   tools,
   ...
-} @ Inputs: let
+}: let
+  ######  # user defined
   name = "lang";
+  subfolder = null;
   main-repo = "nix";
   branch = "latest";
-  packages = pkgs-list.${main-repo}.${branch};
-  currentPathAsList = parentPathAsList ++ [name];
-  cfg = config.sys.${name};
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} related settings.";
     timeZone = lib.mkOption {
@@ -30,8 +30,30 @@
       description = "The system keyboard layout.";
     };
   };
-  Common = {
+  settings = null;
+  ######  # computed
+  packages =
+    if main-repo != null && branch != null
+    then pkgs-list.${main-repo}.${branch}
+    else null;
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  cfg = tools.inheritConfig {
+    inherit config currentPathAsList;
   };
+  inheritedSettings =
+    if imports != null || settings != null
+    then
+      tools.inheritSettings {
+        inherit currentPathAsList imports settings;
+      }
+    else {
+    };
+  Common =
+    inheritedSettings
+    // {
+    };
+  ######  # user defined
   Home = {
   };
   System = {
@@ -45,29 +67,24 @@
     console.keyMap = cfg.keyboardLayout;
     services.xserver.xkb.layout = cfg.keyboardLayout;
   };
+  ######  # computed
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
 in {
   config = {
-    Home = {
-      lib,
-      config,
-      ...
-    }: {
-      options = tools.inheritOptions {
-        inherit currentPathAsList options;
-      };
-      config = lib.mkIf cfg.enable HomeConfig;
+    Home = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+      inherit imports options; # user defined
+      context = "Home";
+      Config = HomeConfig;
     };
-    System = {
-      lib,
-      config,
-      ...
-    }: {
-      options = tools.inheritOptions {
-        inherit currentPathAsList options;
-      };
-      config = lib.mkIf cfg.enable SystemConfig;
+    System = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+      inherit imports options; # user defined
+      context = "System";
+      Config = SystemConfig;
     };
   };
 }

@@ -5,15 +5,12 @@
   parentPathAsList,
   tools,
   ...
-} @ Inputs: let
+}: let
+  ######  # user defined
   name = "filesystems";
   subfolder = "filesystems";
-  main-repo = "nix";
-  branch = "latest";
-  packages = pkgs-list.${main-repo}.${branch};
-  currentPathAsList = parentPathAsList ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten (lib.lists.flatten ["./." parentPathAsList]));
-  cfg = config.sys.${name};
+  main-repo = null;
+  branch = null;
   imports = [
     "ntfs"
     "exfat"
@@ -27,50 +24,51 @@
     exfat.enable = true;
     btrfs.enable = true;
   };
-  inheritedSettings = tools.inheritSettings {
-    inherit currentPathAsList imports settings;
+  ######  # computed
+  packages =
+    if main-repo != null && branch != null
+    then pkgs-list.${main-repo}.${branch}
+    else null;
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten (lib.lists.flatten ["./." parentPathAsList]));
+  cfg = tools.inheritConfig {
+    inherit config currentPathAsList;
   };
+  inheritedSettings =
+    if imports != null || settings != null
+    then
+      tools.inheritSettings {
+        inherit currentPathAsList imports settings;
+      }
+    else {
+    };
   Common =
     inheritedSettings
     // {
     };
+  ######  # user defined
   Home = {
   };
   System = {
   };
+  ######  # computed
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
 in {
   config = {
-    Home = {
-      lib,
-      config,
-      ...
-    }: {
-      options = tools.inheritOptions {
-        inherit currentPathAsList options;
-      };
-      imports = tools.contextModuleImport {
-        inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
-        inherit (Inputs) inputs;
-        context = "Home";
-      };
-      config = lib.mkIf cfg.enable HomeConfig;
+    Home = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+      inherit imports options; # user defined
+      context = "Home";
+      Config = HomeConfig;
     };
-    System = {
-      lib,
-      config,
-      ...
-    }: {
-      options = tools.inheritOptions {
-        inherit currentPathAsList options;
-      };
-      imports = tools.contextModuleImport {
-        inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
-        inherit (Inputs) inputs;
-        context = "System";
-      };
-      config = lib.mkIf cfg.enable SystemConfig;
+    System = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+      inherit imports options; # user defined
+      context = "System";
+      Config = SystemConfig;
     };
   };
 }
