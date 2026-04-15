@@ -7,23 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "office";
-  subfolder = "office";
-  main-repo = null;
-  branch = null;
-  imports = [
-    "libreoffice"
-    # "qualculate"
-  ];
+  name = "libreoffice";
+  subfolder = null;
+  main-repo = "nix";
+  branch = "latest";
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
-  extras = {
+  extras = rec {
   };
-  settings = {
-    libreoffice.enable = true;
-    qualculate.enable = true;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -48,6 +42,9 @@
     };
   ######  # user defined
   Home = {
+    home.packages = with packages; [
+      libreoffice
+    ];
   };
   System = {
   };
