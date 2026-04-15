@@ -13,7 +13,7 @@
   repo = "nix";
   branch = "latest";
   imports = [
-    # "dev"
+    "dev"
     "misc"
     "shells"
     "office"
