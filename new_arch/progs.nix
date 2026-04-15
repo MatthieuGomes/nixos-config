@@ -5,12 +5,12 @@
   tools,
   baseSettings,
   ...
-} @ Inputs: let
+}: let
+  ######  # user defined
   name = "progs";
   subfolder = "progs";
   repo = "nix";
   branch = "latest";
-  packages = pkgs-list.${repo}.${branch};
   imports = [
     # "dev"
     # "misc"
@@ -18,25 +18,34 @@
     # "office"
     # "desktop"
   ];
-  # Temporary
   homeImport = [
     # "browsers"
-  ];
-  parentPathAsList = [];
-  currentPathAsList = parentPathAsList ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  ]; # FIXME :temporary
+  options = null;
   newSettings.${name} = {
   };
   settings = (lib.recursiveUpdate baseSettings newSettings).${name};
-  inheritedSettings = tools.inheritSettings {
-    inherit settings;
-    inherit currentPathAsList;
-    inherit imports;
-  };
+  ######  # computed
+  packages = pkgs-list.${repo}.${branch};
+  parentPathAsList = [];
+  currentPathAsList = parentPathAsList ++ [name];
+  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+  # cfg = tools.inheritConfig {
+  #   inherit config currentPathAsList;
+  # };
+  inheritedSettings =
+    if imports != null || settings != null
+    then
+      tools.inheritSettings {
+        inherit currentPathAsList imports settings;
+      }
+    else {
+    };
   Common =
     inheritedSettings
     // {
     };
+  ######  # user defined
   Home = {
     programs = {
       thunderbird = {
@@ -67,37 +76,28 @@
       virt-manager.enable = true;
     };
   };
-
+  ######  # computed
   HomeConfig = Common // Home;
   SystemConfig = Common // System;
 in {
+  # FIXME : find a way to make more uniform with the other modules
   config = {
-    Home = {
-      lib,
-      config,
-      ...
-    }: {
-      imports = tools.contextModuleImport {
-        imports =
-          imports
-          ++ homeImport;
-        inherit subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
-        inherit (Inputs) inputs;
-        context = "Home";
-      };
-      config = HomeConfig;
+    Home = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list currentDirPath; # generated
+      inherit options; # user defined
+      imports = imports ++ homeImport; # user defined
+      togglable = false;
+      context = "Home";
+      Config = HomeConfig;
     };
-    System = {
-      lib,
-      config,
-      ...
-    }: {
-      imports = tools.contextModuleImport {
-        inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath;
-        inherit (Inputs) inputs;
-        context = "System";
-      };
-      config = SystemConfig;
+    System = tools.contextualModule {
+      inherit lib config tools; # deps
+      inherit subfolder currentPathAsList pkgs-list currentDirPath; # generated
+      inherit options imports; # user defined
+      togglable = false;
+      context = "System";
+      Config = SystemConfig;
     };
   };
 }
