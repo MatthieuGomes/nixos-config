@@ -12,7 +12,7 @@
   main-repo = "nix";
   branch = "latest";
   imports = [
-    # "zsh"
+    "zsh"
   ];
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
