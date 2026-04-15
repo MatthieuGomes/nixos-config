@@ -15,7 +15,7 @@
     # "zsh"
   ];
   options = {
-    enable = lib.mkEnableOption "Enables ${name} related settings.";
+    enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
     aliases = {
