@@ -14,7 +14,7 @@
   branch = "latest";
   imports = [
     # "dev"
-    # "misc"
+    "misc"
     "shells"
     "office"
     "desktop"
