@@ -13,7 +13,7 @@
   branch = "latest";
   imports = [
     "oh-my-zsh"
-    # "yazi"
+    "yazi"
     "fzf"
   ];
   options = {
