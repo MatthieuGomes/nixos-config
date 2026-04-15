@@ -16,7 +16,7 @@
     # "dev"
     # "misc"
     "shells"
-    # "office"
+    "office"
     "desktop"
   ];
   homeImport = [
