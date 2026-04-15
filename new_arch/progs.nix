@@ -15,7 +15,7 @@
   imports = [
     # "dev"
     # "misc"
-    # "shells"
+    "shells"
     # "office"
     # "desktop"
   ];
