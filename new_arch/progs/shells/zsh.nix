@@ -14,7 +14,7 @@
   imports = [
     "oh-my-zsh"
     # "yazi"
-    # "fzf"
+    "fzf"
   ];
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
