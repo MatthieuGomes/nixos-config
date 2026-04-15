@@ -18,10 +18,8 @@
     "shells"
     "office"
     "desktop"
+    "browsers"
   ];
-  homeImport = [
-    # "browsers"
-  ]; # FIXME :temporary
   options = null;
   newSettings.${name} = {
   };
@@ -82,8 +80,7 @@ in {
     Home = tools.contextualModule {
       inherit lib config tools; # deps
       inherit subfolder currentPathAsList pkgs-list currentDirPath; # generated
-      inherit options; # user defined
-      imports = imports ++ homeImport; # user defined
+      inherit options imports; # user defined
       togglable = false;
       context = "Home";
       Config = HomeConfig;
