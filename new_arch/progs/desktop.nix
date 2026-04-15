@@ -12,7 +12,7 @@
   main-repo = "nix";
   branch = "latest";
   imports = [
-    # "plasma"
+    "plasma"
     # "klassy"
     # "rofi"
   ];
@@ -21,7 +21,11 @@
   };
   extras = {
   };
-  settings = null;
+  settings = {
+    plasma.enable = cfg.enable;
+    klassy.enable = cfg.enable;
+    rofi.enable = cfg.enable;
+  };
   ######  # computed
   packages =
     if main-repo != null && branch != null
