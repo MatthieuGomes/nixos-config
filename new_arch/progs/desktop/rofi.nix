@@ -7,25 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "desktop";
-  subfolder = "desktop";
+  name = "rofi";
+  subfolder = null;
   main-repo = "nix";
   branch = "latest";
-  imports = [
-    "plasma"
-    "klassy"
-    "rofi"
-  ];
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    plasma.enable = cfg.enable;
-    klassy.enable = cfg.enable;
-    rofi.enable = cfg.enable;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -50,6 +42,15 @@
     };
   ######  # user defined
   Home = {
+    programs.rofi = {
+      enable = true;
+      terminal = "/${packages.ghostty}/bin/ghostty";
+      theme = "Arc-Dark";
+      modes = ["drun" "ssh" "run" "calc"];
+      plugins = with packages; [
+        rofi-calc
+      ];
+    };
   };
   System = {
   };
