@@ -21,12 +21,8 @@
   extras = {
   };
   settings = {
-    libreoffice = {
-      enable = cfg.enable && cfg.libreoffice;
-    };
-    qualculate = {
-      enable = cfg.enable && cfg.qualculate;
-    };
+    libreoffice.enable = true;
+    qualculate.enable = true;
   };
   ######  # computed
   packages =
