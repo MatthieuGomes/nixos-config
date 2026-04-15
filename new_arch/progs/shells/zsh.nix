@@ -12,7 +12,7 @@
   main-repo = "nix";
   branch = "latest";
   imports = [
-    # "oh-my-zsh"
+    "oh-my-zsh"
     # "yazi"
     # "fzf"
   ];
@@ -27,7 +27,13 @@
   extras = {
   };
   settings = {
-    oh-my-zsh.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "sudo"
+      ];
+    };
     fzf.enable = true;
     yazi.enable = true;
   };
