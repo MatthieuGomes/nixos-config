@@ -1,3 +1,4 @@
+# FEAT : unify format
 {
   config,
   lib,
@@ -22,7 +23,6 @@ in {
         ./sys.nix
         {
           inherit config lib pkgs-list tools inputs baseSettings;
-          parentPathAsList = [];
         })
     ]
     ++ [
