@@ -7,25 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "browsers";
-  subfolder = "browsers";
+  name = "zen";
+  subfolder = null;
   main-repo = null;
   branch = null;
-  imports = [
-    "firefox"
-    "chromium"
-    "zen"
-  ];
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    firefox.enable = true;
-    chromium.enable = true;
-    zen.enable = true;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -50,6 +42,10 @@
     };
   ######  # user defined
   Home = {
+    programs.zen-browser = {
+      enable = true;
+      # FEAT TODO: profiles, settings, etc.
+    };
   };
   System = {
   };
