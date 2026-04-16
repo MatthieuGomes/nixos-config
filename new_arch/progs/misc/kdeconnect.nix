@@ -9,8 +9,8 @@
   ######  # user defined
   name = "kdeconnect";
   subfolder = null;
-  main-repo = "nix";
-  branch = "latest";
+  main-repo = null;
+  branch = null;
   imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
