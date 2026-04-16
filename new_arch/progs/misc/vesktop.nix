@@ -7,33 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "misc";
-  subfolder = "misc";
+  name = "vesktop";
+  subfolder = null;
   main-repo = "nix";
   branch = "latest";
-  imports = [
-    "ledger"
-    "bambu-studio"
-    "bitwarden"
-    "fastfetch"
-    "iso-image-writer"
-    "vesktop"
-    # "kdeconnect"
-  ];
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    ledger.enable = true;
-    bambu-studio.enable = true;
-    bitwarden.enable = true;
-    fastfetch.enable = true;
-    iso-image-writer.enable = true;
-    kdeconnect.enable = true;
-    vesktop.enable = true;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -58,9 +42,9 @@
     };
   ######  # user defined
   Home = {
-    home.packages = with packages; [
-      vlc
-    ];
+    programs.vesktop = {
+      enable = true;
+    };
   };
   System = {
   };
