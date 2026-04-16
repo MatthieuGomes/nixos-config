@@ -7,23 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "nix";
-  subfolder = "nix";
-  main-repo = null;
-  branch = null;
-  imports = [
-    "alejandra"
-    "nixd"
-  ];
+  name = "nixd";
+  subfolder = null;
+  main-repo = "nix";
+  branch = "latest";
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    alejandra.enable = true;
-    nixd.enable = true;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -48,6 +42,9 @@
     };
   ######  # user defined
   Home = {
+    home.packages = with packages; [
+      nixd
+    ];
   };
   System = {
   };
