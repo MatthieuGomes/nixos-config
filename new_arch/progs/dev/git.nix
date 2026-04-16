@@ -10,7 +10,7 @@
   name = "git";
   subfolder = null;
   main-repo = null;
-  branch = "latest";
+  branch = null;
   imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
