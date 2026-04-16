@@ -22,9 +22,9 @@
   extras = {
   };
   settings = {
-    plasma.enable = cfg.enable;
-    klassy.enable = cfg.enable;
-    rofi.enable = cfg.enable;
+    plasma.enable = true;
+    klassy.enable = true;
+    rofi.enable = true;
   };
   ######  # computed
   packages =
