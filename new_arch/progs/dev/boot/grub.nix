@@ -7,27 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "boot";
-  subfolder = "boot";
-  main-repo = null;
-  branch = null;
-  imports = [
-    "efibootmgr"
-    "grub"
-    "gparted"
-    # "os-prober"
-  ];
+  name = "grub";
+  subfolder = null;
+  main-repo = "nix";
+  branch = "latest";
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    efibootmgr.enable = true;
-    grub.enable = true;
-    gparted.enable = true;
-    os-prober.enable = true;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -52,6 +42,9 @@
     };
   ######  # user defined
   Home = {
+    home.packages = with packages; [
+      grub2
+    ];
   };
   System = {
   };
