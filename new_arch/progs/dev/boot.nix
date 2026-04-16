@@ -7,25 +7,15 @@
   ...
 }: let
   ######  # user defined
-  name = "dev";
-  subfolder = "dev";
-  main-repo = "nix";
-  branch = "latest";
+  name = "boot";
+  subfolder = "boot";
+  main-repo = null;
+  branch = null;
   imports = [
-    ## "editors" => # "vim" "vscode"
-    ## "lang" => # "nix"
-    ## "terminals" => # "ghostty"
-    ## "virtualization" => # "docker"
-    ## "network" => # "postman"
-    # "nix"
-    "boot"
-    # "network"
-    # "ghostty"
-    # "git" #solo
-    # "vim"
-    # "vscode"
-    # "docker"
-    # "postman"
+    # "efibootmgr"
+    # "grub"
+    # "gparted"
+    # "os-prober"
   ];
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
@@ -33,15 +23,10 @@
   extras = {
   };
   settings = {
-    nix.enable = true;
-    boot.enable = true;
-    network.enable = true;
-    ghostty.enable = true;
-    git.enable = true;
-    vim.enable = true;
-    vscode.enable = true;
-    docker.enable = true;
-    postman.enable = true;
+    efibootmgr.enable = true;
+    grub.enable = true;
+    gparted.enable = true;
+    os-prober.enable = true;
   };
   ######  # computed
   packages =
@@ -67,11 +52,6 @@
     };
   ######  # user defined
   Home = {
-    home.packages = with packages; [
-      python3
-      nmap # for network
-      netcat-openbsd # for network
-    ];
   };
   System = {
   };
