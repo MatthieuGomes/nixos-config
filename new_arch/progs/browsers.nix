@@ -12,7 +12,7 @@
   main-repo = null;
   branch = null;
   imports = [
-    # "firefox"
+    "firefox"
     # "chromium"
     # "zen"
   ];
