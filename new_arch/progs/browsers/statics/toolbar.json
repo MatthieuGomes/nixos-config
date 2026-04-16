@@ -1,0 +1,46 @@
+{
+    "placements": {
+        "widget-overflow-fixed-list": [],
+        "unified-extensions-area": [
+            "queryamoid_kaply_com-browser-action",
+            "adblockultimate_adblockultimate_net-browser-action"
+        ],
+        "nav-bar": [
+            "downloads-button",
+            "sidebar-button",
+            "back-button",
+            "forward-button",
+            "stop-reload-button",
+            "home-button",
+            "vertical-spacer",
+            "fxa-toolbar-menu-button",
+            "reset-pbm-toolbar-button",
+            "unified-extensions-button",
+            "urlbar-container"
+        ],
+        "toolbar-menubar": [
+            "menubar-items"
+        ],
+        "TabsToolbar": [],
+        "vertical-tabs": [
+            "tabbrowser-tabs"
+        ],
+        "PersonalToolbar": [
+            "personal-bookmarks"
+        ]
+    },
+    "seen": [
+        "queryamoid_kaply_com-browser-action",
+        "adblockultimate_adblockultimate_net-browser-action",
+        "developer-button",
+        "screenshot-button"
+    ],
+    "dirtyAreaCache": [
+        "unified-extensions-area",
+        "nav-bar",
+        "TabsToolbar",
+        "vertical-tabs"
+    ],
+    "currentVersion": 23,
+    "newElementCount": 0
+}

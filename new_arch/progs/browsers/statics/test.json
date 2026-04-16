@@ -1,0 +1,27 @@
+{
+    "uiCustomization": {
+        "state": {
+            "placements": {
+                "widget-overflow-fixed-list": [],
+                "nav-bar": [
+                    "back-button",
+                    "forward-button",
+                    "stop-reload-button",
+                    "urlbar-container",
+                    "downloads-button",
+                    "fxa-toolbar-menu-button",
+                    "unified-extensions-button"
+                ],
+                "toolbar-menubar": [
+                    "menubar-items"
+                ],
+                "TabsToolbar": [],
+                "vertical-tabs": [
+                    "tabbrowser-tabs"
+                ],
+                "PersonalToolbar": [
+                ]
+            }
+        }
+    }
+}
