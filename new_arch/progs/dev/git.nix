@@ -7,42 +7,17 @@
   ...
 }: let
   ######  # user defined
-  name = "dev";
-  subfolder = "dev";
-  main-repo = "nix";
+  name = "git";
+  subfolder = null;
+  main-repo = null;
   branch = "latest";
-  imports = [
-    ## "editors" => # "vim" "vscode"
-    ## "lang" => # "nix"
-    ## "terminals" => # "ghostty"
-    ## "virtualization" => # "docker"
-    ## "network" => # "postman"
-    # "nix"
-    "boot"
-    # "network"
-    "ghostty"
-    "git" #solo
-    # "vim"
-    # "vscode"
-    "docker"
-    # "postman"
-  ];
+  imports = null;
   options = {
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
   };
-  settings = {
-    nix.enable = true;
-    boot.enable = true;
-    network.enable = true;
-    ghostty.enable = true;
-    git.enable = true;
-    vim.enable = true;
-    vscode.enable = true;
-    docker.enable = true;
-    postman.enable = true;
-  };
+  settings = null;
   ######  # computed
   packages =
     if main-repo != null && branch != null
@@ -67,11 +42,16 @@
     };
   ######  # user defined
   Home = {
-    home.packages = with packages; [
-      python3
-      nmap # for network
-      netcat-openbsd # for network
-    ];
+    programs.git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "MatthieuGomes";
+          email = "matthieu.gomes@ensea.fr";
+        };
+        init.defaultBranch = "main";
+      };
+    };
   };
   System = {
   };
