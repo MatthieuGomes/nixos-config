@@ -44,7 +44,7 @@
   Home = {
     programs.yazi = {
       enable = true;
-      initLua = ../../../static/yazi/init.lua;
+      initLua = ./static/yazi/init.lua;
       settings = {
         mgr = {
           show_hidden = true;
@@ -59,8 +59,8 @@
           inherit rich-preview;
         }
         // {
-          "githead" = ../../../static/yazi/plugins/githead;
-          "kdeconnect-send" = ../../../static/yazi/plugins/kdeconnect-send;
+          "githead" = ./static/yazi/plugins/githead;
+          "kdeconnect-send" = ./static/yazi/plugins/kdeconnect-send;
         };
       keymap = {
         mgr = {

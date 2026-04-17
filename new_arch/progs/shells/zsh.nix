@@ -61,7 +61,7 @@
     };
   ######  # user defined
   Home = {
-    home.file.".p10k.zsh".text = "${builtins.readFile "${./${subfolder}/static/.p10k.zsh}"}";
+    # home.file.".p10k.zsh".text = "${builtins.readFile "${./${subfolder}/static/.p10k.zsh}"}";
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -87,7 +87,7 @@
       # FIXME : move to a dedicated file
       initContent = ''
 
-        source ~/.p10k.zsh
+        source ~/nixos-config/new_arch/progs/shells/${subfolder}/static/.p10k.zsh
 
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
         zstyle ':completion:*' menu no
