@@ -43,12 +43,12 @@
   };
   System = {
     users = {
-      mutableUsers = false; # BAZINGA
+      # mutableUsers = false; # BAZINGA
       defaultUserShell = packages.zsh;
       users = {
         matthieu = {
-          password = ""; # BAZINGA
-          ignoreShellProgramCheck = true; # BAZINGA
+          # password = ""; # BAZINGA
+          # ignoreShellProgramCheck = true; # BAZINGA
           description = "Moi";
           isNormalUser = true;
           group = "users";
@@ -65,7 +65,7 @@
           ];
           */
         };
-        root.ignoreShellProgramCheck = true; # BAZINGA
+        # root.ignoreShellProgramCheck = true; # BAZINGA
       };
       groups = {
         libvirtd.members = ["matthieu"];
