@@ -95,61 +95,23 @@
     tools = import ./tools.nix {
       inherit lib;
     };
-    settings = {
+    baseSettings = {
       progs = {
-        enable = true;
-        shells = {
-          enable = true;
-          zsh = true;
-        };
-        misc = {
-          enable = true;
-          ledger = true;
-          bambu-studio = true;
-          bitwarden = true;
-          fastfetch = true;
-          iso-image-writer = true;
-          vesktop = true;
-          kdeconnect = true;
-        };
-        office = {
-          enable = true;
-          libreoffice = true;
-          qualculate = true;
-        };
-        dev = {
-          enable = true;
-          boot = {
-            enable = true;
-            efibootmgr = true;
-            grub = true;
-            gparted = true;
-            os-prober = true;
-          };
-          dev-nix = {
-            enable = true;
-            nixd = true;
-            alejandra = true;
-          };
-          # network = true;
-          docker = true;
-          ghostty = true;
-          git = true;
-          postman = true;
-          vscode = true;
-          vim = true;
-        };
-        browsers = {
-          enable = true;
-          firefox = true;
-          chromium = true;
-        };
-        desktop = {
-          enable = true;
-          plasma = true;
-          klassy = true;
-          rofi = true;
-        };
+        shells.enable = true;
+        misc.enable = true;
+        office.enable = true;
+        dev.enable = true;
+        browsers.enable = true;
+        desktop.enable = true;
+      };
+      sys = {
+        version = nixos-version;
+        bootloader.enable = true;
+        lang.enable = true;
+        users.enable = true;
+        hardware.enable = true;
+        networking.enable = true;
+        filesystems.enable = true;
       };
     };
   in {
@@ -159,8 +121,7 @@
         inherit pkgs-list;
         inherit Inputs;
         inherit managers;
-        inherit nixos-version;
-        inherit settings;
+        inherit baseSettings;
         inherit tools;
       };
       modules = [
@@ -173,7 +134,7 @@
               inherit pkgs-list;
               inherit latest;
               inherit nixos-version;
-              inherit settings;
+              inherit baseSettings;
               inherit tools;
             };
             useUserPackages = true;
