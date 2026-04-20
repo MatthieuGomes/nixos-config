@@ -140,6 +140,7 @@
     parentPathAsList,
     tools,
     name,
+    togglable ? true,
     subfolder ? null,
     main-repo ? null, # pas sur que ce soit necessaire plus j'y reflechis.
     branch ? null, # pas sur que ce soit necessaire plus j'y reflechis.
@@ -148,9 +149,10 @@
     options ? null,
     settings ? null,
     extras ? null,
+    ...
   }: rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    inherit name subfolder main-repo branch imports specialImports options settings extras;
+    inherit name togglable subfolder main-repo branch imports specialImports options settings extras;
     packages =
       if main-repo != null && branch != null
       then pkgs-list.${main-repo}.${branch}
@@ -180,6 +182,7 @@
     parentPathAsList,
     tools,
     name,
+    togglable ? true,
     subfolder ? null,
     main-repo ? null, # pas sur que ce soit necessaire plus j'y reflechis.
     branch ? null, # pas sur que ce soit necessaire plus j'y reflechis.
@@ -196,6 +199,7 @@
     Common,
     Home ? {},
     System ? {},
+    ...
   }: let
     HomeConfig = Common // Home;
     SystemConfig = Common // System;
@@ -206,6 +210,7 @@
         inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
         inherit imports options; # user defined
         inherit specialImports; # user defined
+        inherit togglable; # user defined
         context = "Home";
         Config = HomeConfig;
       };
@@ -214,6 +219,7 @@
         inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
         inherit imports options; # user defined
         inherit specialImports; # user defined
+        inherit togglable; # user defined
         context = "System";
         Config = SystemConfig;
       };
