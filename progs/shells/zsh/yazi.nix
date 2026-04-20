@@ -8,7 +8,7 @@
 }: let
   ######  # user defined
   name = "yazi";
-  subfolder = null;
+  subfolder = "yazi";
   main-repo = "nix";
   branch = "latest";
   imports = null;
@@ -44,7 +44,7 @@
   Home = {
     programs.yazi = {
       enable = true;
-      initLua = ./static/yazi/init.lua;
+      initLua = ./${subfolder}/init.lua;
       settings = {
         mgr = {
           show_hidden = true;
@@ -59,8 +59,8 @@
           inherit rich-preview;
         }
         // {
-          "githead" = ./static/yazi/plugins/githead;
-          "kdeconnect-send" = ./static/yazi/plugins/kdeconnect-send;
+          "githead" = ./${subfolder}/plugins/githead;
+          "kdeconnect-send" = ./${subfolder}/plugins/kdeconnect-send;
         };
       keymap = {
         mgr = {

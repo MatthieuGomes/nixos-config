@@ -8,7 +8,7 @@
 }: let
   ######  # user defined
   name = "bootloader";
-  subfolder = null;
+  subfolder = "bootloader";
   main-repo = null;
   branch = null;
   imports = null;
@@ -50,8 +50,8 @@
         useOSProber = true;
         # FEAT : maybe move static files in dedicated folder.
         extraEntries = ''
-          ${builtins.readFile "${./static/grub/00_Arch_Btrfs}"}
-          ${builtins.readFile "${./static/grub/99_UEFI_Firmware}"}
+          ${builtins.readFile "${./${subfolder}/00_Arch_Btrfs}"}
+          ${builtins.readFile "${./${subfolder}/99_UEFI_Firmware}"}
         '';
       };
       efi = {
