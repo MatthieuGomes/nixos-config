@@ -6,65 +6,23 @@
   tools,
   ...
 }: let
-  ######  # user defined
-  name = "sound";
-  subfolder = null;
-  main-repo = "nix";
-  branch = "latest";
-  imports = null;
-  options = {
-    enable = lib.mkEnableOption "Enables and configures ${name} hardware support.";
-  };
-  settings = null;
-  ######  # computed
-  packages =
-    if main-repo != null && branch != null
-    then pkgs-list.${main-repo}.${branch}
-    else null;
-  currentPathAsList = parentPathAsList ++ [name];
-  currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
-  cfg = tools.inheritConfig {
-    inherit config currentPathAsList;
-  };
-  inheritedSettings =
-    if imports != null || settings != null
-    then
-      tools.inheritSettings {
-        inherit currentPathAsList imports settings;
-      }
-    else {
+  moduleParams = tools.moduleParams rec {
+    inherit config lib pkgs-list parentPathAsList tools;
+    name = "sound";
+    main-repo = "nix";
+    branch = "latest";
+    options = {
+      enable = lib.mkEnableOption "Enables and configures ${name} hardware support.";
     };
-  Common =
-    inheritedSettings
-    // {
-    };
-  ######  # user defined
-  Home = {
   };
+in (tools.fullModule {
+  inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
+  inherit (moduleParams) name subfolder main-repo branch extras imports specialImports options settings;
+  inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
     services.pipewire = {
       enable = true;
       pulse.enable = true;
     };
   };
-  ######  # computed
-  HomeConfig = Common // Home;
-  SystemConfig = Common // System;
-in {
-  config = {
-    Home = tools.contextualModule {
-      inherit lib config tools; # deps
-      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
-      inherit imports options; # user defined
-      context = "Home";
-      Config = HomeConfig;
-    };
-    System = tools.contextualModule {
-      inherit lib config tools; # deps
-      inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
-      inherit imports options; # user defined
-      context = "System";
-      Config = SystemConfig;
-    };
-  };
-}
+})
