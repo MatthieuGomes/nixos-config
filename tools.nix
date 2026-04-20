@@ -126,6 +126,93 @@
         then (lib.mkIf deps.cfg.enable Config)
         else Config;
     };
+
+  moduleParams = {
+    config,
+    lib,
+    pkgs-list,
+    parentPathAsList,
+    tools,
+    name,
+    subfolder ? null,
+    main-repo ? null, # pas sur que ce soit necessaire plus j'y reflechis.
+    branch ? null, # pas sur que ce soit necessaire plus j'y reflechis.
+    imports ? null,
+    specialImports ? null,
+    options ? null,
+    settings ? null,
+    extras ? null,
+  }: rec {
+    inherit config lib pkgs-list parentPathAsList tools;
+    inherit name subfolder main-repo branch imports specialImports options settings extras;
+    packages =
+      if main-repo != null && branch != null
+      then pkgs-list.${main-repo}.${branch}
+      else null;
+    currentPathAsList = parentPathAsList ++ [name];
+    currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
+    cfg = tools.inheritConfig {
+      inherit config currentPathAsList;
+    };
+    inheritedSettings =
+      if imports != null || settings != null
+      then
+        tools.inheritSettings {
+          inherit currentPathAsList imports settings;
+        }
+      else {
+      };
+    Common =
+      inheritedSettings
+      // {
+      };
+  };
+  fullModule = {
+    config,
+    lib,
+    pkgs-list,
+    parentPathAsList,
+    tools,
+    name,
+    subfolder ? null,
+    main-repo ? null, # pas sur que ce soit necessaire plus j'y reflechis.
+    branch ? null, # pas sur que ce soit necessaire plus j'y reflechis.
+    imports ? null,
+    specialImports ? null,
+    options ? null,
+    settings ? null,
+    extras ? null,
+    packages ? null,
+    currentPathAsList,
+    currentDirPath,
+    cfg,
+    inheritedSettings,
+    Common,
+    Home ? {},
+    System ? {},
+  }: let
+    HomeConfig = Common // Home;
+    SystemConfig = Common // System;
+  in {
+    config = {
+      Home = tools.contextualModule {
+        inherit lib config tools; # deps
+        inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+        inherit imports options; # user defined
+        inherit specialImports; # user defined
+        context = "Home";
+        Config = HomeConfig;
+      };
+      System = tools.contextualModule {
+        inherit lib config tools; # deps
+        inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
+        inherit imports options; # user defined
+        inherit specialImports; # user defined
+        context = "System";
+        Config = SystemConfig;
+      };
+    };
+  };
 in {
-  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule;
+  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule;
 }
