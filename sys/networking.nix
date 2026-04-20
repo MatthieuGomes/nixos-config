@@ -9,6 +9,7 @@
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "networking";
+    togglable = false;
     main-repo = "nix";
     branch = "latest";
     options = {

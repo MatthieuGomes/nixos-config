@@ -9,6 +9,7 @@
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "bootloader";
+    togglable = false;
     subfolder = "bootloader";
     options = {
       enable = lib.mkEnableOption "Enables ${name} related settings.";

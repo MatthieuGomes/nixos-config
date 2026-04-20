@@ -9,6 +9,7 @@
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "hardware";
+    togglable = false;
     subfolder = "hardware";
     main-repo = "nix";
     branch = "latest";

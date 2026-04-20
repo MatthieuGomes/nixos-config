@@ -9,6 +9,7 @@
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "filesystems";
+    togglable = false;
     subfolder = "filesystems";
     imports = [
       "ntfs"
