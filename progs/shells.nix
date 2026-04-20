@@ -22,6 +22,8 @@
       nrs = "sudo nixos-rebuild switch";
       ls = "ls --color -ah";
       ".." = "cd ..";
+      yazi = "y";
+      myip = "myip";
     };
   };
   settings = {

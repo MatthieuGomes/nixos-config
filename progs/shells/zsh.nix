@@ -77,43 +77,16 @@
         {
           name = "powerlevel10k";
           src = packages.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme"; # FEAT : Maybe to a file owned by me ?
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
         }
         {
           name = "fzf-tab";
           src = "${packages.zsh-fzf-tab}/share/fzf-tab";
         }
       ];
-      # FIXME : move to a dedicated file
-      initContent = ''
-        source ~/.p10k.zsh
+      initContent = "${builtins.readFile ./${subfolder}/init.zsh}";
 
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-        zstyle ':completion:*' menu no
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'
-
-        function y() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-          yazi "$@" --cwd-file="$tmp"
-          IFS= read -r -d \'\' cwd < "$tmp"
-          [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-          rm -f -- "$tmp"
-        }
-
-        function myip(){
-          echo $(ip addr show wlp0s20f3 | grep -oP 'inet \K[^/]+')
-        }
-
-      '';
-
-      #  zstyle ':completion:*' menu no
-      # FIXME : move new aliases to shells extras
-      shellAliases =
-        cfg.aliases
-        // {
-          yazi = "y";
-          myip = "myip";
-        };
+      shellAliases = cfg.aliases;
     };
   };
   System = {
