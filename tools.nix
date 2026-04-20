@@ -74,6 +74,7 @@
   contextualModule = {
     options ? null,
     imports ? null,
+    specialImports ? null,
     togglable ? true,
     Config,
     context,
@@ -98,13 +99,26 @@
     // (
       if imports != null
       then {
-        imports = tools.contextModuleImport {
-          inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs;
-          context = context;
-        };
+        imports =
+          tools.contextModuleImport {
+            inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs;
+            context = context;
+          }
+          ++ (
+            if specialImports != null
+            then specialImports
+            else []
+          );
       }
-      else {
-      }
+      else
+        (
+          if specialImports != null
+          then {
+            imports = specialImports;
+          }
+          else {
+          }
+        )
     )
     // {
       config =
