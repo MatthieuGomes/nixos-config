@@ -106,7 +106,10 @@
           }
           ++ (
             if specialImports != null
-            then specialImports
+            then
+              if builtins.hasAttr context specialImports
+              then specialImports.${context}
+              else []
             else []
           );
       }
@@ -114,7 +117,10 @@
         (
           if specialImports != null
           then {
-            imports = specialImports;
+            imports =
+              if builtins.hasAttr context specialImports
+              then specialImports.${context}
+              else [];
           }
           else {
           }
