@@ -12,18 +12,13 @@
   name = "home";
   mainModule = "progs"; ## Exceptional structure since home NEEDS to exist but only imports progs
   imports = ["progs"];
-  specialImports = [
-    pkgs-list.others.zen-browser.homeModules.beta ## FIXME : Dont know yet how to handle this
-  ];
 in {
-  imports =
-    map (file:
-      (import ./${mainModule}.nix {
-        inherit config lib pkgs-list tools baseSettings;
-        inherit inputs;
-      }).config.Home)
-    imports
-    ++ specialImports;
+  imports = map (file:
+    (import ./${mainModule}.nix {
+      inherit config lib pkgs-list tools baseSettings;
+      inherit inputs;
+    }).config.Home)
+  imports;
 
   home.stateVersion = nixos-version;
   home.username = "matthieu";

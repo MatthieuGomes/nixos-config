@@ -16,6 +16,7 @@
     enable = lib.mkEnableOption "Enables ${name} program and related settings.";
   };
   extras = {
+    specialImports = [pkgs-list.others.zen-browser.homeModules.beta];
   };
   settings = null;
   ######  # computed
@@ -58,6 +59,7 @@ in {
       inherit lib config tools; # deps
       inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
       inherit imports options; # user defined
+      inherit (extras) specialImports;
       context = "Home";
       Config = HomeConfig;
     };
