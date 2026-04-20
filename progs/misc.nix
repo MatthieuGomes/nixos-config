@@ -59,7 +59,7 @@
   ######  # user defined
   Home = {
     home.packages = with packages; [
-      vlc
+      vlc # Misc
     ];
   };
   System = {

@@ -68,9 +68,9 @@
   ######  # user defined
   Home = {
     home.packages = with packages; [
-      python3
-      nmap # for network
-      netcat-openbsd # for network
+      python3 # Lang
+      nmap # Network
+      netcat-openbsd # Network
     ];
   };
   System = {

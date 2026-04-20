@@ -38,8 +38,8 @@ in {
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
   networking.hostName = "NixOs";
   virtualisation = {
-    libvirtd.enable = true;
-    spiceUSBRedirection.enable = true;
+    libvirtd.enable = true; # Virtualization
+    spiceUSBRedirection.enable = true; # Virtualization
     vmVariant = {
       # the following configuration is added only when building VM with `build-vm`
       virtualisation = {
