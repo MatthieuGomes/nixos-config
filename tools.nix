@@ -149,7 +149,6 @@
     options ? null,
     settings ? null,
     extras ? null,
-    ...
   }: rec {
     inherit config lib pkgs-list parentPathAsList tools;
     inherit name togglable subfolder main-repo branch imports specialImports options settings extras;
@@ -199,7 +198,6 @@
     Common,
     Home ? {},
     System ? {},
-    ...
   }: let
     HomeConfig = Common // Home;
     SystemConfig = Common // System;
