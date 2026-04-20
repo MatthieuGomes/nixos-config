@@ -36,6 +36,6 @@
   };
 in (tools.fullModule {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
-  inherit (moduleParams) name subfolder main-repo branch imports options settings extras;
+  inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
 })
