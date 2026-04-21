@@ -36,7 +36,7 @@ in {
     ];
   sys.version = baseSettings.sys.version;
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
-  networking.hostName = "NixOs";
+  networking.hostName = baseSettings.sys.hostname;
   virtualisation = {
     vmVariant = {
       # the following configuration is added only when building VM with `build-vm`

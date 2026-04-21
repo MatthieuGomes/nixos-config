@@ -21,6 +21,6 @@ in {
   imports;
 
   home.stateVersion = nixos-version;
-  home.username = "matthieu";
-  home.homeDirectory = "/home/matthieu";
+  home.username = baseSettings.sys.main-user;
+  home.homeDirectory = "/home/${baseSettings.sys.main-user}";
 }

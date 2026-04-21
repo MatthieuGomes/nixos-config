@@ -26,6 +26,16 @@
       default = "25.11";
       description = "The system state version.";
     };
+    hostname = lib.mkOption {
+      type = lib.types.str;
+      default = "NixOs";
+      description = "The system hostname.";
+    };
+    main-user = lib.mkOption {
+      type = lib.types.str;
+      default = "matthieu";
+      description = "The main user of the system.";
+    };
   };
   newSettings.${name} = {
     lang = {

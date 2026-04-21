@@ -25,7 +25,7 @@ in (tools.fullModule rec {
       # mutableUsers = false; # BAZINGA
       defaultUserShell = packages.zsh;
       users = {
-        matthieu = {
+        ${config.sys.main-user} = {
           # password = ""; # BAZINGA
           # ignoreShellProgramCheck = true; # BAZINGA
           description = "Moi";
@@ -35,7 +35,7 @@ in (tools.fullModule rec {
             "wheel" # Enable sudo for the user.
           ];
           createHome = true;
-          home = "/home/matthieu";
+          home = "/home/${config.sys.main-user}";
           /*
           openssh.authorizedKeys.keys = [
             ""

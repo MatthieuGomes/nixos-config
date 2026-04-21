@@ -109,6 +109,8 @@
       };
       sys = {
         version = nixos-version;
+        main-user = "matthieu";
+        hostname = "NixOs";
         bootloader.enable = true;
         lang.enable = true;
         users.enable = true;
@@ -118,7 +120,7 @@
       };
     };
   in {
-    nixosConfigurations.NixOs = latestPkgs.lib.nixosSystem {
+    nixosConfigurations.${baseSettings.sys.hostname} = latestPkgs.lib.nixosSystem {
       pkgs = pkgs-list.nix.latest;
       specialArgs = {
         inherit pkgs-list;
@@ -143,7 +145,7 @@
             useUserPackages = true;
             useGlobalPkgs = true;
             sharedModules = [plasma-manager.homeModules.plasma-manager];
-            users.matthieu = import ./home.nix;
+            users.${baseSettings.sys.main-user} = import ./home.nix;
             backupFileExtension = "backup";
           };
         }
