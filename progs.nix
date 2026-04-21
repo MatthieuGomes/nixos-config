@@ -21,6 +21,7 @@
       "office"
       "desktop"
       "browsers"
+      "terminals"
     ];
     settings = (lib.recursiveUpdate baseSettings {}).${name};
   };

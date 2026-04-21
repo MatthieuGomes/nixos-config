@@ -21,7 +21,6 @@
       "nix"
       "boot"
       "network"
-      "ghostty" #somewhere else
       "git" #solo
       "vim"
       "vscode"
@@ -35,7 +34,6 @@
       nix.enable = true;
       boot.enable = true;
       network.enable = true;
-      ghostty.enable = true;
       git.enable = true;
       vim.enable = true;
       vscode.enable = true;

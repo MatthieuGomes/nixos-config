@@ -103,6 +103,7 @@
         dev.enable = true;
         browsers.enable = true;
         desktop.enable = true;
+        terminals.enable = true;
       };
       sys = {
         version = nixos-version;
