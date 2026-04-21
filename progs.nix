@@ -41,12 +41,7 @@ in (tools.fullModule rec {
   System = {
     environment.systemPackages = with packages; [
       mangohud # Gaming
-      plocate # dev Misc
-      mlocate # dev Misc
-      xdotool # dev Misc
       protonup-ng # Gaming
-      meld # dev Misc
-      wget # dev Misc
     ];
     environment.sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d"; # Gaming
