@@ -23,28 +23,12 @@
       "browsers"
       "terminals"
       "editors"
+      "gaming"
     ];
     settings = (lib.recursiveUpdate baseSettings {}).${name};
   };
-in (tools.fullModule rec {
+in (tools.fullModule {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
-  System = {
-    environment.systemPackages = with packages; [
-      mangohud # Gaming
-      protonup-ng # Gaming
-    ];
-    environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d"; # Gaming
-    };
-    programs = {
-      gamemode.enable = true; # Gaming
-      steam = {
-        # Gaming
-        enable = true; # Gaming
-        gamescopeSession.enable = true; # Gaming
-      };
-    };
-  };
 })
