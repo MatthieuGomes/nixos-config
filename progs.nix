@@ -22,6 +22,7 @@
       "desktop"
       "browsers"
       "terminals"
+      "editors"
     ];
     settings = (lib.recursiveUpdate baseSettings {}).${name};
   };

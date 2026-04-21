@@ -104,6 +104,7 @@
         browsers.enable = true;
         desktop.enable = true;
         terminals.enable = true;
+        editors.enable = true;
       };
       sys = {
         version = nixos-version;

@@ -22,8 +22,6 @@
       "boot"
       "network"
       "git" #solo
-      "vim"
-      "vscode"
       "docker"
       "postman"
     ];
@@ -35,8 +33,6 @@
       boot.enable = true;
       network.enable = true;
       git.enable = true;
-      vim.enable = true;
-      vscode.enable = true;
       docker.enable = true;
       postman.enable = true;
     };
