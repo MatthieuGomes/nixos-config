@@ -223,6 +223,28 @@
       };
     };
   };
+  ifExistsList = config: configPathString: value: let
+    pathAsList = lib.splitString "." configPathString;
+    name = lib.lists.last pathAsList;
+    parentPathAsList = lib.lists.drop 1 (lib.lists.reverseList (lib.lists.drop 1 (lib.lists.reverseList pathAsList)));
+    parentPath = lib.attrsets.getAttrFromPath parentPathAsList config;
+    configPath = lib.attrsets.getAttrFromPath (lib.lists.drop 1 pathAsList) config;
+    modulePath = configPath.enable;
+  in
+    if parentPath.enable && builtins.hasAttr name parentPath && modulePath
+    then value
+    else [];
+  ifExistsAttr = config: configPathString: value: let
+    pathAsList = lib.splitString "." configPathString;
+    name = lib.lists.last pathAsList;
+    parentPathAsList = lib.lists.drop 1 (lib.lists.reverseList (lib.lists.drop 1 (lib.lists.reverseList pathAsList)));
+    parentPath = lib.attrsets.getAttrFromPath parentPathAsList config;
+    configPath = lib.attrsets.getAttrFromPath (lib.lists.drop 1 pathAsList) config;
+    modulePath = configPath.enable;
+  in
+    if parentPath.enable && builtins.hasAttr name parentPath && modulePath
+    then value
+    else {};
 in {
-  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule;
+  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExistsList ifExistsAttr;
 }
