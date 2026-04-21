@@ -8,22 +8,21 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "network";
-    subfolder = "network";
-    imports = [
-      "misc"
-      "postman"
-    ];
+    name = "misc";
+    main-repo = "nix";
+    branch = "latest";
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
-    settings = {
-      misc.enable = true;
-      postman.enable = true;
-    };
   };
-in (tools.fullModule {
+in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
+  Home = {
+    home.packages = with packages; [
+      netcat-openbsd
+      nmap
+    ];
+  };
 })
