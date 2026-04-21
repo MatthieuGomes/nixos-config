@@ -26,7 +26,6 @@ in (tools.fullModule rec {
         devices = ["nodev"];
         efiSupport = true;
         useOSProber = true;
-        # FEAT : maybe move static files in dedicated folder.
         extraEntries = ''
           ${builtins.readFile "${./${subfolder}/00_Arch_Btrfs}"}
           ${builtins.readFile "${./${subfolder}/99_UEFI_Firmware}"}
