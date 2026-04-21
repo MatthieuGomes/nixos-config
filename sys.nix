@@ -11,7 +11,7 @@
   name = "sys";
   subfolder = "sys";
   repo = "nix";
-  branch = "unstable";
+  branch = "latest";
   imports = [
     "bootloader"
     "lang"
