@@ -58,7 +58,6 @@ in (tools.fullModule rec {
         enable = true; # Gaming
         gamescopeSession.enable = true; # Gaming
       };
-      virt-manager.enable = true; # Virtualization
     };
   };
 })
