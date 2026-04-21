@@ -8,40 +8,22 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "dev";
-    subfolder = "dev";
-    main-repo = "nix";
-    branch = "latest";
+    name = "lang";
+    subfolder = "lang";
     imports = [
-      ## "network" => # "postman"
-      "boot"
-      "network"
-      "git" #solo
-      "postman"
-      "virtualization"
-      "lang"
+      "nix"
+      "python"
     ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
     settings = {
       nix.enable = true;
-      boot.enable = true;
-      network.enable = true;
-      git.enable = true;
-      postman.enable = true;
-      virtualization.enable = true;
-      lang.enable = true;
+      python.enable = true;
     };
   };
-in (tools.fullModule rec {
+in (tools.fullModule {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
-  Home = {
-    home.packages = with packages; [
-      nmap # Network
-      netcat-openbsd # Network
-    ];
-  };
 })
