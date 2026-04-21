@@ -8,30 +8,11 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "dev";
-    subfolder = "dev";
+    name = "docker";
     main-repo = "nix";
     branch = "latest";
-    imports = [
-      ## "lang" => # "nix"
-      ## "network" => # "postman"
-      "nix"
-      "boot"
-      "network"
-      "git" #solo
-      "postman"
-      "virtualization"
-    ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
-    };
-    settings = {
-      nix.enable = true;
-      boot.enable = true;
-      network.enable = true;
-      git.enable = true;
-      postman.enable = true;
-      virtualization.enable = true;
     };
   };
 in (tools.fullModule rec {
@@ -40,11 +21,13 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   Home = {
     home.packages = with packages; [
-      python3 # Lang
-      nmap # Network
-      netcat-openbsd # Network
+      docker
+      docker-compose
+      lazydocker
     ];
   };
   System = {
+    virtualisation.docker.enable = true;
+    users.groups.docker.members = ["matthieu"];
   };
 })

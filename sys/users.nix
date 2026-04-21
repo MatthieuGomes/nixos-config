@@ -33,8 +33,6 @@ in (tools.fullModule rec {
           group = "users";
           extraGroups = [
             "wheel" # Enable sudo for the user.
-            "docker"
-            "libvirtd"
           ];
           createHome = true;
           home = "/home/matthieu";
@@ -45,9 +43,6 @@ in (tools.fullModule rec {
           */
         };
         # root.ignoreShellProgramCheck = true; # BAZINGA
-      };
-      groups = {
-        libvirtd.members = ["matthieu"];
       };
     };
   };
