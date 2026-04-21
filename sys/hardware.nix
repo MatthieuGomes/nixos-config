@@ -37,10 +37,8 @@ in (tools.fullModule rec {
     services = {
       libinput.enable = true; # TODO : FIX - not sure where to put it yet
     };
-    # FIX : dont know where to put that : temporary here
     environment.systemPackages = with packages; [
       lshw
-      iw
       usbutils
     ];
   };

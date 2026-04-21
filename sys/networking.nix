@@ -43,6 +43,7 @@ in (tools.fullModule rec {
     environment.systemPackages = with packages; [
       iproute2
       bridge-utils
+      iw
     ];
   };
 })
