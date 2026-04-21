@@ -17,7 +17,7 @@
       "nvidia"
       "printer"
       "sound"
-      # "bluetooth"
+      "bluetooth"
     ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} related settings.";
@@ -26,7 +26,7 @@
       nvidia.enable = false; # FIX : module to fix once a stable and working nvidia version is available
       printer.enable = true;
       sound.enable = true;
-      # bluetooth.enable = true; #TODO : move bluetooth to its own module
+      bluetooth.enable = true;
     };
   };
 in (tools.fullModule rec {
@@ -34,12 +34,6 @@ in (tools.fullModule rec {
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
-    # TODO : move bluetooth to its own module
-    hardware = {
-      bluetooth.enable = true;
-    };
-    services.blueman.enable = true;
-
     services = {
       libinput.enable = true; # TODO : FIX - not sure where to put it yet
     };
