@@ -36,15 +36,8 @@ in (tools.fullModule rec {
         enable = true;
       };
 
-      firewall = rec {
+      firewall = {
         enable = true;
-        allowedTCPPortRanges = [
-          {
-            from = 1714;
-            to = 1764;
-          }
-        ]; # FOR KDE CONNECT TODO: find a better way to do this
-        allowedUDPPortRanges = allowedTCPPortRanges; # FOR KDE CONNECT
       };
     };
     environment.systemPackages = with packages; [
