@@ -42,9 +42,11 @@ in (tools.fullModule rec {
           ];
           new-window = ["Meta+Shift+Return"];
         };
-        "ksmserver" = {
+        ksmserver = {
           "Lock Session" = ["Meta+L"];
-          "Sleep" = ["Meta+Shift+L"];
+        };
+        org_kde_powerdevil = {
+          "Sleep" = ["Meta+Shift+L" "Sleep"];
         };
       };
       workspace = {
