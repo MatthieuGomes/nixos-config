@@ -24,6 +24,7 @@
         description = "An attribute set of shell aliases to define.";
         default = {};
       };
+      p10k.enable = lib.mkEnableOption "Enables powerlevel10k zsh theme.";
     };
     settings = {
       oh-my-zsh = {
@@ -55,15 +56,15 @@ in (tools.fullModule rec {
       };
       defaultKeymap = "emacs";
       plugins = [
-        {
+        (tools.ifExistsAttr config "config.progs.shells.zsh.p10k" {
           name = "powerlevel10k";
           src = packages.zsh-powerlevel10k;
           file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        }
-        {
+        })
+        (tools.ifExistsAttr config "config.progs.shells.zsh.fzf" {
           name = "fzf-tab";
           src = "${packages.zsh-fzf-tab}/share/fzf-tab";
-        }
+        })
       ];
       initContent = "${builtins.readFile ./${subfolder}/init.zsh}";
 

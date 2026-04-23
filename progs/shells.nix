@@ -17,12 +17,19 @@
       "zsh"
     ];
     extras = {
-      aliases = {
-        nrs = "sudo nixos-rebuild switch";
-        ls = "ls --color -ah";
-        ".." = "cd ..";
-        yazi = "y";
-        myip = "myip";
+      aliases =
+        {
+          nrs = "sudo nixos-rebuild switch";
+          ls = "ls --color -ah";
+          ".." = "cd ..";
+          myip = "myip";
+        }
+        // (tools.ifExistsAttr config "config.progs.shells.zsh.yazi" {
+          yazi = "y";
+        });
+
+      p10k = {
+        enable = true;
       };
     };
     options = {
@@ -31,7 +38,7 @@
     settings = {
       zsh = {
         enable = true;
-        aliases = extras.aliases;
+        inherit (extras) aliases p10k;
       };
     };
   };
