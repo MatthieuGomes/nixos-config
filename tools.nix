@@ -1,4 +1,5 @@
-{lib, ...}: let
+{lib, ...}:
+with lib; let
   contextModuleImport = {
     imports,
     subfolder,
@@ -20,7 +21,7 @@
     imports,
     settings,
   }: let
-    first = lib.lists.last (lib.lists.take 1 currentPathAsList);
+    first = lists.last (lists.take 1 currentPathAsList);
   in
     builtins.listToAttrs (map (setting: {
         name =
@@ -32,7 +33,7 @@
           then settings.${setting}
           else
             (inheritSettings {
-              currentPathAsList = lib.lists.drop 1 currentPathAsList;
+              currentPathAsList = lists.drop 1 currentPathAsList;
               imports = imports;
               settings = settings;
             });
@@ -43,13 +44,13 @@
     currentPathAsList,
     config,
   }: let
-    first = lib.lists.last (lib.lists.take 1 currentPathAsList);
+    first = lists.last (lists.take 1 currentPathAsList);
   in
     if (currentPathAsList == [])
     then config
     else
       inheritConfig {
-        currentPathAsList = lib.lists.drop 1 currentPathAsList;
+        currentPathAsList = lists.drop 1 currentPathAsList;
         config = config.${first};
       };
 
@@ -57,8 +58,8 @@
     currentPathAsList,
     options,
   }: let
-    first = lib.lists.last (lib.lists.take 1 currentPathAsList);
-  in (lib.listToAttrs [
+    first = lists.last (lists.take 1 currentPathAsList);
+  in (listToAttrs [
     {
       name = first;
       value =
@@ -66,7 +67,7 @@
         then options
         else
           inheritOptions {
-            currentPathAsList = lib.lists.drop 1 currentPathAsList;
+            currentPathAsList = lists.drop 1 currentPathAsList;
             inherit options;
           };
     }
@@ -100,7 +101,7 @@
       if imports != null
       then {
         imports =
-          tools.contextModuleImport {
+          contextModuleImport {
             inherit imports subfolder tools currentPathAsList lib config pkgs-list currentDirPath inputs;
             context = context;
           }
@@ -129,7 +130,7 @@
     // {
       config =
         if togglable
-        then (lib.mkIf deps.cfg.enable Config)
+        then (mkIf deps.cfg.enable Config)
         else Config;
     };
 
@@ -147,6 +148,7 @@
     imports ? null,
     specialImports ? null,
     options ? null,
+    specialOptions ? null,
     settings ? null,
     extras ? null,
   }: rec {
@@ -157,14 +159,14 @@
       then pkgs-list.${main-repo}.${branch}
       else null;
     currentPathAsList = parentPathAsList ++ [name];
-    currentDirPath = lib.path.subpath.join (lib.lists.flatten ["./." parentPathAsList]);
-    cfg = tools.inheritConfig {
+    currentDirPath = path.subpath.join (lists.flatten ["./." parentPathAsList]);
+    cfg = inheritConfig {
       inherit config currentPathAsList;
     };
     inheritedSettings =
       if imports != null || settings != null
       then
-        tools.inheritSettings {
+        inheritSettings {
           inherit currentPathAsList imports settings;
         }
       else {
@@ -203,7 +205,7 @@
     SystemConfig = Common // System;
   in {
     config = {
-      Home = tools.contextualModule {
+      Home = contextualModule {
         inherit lib config tools; # deps
         inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
         inherit imports options; # user defined
@@ -212,7 +214,7 @@
         context = "Home";
         Config = HomeConfig;
       };
-      System = tools.contextualModule {
+      System = contextualModule {
         inherit lib config tools; # deps
         inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
         inherit imports options; # user defined
@@ -224,33 +226,33 @@
     };
   };
   ifExistsList = config: configPathString: value: let
-    pathAsList = lib.splitString "." configPathString;
-    name = lib.lists.last pathAsList;
-    parentPathAsList = lib.lists.drop 1 (lib.lists.reverseList (lib.lists.drop 1 (lib.lists.reverseList pathAsList)));
-    parentPath = lib.attrsets.getAttrFromPath parentPathAsList config;
-    configPath = lib.attrsets.getAttrFromPath (lib.lists.drop 1 pathAsList) config;
+    pathAsList = splitString "." configPathString;
+    name = lists.last pathAsList;
+    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
+    parentPath = attrsets.getAttrFromPath parentPathAsList config;
+    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
     modulePath = configPath.enable;
   in
     if parentPath.enable && builtins.hasAttr name parentPath && modulePath
     then value
     else [];
   ifExistsAttr = config: configPathString: value: let
-    pathAsList = lib.splitString "." configPathString;
-    name = lib.lists.last pathAsList;
-    parentPathAsList = lib.lists.drop 1 (lib.lists.reverseList (lib.lists.drop 1 (lib.lists.reverseList pathAsList)));
-    parentPath = lib.attrsets.getAttrFromPath parentPathAsList config;
-    configPath = lib.attrsets.getAttrFromPath (lib.lists.drop 1 pathAsList) config;
+    pathAsList = splitString "." configPathString;
+    name = lists.last pathAsList;
+    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
+    parentPath = attrsets.getAttrFromPath parentPathAsList config;
+    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
     modulePath = configPath.enable;
   in
     if parentPath.enable && builtins.hasAttr name parentPath && modulePath
     then value
     else {};
   ifExistsStr = config: configPathString: value: let
-    pathAsList = lib.splitString "." configPathString;
-    name = lib.lists.last pathAsList;
-    parentPathAsList = lib.lists.drop 1 (lib.lists.reverseList (lib.lists.drop 1 (lib.lists.reverseList pathAsList)));
-    parentPath = lib.attrsets.getAttrFromPath parentPathAsList config;
-    configPath = lib.attrsets.getAttrFromPath (lib.lists.drop 1 pathAsList) config;
+    pathAsList = splitString "." configPathString;
+    name = lists.last pathAsList;
+    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
+    parentPath = attrsets.getAttrFromPath parentPathAsList config;
+    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
     modulePath = configPath.enable;
   in
     if parentPath.enable && builtins.hasAttr name parentPath && modulePath
