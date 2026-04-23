@@ -13,6 +13,7 @@
     imports = [
       "nix"
       "python"
+      "flutter"
     ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
@@ -20,6 +21,12 @@
     settings = {
       nix.enable = true;
       python.enable = true;
+      flutter = {
+        enable = false;
+        user = config.sys.main-user;
+        addToKvmGroup = true;
+        enableAdb = true;
+      };
     };
   };
 in (tools.fullModule {
