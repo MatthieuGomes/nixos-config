@@ -80,17 +80,10 @@ in (tools.fullModule rec {
             "org.kde.plasma.battery"
             {
               name = "org.kde.plasma.lock_logout";
-              # settings = {
-              #   showLogoutScreen = true;
-              # };
+              config = {
+                show_lockScreen = false;
+              };
             }
-            # {
-            #   name = "luisbocanegra.panelspacer.extended";
-            #   config = {
-            #     expand = true;
-            #   };
-            # }
-            # "org.kde.plasma.systemmonitor"
           ];
         }
         {
