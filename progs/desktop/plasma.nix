@@ -77,7 +77,12 @@ in (tools.fullModule rec {
             }
             "org.kde.plasma.volume"
             "org.kde.plasma.networkmanagement"
-            "org.kde.plasma.battery"
+            {
+              name = "org.kde.plasma.battery";
+              config = {
+                showPercentage = "true";
+              };
+            }
             {
               name = "org.kde.plasma.lock_logout";
               config = {
