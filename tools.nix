@@ -74,6 +74,7 @@ with lib; let
   ]);
   contextualModule = {
     options ? null,
+    specialOptions ? null,
     imports ? null,
     specialImports ? null,
     togglable ? true,
@@ -90,9 +91,18 @@ with lib; let
     (
       if options != null
       then {
-        options = tools.inheritOptions {
-          inherit currentPathAsList options;
-        };
+        options =
+          inheritOptions {
+            inherit currentPathAsList options;
+          }
+          // (
+            if specialOptions != null
+            then
+              if builtins.hasAttr context specialOptions
+              then specialOptions
+              else {}
+            else {}
+          );
       }
       else {
       }
@@ -153,7 +163,7 @@ with lib; let
     extras ? null,
   }: rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    inherit name togglable subfolder main-repo branch imports specialImports options settings extras;
+    inherit name togglable subfolder main-repo branch imports specialImports options specialOptions settings extras;
     packages =
       if main-repo != null && branch != null
       then pkgs-list.${main-repo}.${branch}
@@ -190,6 +200,7 @@ with lib; let
     imports ? null,
     specialImports ? null,
     options ? null,
+    specialOptions ? null,
     settings ? null,
     extras ? null,
     packages ? null,
@@ -209,7 +220,7 @@ with lib; let
         inherit lib config tools; # deps
         inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
         inherit imports options; # user defined
-        inherit specialImports; # user defined
+        inherit specialImports specialOptions; # user defined
         inherit togglable; # user defined
         context = "Home";
         Config = HomeConfig;
@@ -218,7 +229,7 @@ with lib; let
         inherit lib config tools; # deps
         inherit subfolder currentPathAsList pkgs-list cfg currentDirPath; # generated
         inherit imports options; # user defined
-        inherit specialImports; # user defined
+        inherit specialImports specialOptions; # user defined
         inherit togglable; # user defined
         context = "System";
         Config = SystemConfig;
