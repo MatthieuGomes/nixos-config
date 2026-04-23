@@ -23,7 +23,6 @@ in (tools.fullModule rec {
     home.packages = with packages; [
       docker
       docker-compose
-      lazydocker
     ];
   };
   System = {

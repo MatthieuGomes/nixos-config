@@ -24,6 +24,7 @@
       "terminals"
       "editors"
       "gaming"
+      "tuis"
     ];
     settings = (lib.recursiveUpdate baseSettings {}).${name};
   };

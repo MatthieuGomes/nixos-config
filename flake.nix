@@ -106,6 +106,7 @@
         terminals.enable = true;
         editors.enable = true;
         gaming.enable = true;
+        tuis.enable = true;
       };
       sys = {
         version = nixos-version;

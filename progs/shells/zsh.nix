@@ -14,7 +14,6 @@
     branch = "latest";
     imports = [
       "oh-my-zsh"
-      "yazi"
       "fzf"
     ];
     options = {
@@ -35,7 +34,6 @@
         ];
       };
       fzf.enable = true;
-      yazi.enable = true;
     };
   };
 in (tools.fullModule rec {
@@ -78,8 +76,8 @@ in (tools.fullModule rec {
           myip = "echo $(ip addr show wlp0s20f3 | grep -oP 'inet \\K[^/]+')";
         }
         // (
-          tools.ifExistsAttr config "config.progs.shells.zsh.yazi" {
-            y = "${builtins.readFile ./${subfolder}/yazi/y.zsh}";
+          tools.ifExistsAttr config "config.progs.tuis.yazi" {
+            y = "${builtins.readFile ../tuis/yazi/y.zsh}";
           }
         );
 
