@@ -21,6 +21,5 @@ in (tools.fullModule {
     hardware = {
       bluetooth.enable = true;
     };
-    services.blueman.enable = true;
   };
 })
