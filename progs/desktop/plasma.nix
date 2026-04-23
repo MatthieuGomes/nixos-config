@@ -68,9 +68,11 @@ in (tools.fullModule rec {
           widgets = [
             "org.kde.plasma.trash"
             "org.kde.plasma.panelspacer"
+            "org.kde.plasma.mediacontroller"
             "org.kde.plasma.digitalclock"
             "org.kde.plasma.notifications"
             "org.kde.plasma.panelspacer"
+            "org.kde.plasma.keyboardindicator"
             # PROJECT : Fixing plasma manager so it supports configuring the system tray correctly and fully.
             {
               name = "org.kde.plasma.systemtray";
