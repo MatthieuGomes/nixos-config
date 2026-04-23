@@ -71,10 +71,37 @@ in (tools.fullModule rec {
             "org.kde.plasma.digitalclock"
             "org.kde.plasma.notifications"
             "org.kde.plasma.panelspacer"
+            # PROJECT : Fixing plasma manager so it supports configuring the system tray correctly and fully.
             {
               name = "org.kde.plasma.systemtray";
-              config = {};
+              config = {
+                extraItems = ["org.kde.plasma.cameraindicator" "org.kde.kdeconnect" "org.kde.plasma.bluetooth" "org.kde.plasma.devicenotifier" "org.kde.plasma.printmanager" "org.kde.kscreen" "org.kde.plasma.keyboardlayout" "org.kde.plasma.manage-inputmethod"];
+                hiddenItems = ["org.kde.kscreen" "org.kde.plasma.keyboardlayout" "org.kde.plasma.manage-inputmethod"];
+                knownItems = ["org.kde.plasma.cameraindicator" "org.kde.plasma.clipboard" "org.kde.plasma.manage-inputmethod" "org.kde.kdeconnect" "org.kde.plasma.keyboardlayout" "org.kde.plasma.bluetooth" "org.kde.plasma.mediacontroller" "org.kde.plasma.notifications" "org.kde.plasma.devicenotifier" "org.kde.plasma.weather" "org.kde.kscreen" "org.kde.plasma.keyboardindicator" "org.kde.plasma.printmanager" "org.kde.plasma.brightness" "org.kde.plasma.volume" "org.kde.plasma.networkmanagement" "org.kde.plasma.battery"];
+              };
             }
+            # {
+            #   systemTray = {
+            #     pin = true;
+            #     icons = {
+            #       spacing = "medium";
+            #       scaleToFit = true;
+            #     };
+            #     items = {
+            #       showAll = false;
+            #       shown = [
+            #         "org.kde.plasma.battery"
+            #         "org.kde.plasma.networkmanagement"
+            #       ];
+            #       hidden = [
+            #         "org.kde.plasma.volume"
+            #         "org.kde.kscreen"
+            #       ];
+            #     };
+            #   };
+            # }
+            "org.kde.plasma.clipboard"
+            "org.kde.plasma.brightness"
             "org.kde.plasma.volume"
             "org.kde.plasma.networkmanagement"
             {
