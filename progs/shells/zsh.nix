@@ -66,7 +66,22 @@ in (tools.fullModule rec {
           src = "${packages.zsh-fzf-tab}/share/fzf-tab";
         })
       ];
-      initContent = "${builtins.readFile ./${subfolder}/init.zsh}";
+      initContent =
+        (tools.ifExistsStr config "config.progs.shells.zsh.p10k"
+          "source ~/.p10k.zsh\n")
+        + "${builtins.readFile ./${subfolder}/init.zsh}"
+        + (tools.ifExistsAttr config "config.progs.shells.zsh.fzf"
+          "zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'");
+
+      siteFunctions =
+        {
+          myip = "echo $(ip addr show wlp0s20f3 | grep -oP 'inet \\K[^/]+')";
+        }
+        // (
+          tools.ifExistsAttr config "config.progs.shells.zsh.yazi" {
+            y = "${builtins.readFile ./${subfolder}/yazi/y.zsh}";
+          }
+        );
 
       shellAliases = cfg.aliases;
     };
