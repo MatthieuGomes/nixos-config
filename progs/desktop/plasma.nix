@@ -174,6 +174,11 @@ in (tools.fullModule rec {
             animation = "slide";
             navigationWrapping = true; # NOTE : suggest to put this setting in "virtualDesktops" instead of "effects"
           };
+          hideCursor = {
+            enable = true;
+            hideOnInactivity = 3; # seconds
+            hideOnTyping = true;
+          };
         };
       };
     };
