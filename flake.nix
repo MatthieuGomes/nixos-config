@@ -15,7 +15,7 @@
     nur-klassy-version = {
       url = "github:nix-community/nur/82a02f13454ca5b23248d9fe8fb15618a11b09f0";
       # sha256 = "0d8iwisgw15ivwbd9s041fbf33mqgccsmwxcvgwf3y84i2d1rb7a";
-    };
+    }; # TODO : Rebuild with my own + add options for configuration
     nur-unstable-pkgs = {
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "unstablePkgs";
