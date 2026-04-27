@@ -67,6 +67,17 @@ in (tools.fullModule rec {
           alignment = "center";
           widgets = [
             "org.kde.plasma.trash"
+            {
+              name = "org.kde.plasma.pager";
+              config = {
+                currentDesktopSelected = "ShowDesktop";
+                displayedText = "Name";
+                showOnlyCurrentScreen = false;
+                showWindowOutlines = false;
+                wrapPage = true;
+              };
+            }
+            "org.kde.plasma.pager"
             "org.kde.plasma.panelspacer"
             "org.kde.plasma.mediacontroller"
             "org.kde.plasma.digitalclock"
@@ -152,6 +163,19 @@ in (tools.fullModule rec {
           ];
         }
       ];
+      kwin = {
+        virtualDesktops = {
+          rows = 1;
+          number = 3;
+          names = ["Casual" "Work" "Dev"];
+        };
+        effects = {
+          desktopSwitching = {
+            animation = "slide";
+            navigationWrapping = true;
+          };
+        };
+      };
     };
     home.packages = with packages.kdePackages; [
       sddm-kcm
