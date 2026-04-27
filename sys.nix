@@ -21,6 +21,16 @@
     "filesystems"
   ];
   options = {
+    label = lib.mkOption {
+      type = lib.types.str;
+      default = "ConfigLabel";
+      description = "The label of the system configuration.";
+    };
+    tags = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "The tags associated with the system configuration.";
+    };
     version = lib.mkOption {
       type = lib.types.str;
       default = "25.11";

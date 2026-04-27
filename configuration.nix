@@ -37,6 +37,10 @@ in {
   sys.version = baseSettings.sys.version;
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
   networking.hostName = baseSettings.sys.hostname;
+  system.nixos = {
+    label = baseSettings.sys.label;
+    tags = baseSettings.sys.tags;
+  };
   virtualisation = {
     vmVariant = {
       # the following configuration is added only when building VM with `build-vm`

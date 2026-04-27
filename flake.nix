@@ -110,6 +110,8 @@
         tuis.enable = true;
       };
       sys = {
+        label = "V.2.0";
+        tags = [];
         version = nixos-version;
         main-user = "matthieu";
         hostname = "NixOs";
