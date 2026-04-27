@@ -19,6 +19,7 @@
     "hardware"
     "networking"
     "filesystems"
+    "fonts"
   ];
   options = {
     label = lib.mkOption {

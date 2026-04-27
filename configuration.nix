@@ -49,6 +49,5 @@ in {
         cores = 3; # use 3 cpu cores
       };
     };
-  }; # FIXME : Move to somewhere else
-  fonts.packages = with pkgs-list.nix.latest; [nerd-fonts.jetbrains-mono]; # FIXME : Move to somewhere else
+  };
 }

@@ -121,6 +121,7 @@
         hardware.enable = true;
         networking.enable = true;
         filesystems.enable = true;
+        fonts.enable = true;
       };
     };
   in {
