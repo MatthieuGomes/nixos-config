@@ -172,7 +172,7 @@ in (tools.fullModule rec {
         effects = {
           desktopSwitching = {
             animation = "slide";
-            navigationWrapping = true;
+            navigationWrapping = true; # NOTE : suggest to put this setting in "virtualDesktops" instead of "effects"
           };
         };
       };
