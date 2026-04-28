@@ -70,14 +70,20 @@ in (tools.fullModule rec {
             {
               name = "org.kde.plasma.pager";
               config = {
-                currentDesktopSelected = "ShowDesktop";
-                displayedText = "Name";
-                showOnlyCurrentScreen = false;
-                showWindowOutlines = false;
-                wrapPage = true;
+                "currentDesktopSelected" = "ShowDesktop";
+                "showOnlyCurrentScreen" = false;
+                "showWindowOutlines" = false;
+                "displayedText" = "Name";
+                "wrapPage" = true;
+                General = {
+                  "displayedText" = "Name";
+                  "wrapPage" = true;
+                  "currentDesktopSelected" = "ShowDesktop";
+                  "showOnlyCurrentScreen" = false;
+                  "showWindowOutlines" = false;
+                };
               };
             }
-            "org.kde.plasma.pager"
             "org.kde.plasma.panelspacer"
             "org.kde.plasma.mediacontroller"
             "org.kde.plasma.digitalclock"
