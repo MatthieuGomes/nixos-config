@@ -24,7 +24,7 @@ in (tools.fullModule {
       installVimSyntax = true;
       settings = {
         working-directory = "$HOME";
-        gtk-single-instance = false;
+        gtk-single-instance = true;
         window-inherit-working-directory = true;
         background-opacity = "0.8";
       };
