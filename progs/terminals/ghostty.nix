@@ -26,6 +26,7 @@ in (tools.fullModule {
         working-directory = "$HOME";
         gtk-single-instance = false;
         window-inherit-working-directory = true;
+        background-opacity = "0.8";
       };
     };
   };
