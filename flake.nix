@@ -79,8 +79,13 @@
       unstable = nur-unstable;
       klassy = nur-klassy;
     };
+
+    customPkgs = import ./customPkgs.nix {
+      pkgs = Inputs.latestPkgs.legacyPackages.${system};
+    };
     others = {
       zen-browser = Inputs.zen-browser;
+      customPkgs = customPkgs;
     };
     pkgs-list = {
       inherit nix;
