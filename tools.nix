@@ -15,7 +15,7 @@ with lib; let
         context
       })
     imports;
-  # TODO : group inheritance functions together
+
   inheritance = {
     settings = {
       currentPathAsList,
@@ -72,63 +72,6 @@ with lib; let
       }
     ]);
   };
-
-  inheritSettings = {
-    currentPathAsList,
-    imports,
-    settings,
-  }: let
-    first = lists.last (lists.take 1 currentPathAsList);
-  in
-    builtins.listToAttrs (map (setting: {
-        name =
-          if (currentPathAsList == [])
-          then setting
-          else first;
-        value =
-          if (currentPathAsList == [])
-          then settings.${setting}
-          else
-            (inheritSettings {
-              currentPathAsList = lists.drop 1 currentPathAsList;
-              imports = imports;
-              settings = settings;
-            });
-      })
-      imports);
-
-  inheritConfig = {
-    currentPathAsList,
-    config,
-  }: let
-    first = lists.last (lists.take 1 currentPathAsList);
-  in
-    if (currentPathAsList == [])
-    then config
-    else
-      inheritConfig {
-        currentPathAsList = lists.drop 1 currentPathAsList;
-        config = config.${first};
-      };
-
-  inheritOptions = {
-    currentPathAsList,
-    options,
-  }: let
-    first = lists.last (lists.take 1 currentPathAsList);
-  in (listToAttrs [
-    {
-      name = first;
-      value =
-        if (currentPathAsList == [first])
-        then options
-        else
-          inheritOptions {
-            currentPathAsList = lists.drop 1 currentPathAsList;
-            inherit options;
-          };
-    }
-  ]);
 
   contextualModule = {
     options ? null,
@@ -313,5 +256,5 @@ with lib; let
     then value
     else emptyValue;
 in {
-  inherit inheritance inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExists;
+  inherit inheritance contextModuleImport contextualModule moduleParams fullModule ifExists;
 }
