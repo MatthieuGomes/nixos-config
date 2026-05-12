@@ -312,39 +312,6 @@ with lib; let
     if parentPath.enable && builtins.hasAttr name parentPath && modulePath
     then value
     else emptyValue;
-  ifExistsList = config: configPathString: value: let
-    pathAsList = splitString "." configPathString;
-    name = lists.last pathAsList;
-    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
-    parentPath = attrsets.getAttrFromPath parentPathAsList config;
-    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
-    modulePath = configPath.enable;
-  in
-    if parentPath.enable && builtins.hasAttr name parentPath && modulePath
-    then value
-    else [];
-  ifExistsAttr = config: configPathString: value: let
-    pathAsList = splitString "." configPathString;
-    name = lists.last pathAsList;
-    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
-    parentPath = attrsets.getAttrFromPath parentPathAsList config;
-    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
-    modulePath = configPath.enable;
-  in
-    if parentPath.enable && builtins.hasAttr name parentPath && modulePath
-    then value
-    else {};
-  ifExistsStr = config: configPathString: value: let
-    pathAsList = splitString "." configPathString;
-    name = lists.last pathAsList;
-    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
-    parentPath = attrsets.getAttrFromPath parentPathAsList config;
-    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
-    modulePath = configPath.enable;
-  in
-    if parentPath.enable && builtins.hasAttr name parentPath && modulePath
-    then value
-    else "";
 in {
-  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExistsList ifExistsAttr ifExistsStr ifExists;
+  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExists;
 }
