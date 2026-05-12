@@ -29,6 +29,7 @@ in (tools.fullModule {
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
-    programs.virt-manager.enable = true; # Virtualization
-  };
+    # BAZINGA : DELETE
+    programs.virt-manager.enable = true; # Virtualization # BAZINGA : DELETE
+  }; # BAZINGA : DELETE
 })

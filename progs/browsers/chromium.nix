@@ -20,7 +20,7 @@ in (tools.fullModule {
   Home = {
     programs.chromium = {
       enable = true;
-      # FEAT TODO: profiles, settings, etc.
+      # TODO: profiles, settings, etc.
     };
   };
 })

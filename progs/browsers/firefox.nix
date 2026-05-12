@@ -19,6 +19,7 @@
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
   };
+  # TODO : Try to fix things
 in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;

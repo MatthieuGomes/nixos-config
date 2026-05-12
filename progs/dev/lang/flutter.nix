@@ -5,7 +5,9 @@
   parentPathAsList,
   tools,
   ...
-}: let
+}:
+# TODO : needs to be throughly tested/configured
+let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "flutter";

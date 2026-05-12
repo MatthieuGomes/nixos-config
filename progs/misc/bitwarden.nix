@@ -15,6 +15,7 @@
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
   };
+  # PROJECT TODO : make it configurable (settings,...)
 in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;

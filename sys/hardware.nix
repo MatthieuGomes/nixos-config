@@ -23,7 +23,7 @@
       enable = lib.mkEnableOption "Enables ${name} related settings.";
     };
     settings = {
-      nvidia.enable = false; # FIX : module to fix once a stable and working nvidia version is available
+      nvidia.enable = false; # TODO FIX : module to fix once a stable and working nvidia version is available
       printer.enable = true;
       sound.enable = true;
       bluetooth.enable = true;
@@ -35,7 +35,7 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
     services = {
-      libinput.enable = true; # TODO : FIX - not sure where to put it yet
+      libinput.enable = true; # TODO FIX - not sure where to put it yet
     };
     environment.systemPackages = with packages; [
       lshw

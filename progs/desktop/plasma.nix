@@ -90,7 +90,7 @@ in (tools.fullModule rec {
             "org.kde.plasma.notifications"
             "org.kde.plasma.panelspacer"
             "org.kde.plasma.keyboardindicator"
-            # PROJECT : Fixing plasma manager so it supports configuring the system tray correctly and fully.
+            # PROJECT TODO : Fixing plasma manager so it supports configuring the system tray correctly and fully.
             {
               name = "org.kde.plasma.systemtray";
               config = {

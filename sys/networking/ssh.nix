@@ -20,6 +20,6 @@ in (tools.fullModule {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
     services.openssh.enable = true;
-    networking.firewall.allowedTCPPorts = [10022 22]; # 10022 to qemu
+    networking.firewall.allowedTCPPorts = [10022 22]; # TODO : Move to Qemu module with ssh activated
   };
 })

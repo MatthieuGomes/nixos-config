@@ -1,3 +1,4 @@
+# TODO : stuffs in todo list
 {
   config,
   lib,
@@ -211,6 +212,7 @@
         if LockButtonColorsActiveInactive
         then PoorBackgroundContrastThresholdActive
         else defaultIfUndefined KlassySettings defaultsParams "${buttonsBackgroundInactiveContrastSettingsPath}.threshold";
+      # TODO : Parse ultra personalization settings
     in ''
       AdjustBackgroundColorOnPoorContrastActive=${boolToString AdjustBackgroundColorOnPoorContrastActive}
       AdjustBackgroundColorOnPoorContrastInactive=${boolToString AdjustBackgroundColorOnPoorContrastInactive}

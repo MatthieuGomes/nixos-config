@@ -23,7 +23,7 @@ in (tools.fullModule {
   Home = {
     programs.zen-browser = {
       enable = true;
-      # FEAT TODO: profiles, settings, etc.
+      # TODO: profiles, settings, etc.
     };
   };
 })
