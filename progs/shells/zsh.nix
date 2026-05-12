@@ -54,21 +54,21 @@ in (tools.fullModule rec {
       };
       defaultKeymap = "emacs";
       plugins = [
-        (tools.ifExistsAttr config "config.progs.shells.zsh.p10k" {
+        (tools.ifExists config "config.progs.shells.zsh.p10k" {
           name = "powerlevel10k";
           src = packages.zsh-powerlevel10k;
           file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
         })
-        (tools.ifExistsAttr config "config.progs.shells.zsh.fzf" {
+        (tools.ifExists config "config.progs.shells.zsh.fzf" {
           name = "fzf-tab";
           src = "${packages.zsh-fzf-tab}/share/fzf-tab";
         })
       ];
       initContent =
-        (tools.ifExistsStr config "config.progs.shells.zsh.p10k"
+        (tools.ifExists config "config.progs.shells.zsh.p10k"
           "source ~/.p10k.zsh\n")
         + "${builtins.readFile ./${subfolder}/init.zsh}"
-        + (tools.ifExistsAttr config "config.progs.shells.zsh.fzf"
+        + (tools.ifExists config "config.progs.shells.zsh.fzf"
           "zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -a --color $realpath'");
 
       siteFunctions =
@@ -76,7 +76,7 @@ in (tools.fullModule rec {
           myip = "echo $(ip addr show wlp0s20f3 | grep -oP 'inet \\K[^/]+')";
         }
         // (
-          tools.ifExistsAttr config "config.progs.tuis.yazi" {
+          tools.ifExists config "config.progs.tuis.yazi" {
             y = "${builtins.readFile ../tuis/yazi/y.zsh}";
           }
         );

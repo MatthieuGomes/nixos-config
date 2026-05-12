@@ -28,7 +28,7 @@ in (tools.fullModule rec {
         TerminalService = "com.mitchellh.ghostty.desktop";
       };
       window-rules = [
-        (tools.ifExistsAttr config "config.progs.editors.vscode" {
+        (tools.ifExists config "config.progs.editors.vscode" {
           description = "vscode-desktop-file";
           match.window-class = "code code";
           apply.desktopfile = "/run/current-system/etc/profiles/per-user/matthieu/share/applications/code.desktop"; # TODO: make this dynamic
@@ -158,11 +158,11 @@ in (tools.fullModule rec {
                     "applications:systemsettings.desktop"
                     "applications:org.kde.dolphin.desktop"
                   ]
-                  ++ (tools.ifExistsList config "config.progs.browsers.firefox" ["applications:firefox.desktop"])
-                  ++ (tools.ifExistsList config "config.progs.browsers.chromium" ["applications:chromium-browser.desktop"])
-                  ++ (tools.ifExistsList config "config.progs.browsers.zen" ["applications:zen-beta.desktop"])
-                  ++ (tools.ifExistsList config "config.progs.terminals.ghostty" ["applications:com.mitchellh.ghostty.desktop"])
-                  ++ (tools.ifExistsList config "config.progs.editors.vscode" ["applications:code.desktop"]);
+                  ++ (tools.ifExists config "config.progs.browsers.firefox" ["applications:firefox.desktop"])
+                  ++ (tools.ifExists config "config.progs.browsers.chromium" ["applications:chromium-browser.desktop"])
+                  ++ (tools.ifExists config "config.progs.browsers.zen" ["applications:zen-beta.desktop"])
+                  ++ (tools.ifExists config "config.progs.terminals.ghostty" ["applications:com.mitchellh.ghostty.desktop"])
+                  ++ (tools.ifExists config "config.progs.editors.vscode" ["applications:code.desktop"]);
               };
             }
             "org.kde.plasma.showdesktop"
