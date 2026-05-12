@@ -23,5 +23,6 @@ in (tools.fullModule {
       spiceUSBRedirection.enable = true;
     };
     users.groups.libvirtd.members = ["matthieu"];
+    networking.firewall.allowedTCPPorts = tools.ifExists config "config.sys.networking.ssh" [10022 22];
   };
 })
