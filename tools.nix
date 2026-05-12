@@ -294,7 +294,6 @@ with lib; let
     ]);
   };
 
-  # TODO : the 3 following can be one function using isStr, isList, ... to determine the type of value to return
   ifExists = config: configPathString: value: let
     pathAsList = splitString "." configPathString;
     name = lists.last pathAsList;
