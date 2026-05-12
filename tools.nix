@@ -294,6 +294,24 @@ with lib; let
     ]);
   };
 
+  # TODO : the 3 following can be one function using isStr, isList, ... to determine the type of value to return
+  ifExists = config: configPathString: value: let
+    pathAsList = splitString "." configPathString;
+    name = lists.last pathAsList;
+    parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
+    parentPath = attrsets.getAttrFromPath parentPathAsList config;
+    configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
+    modulePath = configPath.enable;
+    emptyValue =
+      if isStr value
+      then ""
+      else if isList value
+      then []
+      else {};
+  in
+    if parentPath.enable && builtins.hasAttr name parentPath && modulePath
+    then value
+    else emptyValue;
   ifExistsList = config: configPathString: value: let
     pathAsList = splitString "." configPathString;
     name = lists.last pathAsList;
