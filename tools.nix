@@ -303,7 +303,7 @@ with lib; let
     configPath = attrsets.getAttrFromPath (lists.drop 1 pathAsList) config;
     modulePath = configPath.enable;
     emptyValue =
-      if isStr value
+      if isString value
       then ""
       else if isList value
       then []
@@ -346,5 +346,5 @@ with lib; let
     then value
     else "";
 in {
-  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExistsList ifExistsAttr ifExistsStr;
+  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExistsList ifExistsAttr ifExistsStr ifExists;
 }
