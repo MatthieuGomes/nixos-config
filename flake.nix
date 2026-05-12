@@ -115,7 +115,7 @@
         tuis.enable = true;
       };
       sys = {
-        label = "V.2.0";
+        label = "V.2.0_REFACORING_WIP";
         tags = [];
         version = nixos-version;
         main-user = "matthieu";
