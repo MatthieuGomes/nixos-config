@@ -1,0 +1,376 @@
+{
+  "style": {
+    "general": {
+      "corner_radius": {
+        "choice": "SameAsWindowDecoration",
+        "value": 3.0
+      },
+      "center_tabbar_tabs": false,
+      "show_button_gradient_effects": false,
+      "draw_toolbar_item_separators": true,
+      "draw_focus_indicator_in_lists": true,
+      "draw_sliders_ticks_marks": true,
+      "enable_extended_resize_handles": false,
+      "keyboard_accelerator_visibility": "",
+      "windows_drag_mode": ""
+    },
+    "frames": {
+      "draw_frame_around_dockable_panels": false,
+      "draw_frame_around_side_panels": false,
+      "draw_a_thin_line_to_indicate_focus_in_menubars": false
+    },
+    "scrollbars": {
+      "draw_scroll_bar_separator": false,
+      "scrollbar_top_n_bottom_margins": 4,
+      "arrow_buttons": {
+        "auto_hide_arrows": true,
+        "top_arrow_button": {
+          "type": 1,
+          "space_between_arrow_button_and_groove": {
+            "1": -4,
+            "2": -1
+          }
+        },
+        "bottom_arrow_button": {
+          "type": 1,
+          "space_between_arrow_button_and_groove": {
+            "1": -4,
+            "2": -1
+          }
+        }
+      },
+      "groove_or_slider": {
+        "slider_thickness_when_mouse_over": 8,
+        "slider_thickness_when_mouse_not_over": 75,
+        "slider_side_padding": 5,
+        "slider_minimum_height": 36
+      }
+    },
+    "transparency": {
+      "value": 100
+    }
+  },
+  "window_decoration": {
+    "buttons": {
+      "icons": "StyleKite",
+      "shape": "ShapeIntegratedRoundedRectangle",
+      "icon_size": "IconLargeMedium",
+      "bold_icons": "BoldIconsActiveHiDpi",
+      "system_icon_generation": {
+        "klassy_icon_theme_inherits_from": "breeze",
+        "klassy_dark_icon_theme_inherits_from": "breeze-dark"
+      },
+      "button_size_n_spacing": {
+        "button_sizing": {
+          "left_hand_buttons_width_margins": 6,
+          "same_left_n_right_hand_buttons_width_margins": false,
+          "right_hand_buttons_width_margins": 18,
+          "close_button_width_margins": 100,
+          "spacer_button_width": 50,
+          "scale_touch_mode_buttons": 150
+        },
+        "button_spacing": {
+          "spacing_between_left_hand_buttons": 2,
+          "same_spacing_between_left_hand_buttons_n_right_hand_buttons": false,
+          "spacing_between_right_hand_buttons": 4,
+          "bottom_padding": 1.5
+        },
+        "button_corner_radius": {
+          "choice": "SameAsWindow",
+          "value": 2.5
+        }
+      },
+      "button_colours": {
+        "active_window": {
+          "icon_colours": {
+            "choice": "TitleBarText",
+            "close_button_icon_colour": "WhiteWhenHoverPress",
+            "contrast": {
+              "when_poor_contrast_detected": "TitleBarBackground",
+              "threshold": 1.5
+            },
+            "opacity": 100
+          },
+          "background_n_outline_colours": {
+            "choice": "AccentNegativeClose",
+            "use_hover_colour_from_colour_scheme": false,
+            "contrast": {
+              "adjust_colour_when_poor_contrast_detected": true,
+              "threshold": 1.1
+            },
+            "opacity": 60
+          },
+          "override_idividual_colours": false
+        },
+        "inactive_window": {
+          "icon_colours": {
+            "choice": "TitleBarText",
+            "close_button_icon_colour": "WhiteWhenHoverPress",
+            "contrast": {
+              "when_poor_contrast_detected": "TitleBarBackground",
+              "threshold": 1.5
+            },
+            "opacity": 100
+          },
+          "background_n_outline_colours": {
+            "choice": "AccentNegativeClose",
+            "use_hover_colour_from_colour_scheme": false,
+            "contrast": {
+              "adjust_colour_when_poor_contrast_detected": true,
+              "threshold": 1.1
+            },
+            "opacity": 60
+          },
+          "override_idividual_colours": false,
+          "lock_active": true,
+          "use_same_hover_n_press_colours_as_active_window": true
+        },
+        "lock_active_inactive": true
+      },
+      "button_behaviour": {
+        "unison_hovering": false,
+        "active_window": {
+          "normal_buttons": {
+            "icons": {
+              "show_normally": true,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "No"
+            },
+            "backgrounds": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Opaque"
+            },
+            "outlines": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Opaque"
+            },
+            "state_to_use_for_checked_buttons": "Press"
+          },
+          "lock_to_make_same_changes_to_normal_button_and_closse_button": true,
+          "close_button": {
+            "icons": {
+              "show_normally": true,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "No"
+            },
+            "backgrounds": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Transparent"
+            },
+            "outlines": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Transparent"
+            }
+          },
+          "lock_active_inactive": true
+        },
+        "inactive_window": {
+          "normal_buttons": {
+            "icons": {
+              "show_normally": true,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "No"
+            },
+            "backgrounds": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Opaque"
+            },
+            "outlines": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Opaque"
+            },
+            "state_to_use_for_checked_buttons": "Press"
+          },
+          "lock_to_make_same_changes_to_normal_button_and_closse_button": true,
+          "close_button": {
+            "icons": {
+              "show_normally": true,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "No"
+            },
+            "backgrounds": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Transparent"
+            },
+            "outlines": {
+              "show_normally": false,
+              "show_on_hover": true,
+              "show_on_press": true,
+              "vary_color_on_state": "Transparent"
+            }
+          },
+          "lock_active": true
+        }
+      }
+    },
+    "titlebar": {
+      "spacing": {
+        "title_bar_top_margins": 3.6,
+        "same_titlebar_top_n_bottom_margins": true,
+        "title_bar_bottom_margins": 3.6,
+        "titlebar_left_margins": 0,
+        "same_titlebar_left_n_right_margins": true,
+        "titlebar_right_margins": 0,
+        "title_side_padding": 4,
+        "title_alignment": "AlignCenterFullWidth",
+        "title_top_n_bottom_margins_for_maximized_windows": 85
+      },
+      "opacity": {
+        "active_window": 100,
+        "inactive_window": 100,
+        "always_make_titlebar_opaque_when_maximized": true,
+        "blur_titlebar_that_have_transparency": true,
+        "apply_these_opacity_to_entire_header_area": true
+      },
+      "match_titlebar_colour_to_application": false,
+      "on_active_window": {
+        "draw_titlebar_background_gradient": false,
+        "draw_separator_under_titlebar": true,
+        "make_title_bold": true,
+        "underline_title": false
+      }
+    },
+    "window": {
+      "corners": {
+        "conor_radius": 4,
+        "round_corners_when_no_borders": true
+      },
+      "borders": {
+        "title_bar_colour_for_window_borders": true,
+        "draw_borders_on_maximized_windows": false
+      },
+      "thin_window_outline": {
+        "window_outline_style": {
+          "window_outline_thickness": 1.0,
+          "snap_to_whole_pixel": true,
+          "overlap": true,
+          "same_active_n_inactive_window_outline": false,
+          "active_window": {
+            "window_outline_style": "WindowOutlineShadowColor",
+            "opacity": {
+              "WindowOutlineNone": null,
+              "WindowOutlineShadowColor": {
+                "name": "WindowOutlineShadowColorOpacity",
+                "value": 20
+              },
+              "WindowOutlineContrast": {
+                "name": "WindowOutlineContrastOpacityActive",
+                "value": 25
+              },
+              "WindowOutlineAccentColor": {
+                "name": "WindowOutlineAccentColorOpacityActive",
+                "value": 67
+              },
+              "WindowOutlineAccentWithContrast": {
+                "name": "WindowOutlineAccentWithContrastOpacityActive",
+                "value": 50
+              },
+              "WindowOutlineCustomColor": {
+                "name": "WindowOutlineCustomColorOpacityActive",
+                "value": 60
+              },
+              "WindowOutlineCustomWithContrast": {
+                "name": "WindowOutlineCustomWithContrastOpacityActive",
+                "value": 40
+              }
+            },
+            "color": {
+              "choice": "0,0,0",
+              "lock_custom_colour_active_inactive": true
+            }
+          },
+          "inactive_window": {
+            "window_outline_style": "WindowOutlineShadowColor",
+            "opacity": {
+              "WindowOutlineNone": null,
+              "WindowOutlineShadowColor": {
+                "name": "WindowOutlineShadowColorOpacity",
+                "value": 20
+              },
+              "WindowOutlineContrast": {
+                "name": "WindowOutlineContrastOpacityInactive",
+                "value": 25
+              },
+              "WindowOutlineAccentColor": {
+                "name": "WindowOutlineAccentColorOpacityInactive",
+                "value": 67
+              },
+              "WindowOutlineAccentWithContrast": {
+                "name": "WindowOutlineAccentWithContrastOpacityInactive",
+                "value": 50
+              },
+              "WindowOutlineCustomColor": {
+                "name": "WindowOutlineCustomColorOpacityInactive",
+                "value": 60
+              },
+              "WindowOutlineCustomWithContrast": {
+                "name": "WindowOutlineCustomWithContrastOpacityInactive",
+                "value": 40
+              }
+            },
+            "color": {
+              "choice": "0,0,0"
+            }
+          }
+        },
+        "colourize_with_higlighted_buttons_colour": true
+      },
+      "shadow": {
+        "size": "ShadowLarge",
+        "strength": 100,
+        "colour": "0,0,0"
+      }
+    },
+    "animations": {
+      "enable": true,
+      "animations_speed": 0
+    },
+    "window_specific_overrides": {
+      "defaults_overrides": {
+        "enabled": true
+      },
+      "user_specific_overrides": {
+        "enabled": true,
+        "window_identification": {
+          "window_property": 0,
+          "regex": ""
+        },
+        "windeco_options": {
+          "preset": {
+            "enabled": false,
+            "value": ""
+          },
+          "hide_window_titlebar": 0,
+          "opaque_titlebar": false,
+          "match_titlebar_colour_to_application": false,
+          "border_size": {
+            "enabled": false,
+            "value": 0
+          }
+        },
+        "application_style_options": {
+          "application_name_regex": "",
+          "opaque_header": false
+        }
+      }
+    }
+  }
+}
