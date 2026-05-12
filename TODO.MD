@@ -27,3 +27,8 @@
     [ x ] Presets
         [ x ] Importing exising presets as files
         [  ] Creating presets from nix config files (later)
+[ ] Make Dolphin a configurable module
+[ ] Fix plasma-manager Module
+    [ ] Separate monitor configuration from plasma configuration
+    [ ] Allow nested paramaters in applets configuration
+    [ ] Make system tray configuration more understandable
