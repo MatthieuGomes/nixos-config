@@ -15,6 +15,63 @@ with lib; let
         context
       })
     imports;
+  # TODO : group inheritance functions together
+  inheritance = {
+    settings = {
+      currentPathAsList,
+      imports,
+      settings,
+    }: let
+      first = lists.last (lists.take 1 currentPathAsList);
+    in
+      builtins.listToAttrs (map (setting: {
+          name =
+            if (currentPathAsList == [])
+            then setting
+            else first;
+          value =
+            if (currentPathAsList == [])
+            then settings.${setting}
+            else
+              (inheritSettings {
+                currentPathAsList = lists.drop 1 currentPathAsList;
+                imports = imports;
+                settings = settings;
+              });
+        })
+        imports);
+    config = {
+      currentPathAsList,
+      config,
+    }: let
+      first = lists.last (lists.take 1 currentPathAsList);
+    in
+      if (currentPathAsList == [])
+      then config
+      else
+        inheritConfig {
+          currentPathAsList = lists.drop 1 currentPathAsList;
+          config = config.${first};
+        };
+    options = {
+      currentPathAsList,
+      options,
+    }: let
+      first = lists.last (lists.take 1 currentPathAsList);
+    in (listToAttrs [
+      {
+        name = first;
+        value =
+          if (currentPathAsList == [first])
+          then options
+          else
+            inheritOptions {
+              currentPathAsList = lists.drop 1 currentPathAsList;
+              inherit options;
+            };
+      }
+    ]);
+  };
 
   inheritSettings = {
     currentPathAsList,
@@ -72,6 +129,7 @@ with lib; let
           };
     }
   ]);
+
   contextualModule = {
     options ? null,
     specialOptions ? null,
@@ -235,63 +293,6 @@ with lib; let
         Config = SystemConfig;
       };
     };
-  };
-  # TODO : group inheritance functions together
-  inheritance = {
-    settings = {
-      currentPathAsList,
-      imports,
-      settings,
-    }: let
-      first = lists.last (lists.take 1 currentPathAsList);
-    in
-      builtins.listToAttrs (map (setting: {
-          name =
-            if (currentPathAsList == [])
-            then setting
-            else first;
-          value =
-            if (currentPathAsList == [])
-            then settings.${setting}
-            else
-              (inheritSettings {
-                currentPathAsList = lists.drop 1 currentPathAsList;
-                imports = imports;
-                settings = settings;
-              });
-        })
-        imports);
-    config = {
-      currentPathAsList,
-      config,
-    }: let
-      first = lists.last (lists.take 1 currentPathAsList);
-    in
-      if (currentPathAsList == [])
-      then config
-      else
-        inheritConfig {
-          currentPathAsList = lists.drop 1 currentPathAsList;
-          config = config.${first};
-        };
-    options = {
-      currentPathAsList,
-      options,
-    }: let
-      first = lists.last (lists.take 1 currentPathAsList);
-    in (listToAttrs [
-      {
-        name = first;
-        value =
-          if (currentPathAsList == [first])
-          then options
-          else
-            inheritOptions {
-              currentPathAsList = lists.drop 1 currentPathAsList;
-              inherit options;
-            };
-      }
-    ]);
   };
 
   ifExists = config: configPathString: value: let
