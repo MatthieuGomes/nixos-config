@@ -63,7 +63,7 @@
   inheritedSettings =
     if imports != null || settings != null
     then
-      tools.inheritSettings {
+      tools.inheritance.settings {
         inherit currentPathAsList imports settings;
       }
     else {
