@@ -21,7 +21,7 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   Home = {
     home.packages = with packages; [
-      vlc # Misc
+      vlc
     ];
   };
 })

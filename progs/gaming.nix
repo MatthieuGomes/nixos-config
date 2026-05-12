@@ -21,18 +21,17 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
     environment.systemPackages = with packages; [
-      mangohud # Gaming
-      protonup-ng # Gaming
+      mangohud
+      protonup-ng
     ];
     environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d"; # Gaming
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/.steam/root/compatibilitytools.d";
     };
     programs = {
-      gamemode.enable = true; # Gaming
+      gamemode.enable = true;
       steam = {
-        # Gaming
-        enable = true; # Gaming
-        gamescopeSession.enable = true; # Gaming
+        enable = true;
+        gamescopeSession.enable = true;
       };
     };
   };
