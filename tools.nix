@@ -33,7 +33,7 @@ with lib; let
             if (currentPathAsList == [])
             then settings.${setting}
             else
-              (inheritSettings {
+              (inheritance.settings {
                 currentPathAsList = lists.drop 1 currentPathAsList;
                 imports = imports;
                 settings = settings;
@@ -49,7 +49,7 @@ with lib; let
       if (currentPathAsList == [])
       then config
       else
-        inheritConfig {
+        inheritance.config {
           currentPathAsList = lists.drop 1 currentPathAsList;
           config = config.${first};
         };
@@ -65,7 +65,7 @@ with lib; let
           if (currentPathAsList == [first])
           then options
           else
-            inheritOptions {
+            inheritance.options {
               currentPathAsList = lists.drop 1 currentPathAsList;
               inherit options;
             };
@@ -150,7 +150,7 @@ with lib; let
       if options != null
       then {
         options =
-          inheritOptions {
+          inheritance.options {
             inherit currentPathAsList options;
           }
           // (
@@ -228,13 +228,13 @@ with lib; let
       else null;
     currentPathAsList = parentPathAsList ++ [name];
     currentDirPath = path.subpath.join (lists.flatten ["./." parentPathAsList]);
-    cfg = inheritConfig {
+    cfg = inheritance.config {
       inherit config currentPathAsList;
     };
     inheritedSettings =
       if imports != null || settings != null
       then
-        inheritSettings {
+        inheritance.settings {
           inherit currentPathAsList imports settings;
         }
       else {
@@ -313,5 +313,5 @@ with lib; let
     then value
     else emptyValue;
 in {
-  inherit inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExists;
+  inherit inheritance inheritSettings contextModuleImport inheritConfig inheritOptions contextualModule moduleParams fullModule ifExists;
 }
