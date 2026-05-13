@@ -949,6 +949,19 @@
             use_same_hover_n_press_colours_as_active_window = true;
           };
         };
+        button_behaviour = {
+          active_window = {
+            normal_buttons = {
+              backgrounds = {
+                vary_color_on_state = "Transparent";
+              };
+              outlines = {
+                show_on_hover = false;
+                vary_color_on_state = "Opaque";
+              };
+            };
+          };
+        };
       };
       titlebar = {
         on_active_window = {
