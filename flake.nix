@@ -109,7 +109,7 @@
         tuis.enable = true;
       };
       sys = {
-        label = "V.2.0_FIX_WIP";
+        label = "V.2.0_UPDATE_WIP";
         tags = [];
         version = nixos-version;
         main-user = "matthieu";
