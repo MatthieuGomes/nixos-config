@@ -32,3 +32,4 @@
     [ ] Separate monitor configuration from plasma configuration
     [ ] Allow nested paramaters in applets configuration
     [ ] Make system tray configuration more understandable
+[ ] Pedro Plymouth
