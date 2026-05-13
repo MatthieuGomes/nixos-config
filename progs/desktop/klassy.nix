@@ -288,20 +288,56 @@
 
       activeCloseButtonSettingsPath = "${activeWindowSettingsPath}.close_button";
       activeCloseIconsSettingsPath = "${activeCloseButtonSettingsPath}.icons";
-      ShowCloseIconNormallyActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.show_normally";
-      ShowCloseIconOnHoverActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.show_on_hover";
-      ShowCloseIconOnPressActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.show_on_press";
-      VaryColorCloseIconActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.vary_color_on_state";
+      ShowCloseIconNormallyActive =
+        if LockCloseButtonBehaviourActive
+        then ShowIconNormallyActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.show_normally";
+      ShowCloseIconOnHoverActive =
+        if LockCloseButtonBehaviourActive
+        then ShowIconOnHoverActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.show_on_hover";
+      ShowCloseIconOnPressActive =
+        if LockCloseButtonBehaviourActive
+        then ShowIconOnPressActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.show_on_press";
+      VaryColorCloseIconActive =
+        if LockCloseButtonBehaviourActive
+        then VaryColorIconActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseIconsSettingsPath}.vary_color_on_state";
       activeCloseBackgroundsSettingsPath = "${activeCloseButtonSettingsPath}.backgrounds";
-      ShowCloseBackgroundNormallyActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.show_normally";
-      ShowCloseBackgroundOnHoverActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.show_on_hover";
-      ShowCloseBackgroundOnPressActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.show_on_press";
-      VaryColorCloseBackgroundActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.vary_color_on_state";
+      ShowCloseBackgroundNormallyActive =
+        if LockCloseButtonBehaviourActive
+        then ShowBackgroundNormallyActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.show_normally";
+      ShowCloseBackgroundOnHoverActive =
+        if LockCloseButtonBehaviourActive
+        then ShowBackgroundOnHoverActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.show_on_hover";
+      ShowCloseBackgroundOnPressActive =
+        if LockCloseButtonBehaviourActive
+        then ShowBackgroundOnPressActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.show_on_press";
+      VaryColorCloseBackgroundActive =
+        if LockCloseButtonBehaviourActive
+        then VaryColorBackgroundActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseBackgroundsSettingsPath}.vary_color_on_state";
       activeCloseOutlinesSettingsPath = "${activeCloseButtonSettingsPath}.outlines";
-      ShowCloseOutlineNormallyActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.show_normally";
-      ShowCloseOutlineOnHoverActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.show_on_hover";
-      ShowCloseOutlineOnPressActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.show_on_press";
-      VaryColorCloseOutlineActive = defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.vary_color_on_state";
+      ShowCloseOutlineNormallyActive =
+        if LockCloseButtonBehaviourActive
+        then ShowOutlineNormallyActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.show_normally";
+      ShowCloseOutlineOnHoverActive =
+        if LockCloseButtonBehaviourActive
+        then ShowOutlineOnHoverActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.show_on_hover";
+      ShowCloseOutlineOnPressActive =
+        if LockCloseButtonBehaviourActive
+        then ShowOutlineOnPressActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.show_on_press";
+      VaryColorCloseOutlineActive =
+        if LockCloseButtonBehaviourActive
+        then VaryColorOutlineActive
+        else defaultIfUndefined KlassySettings defaultsParams "${activeCloseOutlinesSettingsPath}.vary_color_on_state";
 
       inactiveWindowSettingsPath = "${buttonBehaviourSettingsPath}.inactive_window";
       LockCloseButtonBehaviourInactive =
