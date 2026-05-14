@@ -19,11 +19,6 @@ in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
-  Home = {
-    home.packages = with packages; [
-      grub2
-    ];
-  };
   System = {
     boot = {
       loader = {
@@ -44,5 +39,8 @@ in (tools.fullModule rec {
         timeout = 1;
       };
     };
+    environment.systemPackages = with packages; [
+      grub2
+    ];
   };
 })
