@@ -33,3 +33,7 @@
     [ ] Allow nested paramaters in applets configuration
     [ ] Make system tray configuration more understandable
 [ ] Pedro Plymouth
+    [ x ] Enable plymouth on boot
+    [ x ] Add pedro plymouth theme
+    [ ] Optimize kernelParams
+    [ ] Fix plymouth theme freezes and is not that smooth on boot.
