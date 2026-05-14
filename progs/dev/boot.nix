@@ -12,7 +12,6 @@
     subfolder = "boot";
     imports = [
       "efibootmgr"
-      "grub"
       "gparted"
       "os-prober"
     ];
@@ -21,7 +20,6 @@
     };
     settings = {
       efibootmgr.enable = true;
-      grub.enable = true;
       gparted.enable = true;
       os-prober.enable = true;
     };
