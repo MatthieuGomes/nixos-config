@@ -8,21 +8,12 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "bootloader";
+    name = "plymouth";
     main-repo = "nix";
     branch = "latest";
     togglable = false;
-    subfolder = "bootloader";
-    imports = [
-      "grub"
-      "plymouth"
-    ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} related settings.";
-    };
-    settings = {
-      grub.enable = true;
-      plymouth.enable = true;
     };
   };
 in (tools.fullModule rec {
@@ -32,11 +23,27 @@ in (tools.fullModule rec {
   System = let
   in {
     boot = {
-      loader = {
-        efi = {
-          canTouchEfiVariables = true;
-        };
+      consoleLogLevel = 3;
+      initrd = {
+        verbose = true;
+        systemd.enable = true;
+      };
+      kernelParams = [
+        "quiet"
+        "splash"
+        "boot.shell_on_fail"
+        "udev.log_priority=3"
+      ];
+      plymouth = {
+        enable = true;
+        theme = "pedro-raccoon";
+        themePackages = [
+          pkgs-list.others.customPkgs.plymouth-theme-pedro-raccoon
+        ];
       };
     };
+    environment.systemPackages = with packages.kdePackages; [
+      plymouth-kcm
+    ];
   };
 })
