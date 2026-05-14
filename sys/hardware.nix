@@ -23,7 +23,7 @@
       enable = lib.mkEnableOption "Enables ${name} related settings.";
     };
     settings = {
-      nvidia.enable = true; # TODO FIX : module to fix once a stable and working nvidia version is available
+      nvidia.enable = true;
       printer.enable = true;
       sound.enable = true;
       bluetooth.enable = true;
