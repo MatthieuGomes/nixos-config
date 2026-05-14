@@ -38,3 +38,8 @@
     [ x ] Add pedro plymouth theme
     [ ] Optimize kernelParams
     [ ] Fix plymouth theme freezes and is not that smooth on boot.
+[ ] Fixing icons missing in titlebar when as user
+[ ] Fixing Gparted unlunchable from luncher
+[ ] Adding "Open in VSCode" contexte menu
+    [ ] In Dolphin
+    [ ] In desktop
