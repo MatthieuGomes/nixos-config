@@ -39,6 +39,9 @@
     [ ] Optimize kernelParams
     [ ] Fix plymouth theme freezes and is not that smooth on boot.
 [ ] Fixing icons missing in titlebar when as user
+    [ ] Fixing icons missing in titlebar for office apps -> report to upstream
+    [ ] Fixing icons missing in titlebar for virt-manager -> report to upstream
+    [ x ] Fixing icons missing in titlebar for most apps
 [ ] Fixing Gparted unlunchable from luncher
 [ ] Adding "Open in VSCode" contexte menu
     [ ] In Dolphin
