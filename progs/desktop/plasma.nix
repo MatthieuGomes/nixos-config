@@ -29,10 +29,66 @@ in (tools.fullModule rec {
       };
       window-rules = [
         (tools.ifExists config "config.progs.editors.vscode" {
-          description = "vscode-desktop-file";
+          description = "Fix duplicate VS Code entry in taskbar";
           match.window-class = "code code";
-          apply.desktopfile = "/run/current-system/etc/profiles/per-user/matthieu/share/applications/code.desktop"; # TODO: make this dynamic
+          apply.desktopfile = "code";
         })
+        (tools.ifExists config "config.progs.misc.ledger"
+          {
+            description = "Fix icon in titlebar for Ledger Live";
+            match.window-class = "ledger-live-desktop Ledger Wallet";
+            apply.desktopfile = "ledger-live-desktop";
+          })
+        # TODO : REPORT BUG to OFFICE = doesnt work on creation, work when forced after beeing lunched
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice startcenter";
+            match.window-class = "soffice.bin libreoffice-startcenter";
+            apply.desktopfile = "startcenter";
+          })
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice writer";
+            match.window-class = "soffice.bin libreoffice-writer";
+            apply.desktopfile = "writer";
+          })
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice draw";
+            match.window-class = "soffice.bin libreoffice-draw";
+            apply.desktopfile = "draw";
+          })
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice calc";
+            match.window-class = "soffice.bin libreoffice-calc";
+            apply.desktopfile = "calc";
+          })
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice base";
+            match.window-class = "soffice.bin libreoffice-base";
+            apply.desktopfile = "base";
+          })
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice math";
+            match.window-class = "soffice.bin libreoffice-math";
+            apply.desktopfile = "math";
+          })
+        (tools.ifExists config "config.progs.office.libreoffice"
+          {
+            description = "Fix icon in titlebar for libreoffice impress";
+            match.window-class = "soffice.bin libreoffice-impress";
+            apply.desktopfile = "impress";
+          })
+        # TODO : REPORT BUG to virt-manager = doesnt work on creation, work when forced after beeing lunched
+        (tools.ifExists config "config.progs.dev.virtualization.virt-manager"
+          {
+            description = "Fix icon in titlebar for virt-manager";
+            match.window-class = "python3.13 .virt-manager-wrapped";
+            apply.desktopfile = "virt-manager";
+          })
       ];
       shortcuts = {
         "services/com.mitchellh.ghostty.desktop" = {
