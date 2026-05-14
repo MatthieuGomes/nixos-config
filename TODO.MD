@@ -20,13 +20,14 @@
     [ x ] Style
         [ x ] Define all options in menu
         [ x ] Find defaults
-            [  ] keyboard_accelerator_visibility (not that important)
-            [  ] 
+            [ ] keyboard_accelerator_visibility (not that important)
+            [ ] 
             windows_drag_mode (not that important)
         [ x ] Implement parsing of Style section of config file
     [ x ] Presets
         [ x ] Importing exising presets as files
-        [  ] Creating presets from nix config files (later)
+        [ ] Creating presets from nix config files (later)
+[ x ] Fix Nvidia
 [ ] Make Dolphin a configurable module
 [ ] Fix plasma-manager Module
     [ ] Separate monitor configuration from plasma configuration
