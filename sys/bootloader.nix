@@ -9,8 +9,6 @@
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "bootloader";
-    main-repo = "nix";
-    branch = "latest";
     togglable = false;
     subfolder = "bootloader";
     imports = [

@@ -39,7 +39,6 @@ in (tools.fullModule rec {
             ${builtins.readFile "${./${extraEntryFolder}/99_UEFI_Firmware}"}
           '';
           backgroundColor = "#000000";
-          # theme = "${packages.kdePackages.breeze-grub}/grub/themes/breeze";
           splashImage = null;
         };
         timeout = 1;
