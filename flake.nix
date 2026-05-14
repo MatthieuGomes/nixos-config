@@ -109,7 +109,7 @@
         tuis.enable = true;
       };
       sys = {
-        label = "V.2.1";
+        label = "V.2.1_FEAT_PEDRO_WIP";
         tags = [];
         version = nixos-version;
         main-user = "matthieu";
