@@ -28,8 +28,8 @@
         [ x ] Importing exising presets as files
         [ ] Creating presets from nix config files (later)
 [ x ] Fix Nvidia
-[ ] Make Dolphin a configurable module
-[ ] Fix plasma-manager Module
+[ ] Make Dolphin a configurable module #Project
+[ ] Fix plasma-manager Module #Project
     [ ] Separate monitor configuration from plasma configuration
     [ ] Allow nested paramaters in applets configuration
     [ ] Make system tray configuration more understandable
@@ -50,3 +50,6 @@
 [ ] Adding "Open in VSCode" contexte menu
     [ ] In Dolphin
     [ ] In desktop
+[ ] Making fstab declarative
+[ ] Making Bitwarden a configurable module #Project
+[ ] Declare splash screen in nix file
