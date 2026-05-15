@@ -15,7 +15,6 @@
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
   };
-  # TODO : fix the fact that gparted needs root to run and thus cant be opened from rofi or similar launchers
 in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
@@ -24,5 +23,41 @@ in (tools.fullModule rec {
     home.packages = with packages; [
       gparted
     ];
+    # NOTE : doesnt work, needs manual file modification
+    # xdg.desktopEntries.gparted = {
+    #   name = "GParted**";
+    #   categories = ["GNOME" "System" "Filesystem"];
+    #   comment = "Create, reorganize, and delete partitions";
+    #   exec = "sudo ${packages.gparted}/bin/gparted %f";
+    # };
+    # NOTE : very Hacky workaround
+    home.activation = let
+      store_path = builtins.replaceStrings ["/"] ["\\/"] "${packages.gparted}";
+      gparted_path = "${store_path}\\/bin\\/gparted";
+    in {
+      ${name} = lib.mkAfter ''
+        sed -i 's/Exec=.*/Exec=sudo ${gparted_path} %f/' /home/matthieu/.local/share/applications/gparted.desktop
+      '';
+    };
+  };
+  System = {
+    security.sudo = {
+      enable = true;
+      execWheelOnly = true;
+      wheelNeedsPassword = true;
+      extraRules = [
+        {
+          users = ["%wheel"];
+          host = "ALL";
+          runAs = "ALL:ALL";
+          commands = [
+            {
+              command = "${packages.gparted}/bin/gparted";
+              options = ["NOPASSWD"];
+            }
+          ];
+        }
+      ];
+    };
   };
 })

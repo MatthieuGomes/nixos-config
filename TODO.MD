@@ -43,6 +43,10 @@
     [ ] Fixing icons missing in titlebar for virt-manager -> report to upstream
     [ x ] Fixing icons missing in titlebar for most apps
 [ ] Fixing Gparted unlunchable from luncher
+    [ x ] Trying to fix by mysef 
+        [ x ] Adding to sudoers file
+        [ x ] Adding sudo to command of launcher
+    [ ] report to upstream
 [ ] Adding "Open in VSCode" contexte menu
     [ ] In Dolphin
     [ ] In desktop
