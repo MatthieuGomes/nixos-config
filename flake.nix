@@ -109,7 +109,7 @@
         tuis.enable = true;
       };
       sys = {
-        label = "V.2.2.2";
+        label = "V.2.3.0";
         tags = [];
         version = nixos-version;
         main-user = "matthieu";
@@ -121,6 +121,7 @@
         networking.enable = true;
         filesystems.enable = true;
         fonts.enable = true;
+        fstab.enable = true;
       };
     };
   in {

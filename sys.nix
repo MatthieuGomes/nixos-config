@@ -20,6 +20,7 @@
     "networking"
     "filesystems"
     "fonts"
+    "fstab"
   ];
   options = {
     label = lib.mkOption {

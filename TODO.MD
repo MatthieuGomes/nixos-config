@@ -50,6 +50,6 @@
 [ ] Adding "Open in VSCode" contexte menu
     [ ] In Dolphin
     [ ] In desktop
-[ ] Making fstab declarative
+[ x ] Making fstab declarative
 [ ] Making Bitwarden a configurable module #Project
 [ ] Declare splash screen in nix file
