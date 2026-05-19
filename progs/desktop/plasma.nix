@@ -249,7 +249,6 @@ in (tools.fullModule rec {
       qtvirtualkeyboard
       breeze
       filelight
-      dolphin-plugins
     ];
   };
   System = {
