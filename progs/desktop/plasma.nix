@@ -278,6 +278,7 @@ in (tools.fullModule rec {
       elisa
       konsole
       discover
+      okular
     ];
   };
 })
