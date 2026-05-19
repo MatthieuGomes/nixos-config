@@ -10,10 +10,17 @@
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
     name = "plasma";
+    subfolder = "plasma";
     main-repo = "nix";
     branch = "latest";
+    imports = [
+      "klassy"
+    ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
+    };
+    settings = {
+      klassy.enable = true;
     };
   };
 in (tools.fullModule rec {

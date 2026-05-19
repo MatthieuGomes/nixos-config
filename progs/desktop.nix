@@ -15,7 +15,6 @@
     branch = "latest";
     imports = [
       "plasma"
-      "klassy"
       "rofi"
       "dolphin"
     ];
@@ -26,7 +25,6 @@
     };
     settings = {
       plasma.enable = true;
-      klassy.enable = true;
       rofi.enable = true;
       dolphin.enable = true;
     };
