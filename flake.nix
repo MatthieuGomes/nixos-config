@@ -109,7 +109,7 @@
         tuis.enable = true;
       };
       sys = {
-        label = "V.2.3.0";
+        label = "V.2.3.0_FEAT_LATEX";
         tags = [];
         version = nixos-version;
         main-user = "matthieu";
