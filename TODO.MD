@@ -53,3 +53,4 @@
 [ x ] Making fstab declarative
 [ ] Making Bitwarden a configurable module #Project
 [ ] Declare splash screen in nix file
+[ ] NumLock on boot
