@@ -54,3 +54,9 @@
 [ ] Making Bitwarden a configurable module #Project
 [ ] Declare splash screen in nix file
 [ ] NumLock on boot
+    [ ] On SDDM
+    [ ] Once connected to plasma
+[ ] Fixing sddm-kcm service not being detected
+    [ ] trying to fix by myself
+    [ ] report to upstream
+[ ] Reporting issue with plymouth-kcm (kplymouththemeinstaller[40024]: "Unable to authenticate/execute the action: 9, ")
