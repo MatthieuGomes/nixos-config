@@ -21,6 +21,7 @@
     "filesystems"
     "fonts"
     "fstab"
+    "display"
   ];
   options = {
     label = lib.mkOption {

@@ -252,28 +252,12 @@ in (tools.fullModule rec {
       };
     };
     home.packages = with packages.kdePackages; [
-      sddm-kcm
-      qtvirtualkeyboard
       breeze
       filelight
     ];
   };
   System = {
-    services = {
-      desktopManager.plasma6.enable = true;
-      displayManager = {
-        sddm = {
-          enable = true;
-          wayland.enable = true;
-          settings = {
-            General = {
-              InputMethod = "qtvirtualkeyboard";
-            };
-          };
-          autoNumlock = true;
-        };
-      };
-    };
+    services.desktopManager.plasma6.enable = true;
     environment.plasma6.excludePackages = with packages.kdePackages; [
       elisa
       konsole

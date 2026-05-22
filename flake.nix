@@ -122,6 +122,7 @@
         filesystems.enable = true;
         fonts.enable = true;
         fstab.enable = true;
+        display.enable = true;
       };
     };
   in {
