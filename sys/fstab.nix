@@ -20,13 +20,13 @@ in (tools.fullModule {
   System = {
     fileSystems = {
       "Windows" = {
-        device = "/dev/nvme1n1p4";
+        device = "/dev/disk/by-uuid/8EE66173E6615C89";
         fsType = "ntfs";
         mountPoint = "/mnt/windows";
         options = ["defaults" "users" "nofail"];
       };
       "Shared" = {
-        device = "/dev/nvme1n1p5";
+        device = "/dev/disk/by-uuid/3C32D71A32D6D7CA";
         fsType = "ntfs";
         mountPoint = "/mnt/shared";
         options = ["defaults" "users" "nofail"];
