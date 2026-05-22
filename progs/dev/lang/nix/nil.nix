@@ -8,7 +8,7 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "nixd";
+    name = "nil";
     main-repo = "nix";
     branch = "latest";
     options = {
@@ -21,7 +21,7 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   Home = {
     home.packages = with packages; [
-      nixd
+      nil
     ];
   };
 })

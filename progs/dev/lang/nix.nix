@@ -12,14 +12,14 @@
     subfolder = "nix";
     imports = [
       "alejandra"
-      "nixd"
+      "nil"
     ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
     settings = {
       alejandra.enable = true;
-      nixd.enable = true;
+      nil.enable = true;
     };
   };
 in (tools.fullModule {
