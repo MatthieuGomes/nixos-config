@@ -60,3 +60,9 @@
     [ ] trying to fix by myself
     [ ] report to upstream
 [ ] Reporting issue with plymouth-kcm (kplymouththemeinstaller[40024]: "Unable to authenticate/execute the action: 9, ")
+[ ] Separate Kwrite from Kate in nixpkgs #Project
+    [ ] Learn how to contribute
+    [ ] Add a prebuildphase to kate to just add # in front of the line that point to kwrite for Kate
+    [ ] Create Kwrite package
+    [ ] Add a prebuildphase to Kwrite to just add # in front of the line that point to kate for Kwrite
+[ ] Fixing Klipper paste on click/selection
