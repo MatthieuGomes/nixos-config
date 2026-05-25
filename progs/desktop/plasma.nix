@@ -257,7 +257,10 @@ in (tools.fullModule rec {
     ];
   };
   System = {
-    services.desktopManager.plasma6.enable = true;
+    services.desktopManager.plasma6 = {
+      enable = true;
+      enableQt5Integration = true;
+    };
     environment.plasma6.excludePackages = with packages.kdePackages; [
       elisa
       konsole

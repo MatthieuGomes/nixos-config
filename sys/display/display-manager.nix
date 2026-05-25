@@ -23,7 +23,10 @@ in (tools.fullModule rec {
   System = {
     services.displayManager.sddm = {
       enable = true;
-      wayland.enable = true;
+      wayland = {
+        enable = true;
+        compositor = "kwin";
+      };
       settings = {
         General = {
           InputMethod = "qtvirtualkeyboard";
