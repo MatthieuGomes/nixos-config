@@ -46,4 +46,22 @@ in (tools.fullModule rec {
     console.keyMap = cfg.keyboardLayout;
     services.xserver.xkb.layout = cfg.keyboardLayout;
   };
+  Home =
+    {
+    }
+    // tools.ifExists config "config.progs.desktop.plasma" {
+      programs.plasma.input.keyboard = {
+        model = "pc105";
+        layouts = [
+          {
+            layout = cfg.keyboardLayout;
+            displayName = "FR - AZERTY";
+          }
+          {
+            layout = "us";
+            displayName = "US - QWERTY";
+          }
+        ];
+      };
+    };
 })
