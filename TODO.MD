@@ -55,14 +55,15 @@
 [ ] Declare splash screen in nix file
 [ ] NumLock on boot
     [ ] On SDDM
-    [ ] Once connected to plasma
+    [ x ] Once connected to plasma
 [ ] Fixing sddm-kcm service not being detected
-    [ ] trying to fix by myself
-    [ ] report to upstream
+    [ x ] trying to fix by myself => Failure 
+    [ x ] report to upstream
 [ ] Reporting issue with plymouth-kcm (kplymouththemeinstaller[40024]: "Unable to authenticate/execute the action: 9, ")
 [ ] Separate Kwrite from Kate in nixpkgs #Project
-    [ ] Learn how to contribute
-    [ ] Add a prebuildphase to kate to just add # in front of the line that point to kwrite for Kate
-    [ ] Create Kwrite package
-    [ ] Add a prebuildphase to Kwrite to just add # in front of the line that point to kate for Kwrite
-[ ] Fixing Klipper paste on click/selection
+    [x] Learn how to contribute
+    [x] Add a prebuildphase to kate to just add # in front of the line that point to kwrite for Kate
+    [x] Create Kwrite package
+    [x] Add a prebuildphase to Kwrite to just add # in front of the line that point to kate for Kwrite
+    [ ] Waiting for PR approval and/or feedback
+[ ] Fixing Klipper paste on click/selection #Project
