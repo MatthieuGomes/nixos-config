@@ -30,7 +30,6 @@ in (tools.fullModule rec {
           extraEntries = let
             extraEntryFolder = "./extraEntries";
           in ''
-            ${builtins.readFile "${./${extraEntryFolder}/00_Arch_Btrfs}"}
             ${builtins.readFile "${./${extraEntryFolder}/99_UEFI_Firmware}"}
           '';
           backgroundColor = "#000000";
