@@ -8,27 +8,23 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "filesystems";
-    togglable = false;
-    subfolder = "filesystems";
-    imports = [
-      "ntfs"
-      "exfat"
-      "btrfs"
-      "hfs"
-    ];
+    name = "hfs";
+    main-repo = "nix";
+    branch = "latest";
     options = {
-      enable = lib.mkEnableOption "Enables ${name} related settings.";
-    };
-    settings = {
-      ntfs.enable = true;
-      exfat.enable = true;
-      btrfs.enable = true;
-      hfs.enable = true;
+      enable = lib.mkEnableOption "Enables and configures ${name} filesystem support.";
     };
   };
-in (tools.fullModule {
+in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
+  System = {
+    environment.systemPackages = with packages; [
+      hfsprogs
+    ];
+    boot.supportedFilesystems = {
+      hfs = true;
+    };
+  };
 })
