@@ -10,6 +10,8 @@
     inherit config lib pkgs-list parentPathAsList tools;
     name = "boot";
     subfolder = "boot";
+    main-repo = "nix";
+    branch = "latest";
     imports = [
       "efibootmgr"
       "gparted"
@@ -26,8 +28,15 @@
       kde-partition-manager.enable = true;
     };
   };
-in (tools.fullModule {
+in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
+
+  Home = {
+    home.packages = with packages; [
+      ddrescue
+      squashfsTools
+    ];
+  };
 })
