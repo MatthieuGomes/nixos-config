@@ -34,12 +34,19 @@ in {
         ./progs.nix
         "System")
     ];
-  sys.version = baseSettings.sys.version;
+
+  sys = with baseSettings.sys; {
+    label = label;
+    tags = tags;
+    version = version;
+    hostname = hostname;
+    main-user = main-user;
+  };
   # environment.systemPackages = with pkgs-list.nix.latest; [wmctrl];
-  networking.hostName = baseSettings.sys.hostname;
+  networking.hostName = config.sys.hostname;
   system.nixos = {
-    label = baseSettings.sys.label;
-    tags = baseSettings.sys.tags;
+    label = config.sys.label;
+    tags = config.sys.tags;
   };
   virtualisation = {
     vmVariant = {

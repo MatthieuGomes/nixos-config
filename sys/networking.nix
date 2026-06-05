@@ -31,7 +31,7 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
     networking = {
-      hostName = "NixOs"; # TODO FEAT : make this part of baseSettings
+      hostName = config.sys.hostname;
       networkmanager = {
         enable = true;
       };
