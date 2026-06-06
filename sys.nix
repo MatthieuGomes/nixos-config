@@ -41,7 +41,7 @@
     };
     hostname = lib.mkOption {
       type = lib.types.str;
-      default = "NixOs";
+      default = "NixOS";
       description = "The system hostname.";
     };
     main-user = lib.mkOption {

@@ -113,7 +113,7 @@
         tags = [];
         version = nixos-version;
         main-user = "matthieu";
-        hostname = "NixOs";
+        hostname = "NixOS";
         bootloader.enable = true;
         lang.enable = true;
         users.enable = true;
