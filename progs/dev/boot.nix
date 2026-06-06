@@ -14,7 +14,6 @@
     branch = "latest";
     imports = [
       "efibootmgr"
-      "gparted"
       "os-prober"
       "kde-partition-manager"
     ];
@@ -23,7 +22,6 @@
     };
     settings = {
       efibootmgr.enable = true;
-      gparted.enable = true;
       os-prober.enable = true;
       kde-partition-manager.enable = true;
     };
