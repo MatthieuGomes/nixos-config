@@ -19,16 +19,12 @@ in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
-  Home = let
-    # TODO : find a way to have the minimal configuration
-    # for latex so latex documents can be built with vscode latex extension,
-    # and propose it to nix repo, maybe.
-    # tex = packages.texlive.combine {
-    #   inherit (packages.texlive) scheme-basic latexmk;
-    # };
-  in {
-    home.packages = with packages; [
-      texliveMedium
+  Home = {
+    home.packages = [
+      (packages.texlive.combine
+        {
+          inherit (packages.texlive) scheme-full;
+        })
     ];
   };
 })
