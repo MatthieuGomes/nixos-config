@@ -49,7 +49,7 @@ in (tools.fullModule rec {
   Home =
     {
     }
-    // tools.ifExists config "config.progs.desktop.plasma" {
+    // tools.ifEnabled config "config.progs.desktop.plasma" {
       programs.plasma.input.keyboard = {
         model = "pc105";
         layouts = [

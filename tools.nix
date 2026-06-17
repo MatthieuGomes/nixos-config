@@ -238,7 +238,7 @@ with lib; let
     };
   };
 
-  ifExists = config: configPathString: value: let
+  ifEnabled = config: configPathString: value: let
     pathAsList = splitString "." configPathString;
     name = lists.last pathAsList;
     parentPathAsList = lists.drop 1 (lists.reverseList (lists.drop 1 (lists.reverseList pathAsList)));
@@ -256,5 +256,5 @@ with lib; let
     then value
     else emptyValue;
 in {
-  inherit inheritance contextModuleImport contextualModule moduleParams fullModule ifExists;
+  inherit inheritance contextModuleImport contextualModule moduleParams fullModule ifEnabled;
 }

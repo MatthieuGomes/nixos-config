@@ -25,7 +25,7 @@
           ".." = "cd ..";
           myip = "myip";
         }
-        // (tools.ifExists config "config.progs.shells.zsh.yazi" {
+        // (tools.ifEnabled config "config.progs.shells.zsh.yazi" {
           yazi = "y";
         });
 
