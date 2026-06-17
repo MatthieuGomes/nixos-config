@@ -25,6 +25,7 @@ in (tools.fullModule rec {
         {
           inherit (packages.texlive) scheme-full;
         })
+      packages.tex-fmt
     ];
   };
 })
