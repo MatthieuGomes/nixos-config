@@ -21,5 +21,8 @@ in (tools.fullModule rec {
   inherit (moduleParams) packages currentPathAsList currentDirPath cfg inheritedSettings Common;
   System = {
     fonts.packages = with packages; [nerd-fonts.jetbrains-mono];
+    environment.systemPackages = with packages; [
+      corefonts
+    ];
   };
 })
