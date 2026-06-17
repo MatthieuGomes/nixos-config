@@ -40,6 +40,7 @@ in (tools.fullModule rec {
     environment.systemPackages = with packages; [
       lshw
       usbutils
+      lm_sensors
     ];
   };
 })
