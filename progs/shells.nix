@@ -20,6 +20,7 @@
       aliases =
         {
           nrs = "sudo nixos-rebuild switch";
+          nrt = "sudo nixos-rebuild test";
           ls = "ls --color -ah";
           ".." = "cd ..";
           myip = "myip";
