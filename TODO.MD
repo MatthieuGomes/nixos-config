@@ -67,3 +67,8 @@
     [x] Add a prebuildphase to Kwrite to just add # in front of the line that point to kate for Kwrite
     [ ] Waiting for PR approval and/or feedback
 [ ] Fixing Klipper paste on click/selection #Project
+[ ] Adding extensions to vscode #Project
+    [ ] danielatanasov.todo
+    [ ] prateekmahendrakar.prettyxml
+    [ ] zhiyuan-lin.simple-perl
+    [ ] Waiting for PR approval and/or feedback
