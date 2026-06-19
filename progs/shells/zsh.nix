@@ -31,6 +31,7 @@
         plugins = [
           "git"
           "sudo"
+          (tools.ifEnabled config "config.progs.shells.direnv" "direnv")
         ];
       };
       fzf.enable = true;

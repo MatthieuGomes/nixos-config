@@ -15,6 +15,7 @@
     branch = "latest";
     imports = [
       "zsh"
+      "direnv"
     ];
     extras = {
       aliases =
@@ -41,6 +42,7 @@
         enable = true;
         inherit (extras) aliases p10k;
       };
+      direnv.enable = true;
     };
   };
 in (tools.fullModule {
