@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dev-vscode-extensions": {
+      "locked": {
+        "lastModified": 1781880894,
+        "narHash": "sha256-luu6wpnr0UaPk7EVLMybnoah5iMuKFLQnt2y0/wSaHs=",
+        "owner": "MatthieuGomes",
+        "repo": "nixpkgs-dev",
+        "rev": "298f7420a57973a1944e10325e9ad4c09cfeaa47",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MatthieuGomes",
+        "ref": "vscode-extensions",
+        "repo": "nixpkgs-dev",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -146,6 +162,7 @@
     },
     "root": {
       "inputs": {
+        "dev-vscode-extensions": "dev-vscode-extensions",
         "home-manager": "home-manager",
         "latestPkgs": "latestPkgs",
         "nur-latest-pkgs": "nur-latest-pkgs",

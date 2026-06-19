@@ -30,6 +30,9 @@
       inputs.nixpkgs.follows = "latestPkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    dev-vscode-extensions = {
+      url = "github:MatthieuGomes/nixpkgs-dev/vscode-extensions";
+    };
   };
 
   outputs = {
@@ -68,10 +71,14 @@
     };
     nur-latest = Inputs.nur-latest-pkgs.legacyPackages.${system};
     nur-unstable = Inputs.nur-unstable-pkgs.legacyPackages.${system};
+    dev-vscode-extensions = Inputs.dev-vscode-extensions.legacyPackages.${system};
 
     nur = {
       latest = nur-latest;
       unstable = nur-unstable;
+    };
+    dev = {
+      vscode-extensions = dev-vscode-extensions;
     };
 
     customPkgs = import ./customPkgs.nix {
@@ -80,6 +87,7 @@
     others = {
       zen-browser = Inputs.zen-browser;
       customPkgs = customPkgs;
+      dev = dev;
     };
     pkgs-list = {
       inherit nix;

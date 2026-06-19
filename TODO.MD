@@ -68,7 +68,7 @@
     [ ] Waiting for PR approval and/or feedback
 [ ] Fixing Klipper paste on click/selection #Project
 [ ] Adding extensions to vscode #Project
-    [ ] danielatanasov.todo
-    [ ] prateekmahendrakar.prettyxml
-    [ ] zhiyuan-lin.simple-perl
+    [x] danielatanasov.todo
+    [x] prateekmahendrakar.prettyxml
+    [x] zhiyuan-lin.simple-perl
     [ ] Waiting for PR approval and/or feedback

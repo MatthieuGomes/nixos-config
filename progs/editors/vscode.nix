@@ -17,7 +17,6 @@
     extras = {
     };
   };
-  # TODO : Needs to be configured (profiles.defaults)
 in (tools.fullModule rec {
   inherit (moduleParams) config lib pkgs-list parentPathAsList tools;
   inherit (moduleParams) name togglable subfolder main-repo branch extras imports specialImports options settings;
@@ -169,6 +168,49 @@ in (tools.fullModule rec {
             ];
             "latex-workshop.formatting.latex" = "tex-fmt";
           });
+
+        extensions = with packages.vscode-extensions;
+          [
+            github.vscode-github-actions
+            github.vscode-pull-request-github
+
+            ms-vscode-remote.remote-containers
+            ms-vscode-remote.remote-ssh
+            ms-vscode-remote.remote-ssh-edit
+            ms-vscode.remote-explorer
+          ]
+          ++ [
+            pkgs-list.others.dev.vscode-extensions.vscode-extensions.danielatanasov.todo
+            pkgs-list.others.dev.vscode-extensions.vscode-extensions.prateekmahendrakar.prettyxml
+            pkgs-list.others.dev.vscode-extensions.vscode-extensions.zhiyuan-lin.simple-perl
+          ]
+          ++ (tools.ifEnabled config "config.progs.shells.direnv" [
+            mkhl.direnv
+          ])
+          ++ [
+            gruntfuggly.todo-tree
+            jgclark.vscode-todo-highlight
+            tomoki1207.pdf
+          ]
+          ++ (tools.ifEnabled config "config.progs.dev.lang.nix" [
+            arrterian.nix-env-selector
+            bbenoist.nix
+            jnoortheen.nix-ide
+          ])
+          ++ (tools.ifEnabled config "config.progs.dev.lang.nix.alejandra" [
+            kamadorueda.alejandra
+          ])
+          ++ (tools.ifEnabled config "config.progs.dev.lang.python" [
+            ms-python.debugpy
+            ms-python.python
+            ms-python.vscode-pylance
+          ])
+          ++ (tools.ifEnabled config "config.progs.dev.lang.latex" [
+            james-yu.latex-workshop
+          ])
+          ++ [
+            tamasfe.even-better-toml
+          ];
       };
     };
 
@@ -183,6 +225,20 @@ in (tools.fullModule rec {
           cp $newGenPath/home-files/.config/Code/User/keybindings.json ${config_path}/keybindings.json
           chmod 644 ${config_path}/settings.json ${config_path}/keybindings.json
         '';
+      # "${name}_extensions" = let
+      #   extensions_path = "$HOME/.vscode/extensions";
+      #   extensions_editable_path = "$HOME/.vscode/extensions-editable";
+      # in
+      #   lib.hm.dag.entryAfter ["writeBoundary"] ''
+      #     mkdir -p ${extensions_editable_path}
+      #     cp -r $newGenPath/home-files/.vscode/extensions/* ${extensions_editable_path}/
+      #     rm -f ${extensions_editable_path}/extensions.json
+      #     cp $newGenPath/home-files/.vscode/extensions/extensions.json ${extensions_editable_path}/extensions.json
+      #     chmod 644 ${extensions_editable_path}/extensions.json
+      #     chmod 755 ${extensions_editable_path}
+      #     rm -rf ${extensions_path}
+      #     mv ${extensions_editable_path} ${extensions_path}
+      #   '';
     };
   };
 })
