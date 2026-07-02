@@ -48,6 +48,8 @@ in (tools.fullModule rec {
             "workbench.colorTheme" = "Dark Modern";
             "window.zoomLevel" = -1;
             "editor.minimap.enabled" = false;
+            "editor.wordWrap" = "on";
+            "scm.defaultViewMode" = "tree";
 
             "diffEditor.ignoreTrimWhitespace" = true;
 
