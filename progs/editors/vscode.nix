@@ -32,7 +32,7 @@ in (tools.fullModule rec {
         keybindings = [
           {
             command = "workbench.action.quit";
-            key = "ctrl+shit+q";
+            key = "ctrl+shift+q";
           }
           {
             command = "-workbench.action.quit";
@@ -190,7 +190,6 @@ in (tools.fullModule rec {
           ++ [
             gruntfuggly.todo-tree
             jgclark.vscode-todo-highlight
-            tomoki1207.pdf
           ]
           ++ (tools.ifEnabled config "config.progs.dev.lang.nix" [
             arrterian.nix-env-selector
