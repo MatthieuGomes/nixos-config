@@ -182,9 +182,10 @@ in (tools.fullModule rec {
             ms-vscode.remote-explorer
           ]
           ++ [
-            pkgs-list.others.dev.vscode-extensions.vscode-extensions.danielatanasov.todo
-            pkgs-list.others.dev.vscode-extensions.vscode-extensions.prateekmahendrakar.prettyxml
-            pkgs-list.others.dev.vscode-extensions.vscode-extensions.zhiyuan-lin.simple-perl
+            pkgs-list.others.dev.vscode-extensions.vscode-extensions.joelkoz.nodeuml
+            # pkgs-list.others.dev.vscode-extensions.vscode-extensions.danielatanasov.todo
+            # pkgs-list.others.dev.vscode-extensions.vscode-extensions.prateekmahendrakar.prettyxml
+            # pkgs-list.others.dev.vscode-extensions.vscode-extensions.zhiyuan-lin.simple-perl
           ]
           ++ (tools.ifEnabled config "config.progs.shells.direnv" [
             mkhl.direnv
@@ -212,6 +213,9 @@ in (tools.fullModule rec {
           ++ [
             tamasfe.even-better-toml
           ];
+        # ++ [
+        #   DavidAnson.vscode-markdownlint
+        # ];
       };
     };
 
