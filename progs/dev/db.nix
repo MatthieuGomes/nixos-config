@@ -8,33 +8,16 @@
 }: let
   moduleParams = tools.moduleParams rec {
     inherit config lib pkgs-list parentPathAsList tools;
-    name = "dev";
-    subfolder = "dev";
-    main-repo = "nix";
-    branch = "latest";
+    name = "db";
+    subfolder = "db";
     imports = [
-      "boot"
-      "network"
-      "git"
-      "virtualization"
-      "lang"
-      "misc"
-      "build"
-      "db"
+      "mysql"
     ];
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
     };
     settings = {
-      nix.enable = true;
-      boot.enable = true;
-      network.enable = true;
-      git.enable = true;
-      virtualization.enable = true;
-      lang.enable = true;
-      misc.enable = true;
-      build.enable = true;
-      db.enable = true;
+      mysql.enable = true;
     };
   };
 in (tools.fullModule {
