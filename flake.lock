@@ -2,11 +2,11 @@
   "nodes": {
     "dev-vscode-extensions": {
       "locked": {
-        "lastModified": 1781880894,
-        "narHash": "sha256-luu6wpnr0UaPk7EVLMybnoah5iMuKFLQnt2y0/wSaHs=",
+        "lastModified": 1782743756,
+        "narHash": "sha256-aC137j+5dE02o2Zg1KANac2i0QVqtRy73Kr3+BuTciA=",
         "owner": "MatthieuGomes",
         "repo": "nixpkgs-dev",
-        "rev": "298f7420a57973a1944e10325e9ad4c09cfeaa47",
+        "rev": "7f1a6772a86d85515cf5dcd0b9b9ccddaa7b9124",
         "type": "github"
       },
       "original": {
