@@ -29,6 +29,7 @@ in (tools.fullModule {
           init.defaultBranch = "main";
         };
       };
+      gh.enable = true;
     };
   };
 })
