@@ -6,8 +6,6 @@ OLD_SYSTEM_PATH=$1
 NEED_WALLET=$2
 USER=$3
 
-GROUP="users"
-
 CONNECTIONS_PATH="/etc/NetworkManager/system-connections"
 
 if [[ "$NEED_WALLET" == "y" ]]; then 
