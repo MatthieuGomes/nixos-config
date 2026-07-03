@@ -74,3 +74,9 @@
     [x] joelkoz.nodeuml
     [x] Waiting for PR approval and/or feedback => not approved : too niche
     [ ] Adding it to my nur
+[ ] Adding instructions for migrations 
+    [ ] Writing a README.md
+    [ ] Adding scripts
+        [ ] kwallet migration
+        [ ] wifi migration
+        [ ] bluetooth migration
