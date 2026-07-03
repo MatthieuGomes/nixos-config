@@ -107,8 +107,20 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
 
 
 ### Authentificator
+#### Manually
 
-- 
+- From old : 
+    - Open Authenticator > Backup & Restore > Backup > Authenticator
+    - Close Autenticator
+    - Copy generated file
+
+- From new : 
+    - Paste copied file in `~`
+    - `sudo chown -R <username>:<group> ~/<file>`
+    - Open Authenticator > Backup & Restore > Restore > Authenticator
+    - Select file
+    - Close Autenticator
+    - Delete file
 
 
 ### zsh history
