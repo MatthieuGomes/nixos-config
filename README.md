@@ -63,3 +63,18 @@ From old install, run:
 ### Authentificator
 
 - 
+
+
+### zsh history
+
+- On old : 
+    - Copy `~/.zsh_history`
+    - Note the permissions
+
+- On new :
+    - Paste copied file in `~`
+    - `chown matthieu:users ~/.zsh_history`
+    - `chmod <permissions> ~/.zsh_history`
+
+
+
