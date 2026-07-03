@@ -79,6 +79,16 @@
     system.stateVersion = config.sys.version;
     nix.settings.experimental-features = ["nix-command" "flakes"];
     boot.kernelPackages = packages.linuxPackages_latest;
+    security.polkit = {
+      debug = true; # Enables `polkit.log` function
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          polkit.log("");
+          polkit.log("action=" + action);
+          polkit.log("subject=" + subject);
+        });
+      '';
+    };
   };
   ######  # computed
   SystemConfig =
