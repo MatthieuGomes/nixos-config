@@ -34,26 +34,51 @@ OR
  
 #### Automatically
 
-run `./WIP/migration/kwallet-mig.sh <username> <old_system_path>` from new install, where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
+From new install run 
+
+```shell
+./WIP/migration/kwallet.sh <username> <old_system_path>
+``` 
+Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
 
 
 ### WIFI
 
-#### Pre-requisites
 
-- Migrate KWallet first (see [KWallet](#kwallet))
 
 #### Manually
 
+##### If kwallet not migrated yet 
+
+- Migrate KWallet first (see [KWallet](#kwallet))
+
+##### Then
+
 - Copy `/etc/NetworkManager` to new install
 - Note permissions
-
-
-
 - `sudo systemctl restart NetworkManager`
+
 #### Automatically
-From old install, run:
-`./migration/kwallet-mig.sh`
+
+##### If kwallet not migrated yet 
+
+From new install run 
+
+```shell
+./migration/wifi.sh <old_system_path> y <username>
+```
+
+Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
+
+##### Else
+
+From new install run 
+
+```shell
+./migration/wifi.sh <old_system_path>
+```
+
+Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
 
 ### SSH
 

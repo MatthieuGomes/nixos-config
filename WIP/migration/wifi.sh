@@ -11,7 +11,7 @@ GROUP="users"
 CONNECTIONS_PATH="/etc/NetworkManager/system-connections"
 
 if [[ "$NEED_WALLET" == "y" ]]; then 
-    source $SCRIPT_DIR/kwallet_mig.sh $USER $OLD_SYSTEM_PATH
+    source $SCRIPT_DIR/kwallet.sh $USER $OLD_SYSTEM_PATH
 fi
 
 sudo rm -rf $CONNECTIONS_PATH/*
