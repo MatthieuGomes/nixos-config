@@ -52,9 +52,15 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
 
 ##### Then
 
-- Copy `/etc/NetworkManager` to new install
-- Note permissions
-- `sudo systemctl restart NetworkManager`
+- From old : 
+    - Copy `/etc/NetworkManager/system-connections`
+    - Note permissions
+
+- From new : 
+    - Paste copied files in `/etc/NetworkManager/system-connections`
+    - `sudo chown -R <username>:<group> /etc/NetworkManager/system-connections`
+    - `sudo chmod <permissions> /etc/NetworkManager/system-connections`
+    - `sudo systemctl restart NetworkManager.service`
 
 #### Automatically
 ##### If kwallet not migrated yet 
