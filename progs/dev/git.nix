@@ -27,6 +27,7 @@ in (tools.fullModule {
             email = "matthieu.gomes@ensea.fr";
           };
           init.defaultBranch = "main";
+          safe.directory = "*";
         };
       };
       gh.enable = true;
