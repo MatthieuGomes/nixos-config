@@ -71,4 +71,6 @@
     [x] danielatanasov.todo
     [x] prateekmahendrakar.prettyxml
     [x] zhiyuan-lin.simple-perl
-    [ ] Waiting for PR approval and/or feedback
+    [x] joelkoz.nodeuml
+    [x] Waiting for PR approval and/or feedback => not approved : too niche
+    [ ] Adding it to my nur
