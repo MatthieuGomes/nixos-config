@@ -44,8 +44,6 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
 
 ### WIFI
 
-
-
 #### Manually
 
 ##### If kwallet not migrated yet 
@@ -82,8 +80,26 @@ Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/
 
 ### SSH
 
-- Copy `~/.ssh` to new install
-- `chown -R matthieu:users ~/.ssh`
+#### Manually
+- From old : 
+    - Copy `~/.ssh`
+    - Note the permissions
+
+- From new : 
+    - Paste copied files in `~/.ssh`
+    - `sudo chown -R <username>:users ~/.ssh`
+    - `sudo chmod <permissions> ~/.ssh`
+
+#### Automatically
+
+From new install, run : 
+
+```shell
+./migration/ssh.sh <old_system_path> y <username>
+```
+
+Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
+
 
 ### Authentificator
 
