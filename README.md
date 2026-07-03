@@ -4,7 +4,7 @@
 
 ## Migration
 
-Automatic migrations supposes the new disk is mounted on the old system and the new system is installed (cf [Installation](#installation)).
+Automatic migrations supposes the old disk is mounted on the new system (cf [Installation](#installation)).
 
 ### KWallet
 #### Manually
@@ -34,7 +34,7 @@ OR
  
 #### Automatically
 
-run `./migration/kwallet-mig.sh <username> <new_system_path>` from old install, where `<username>` is the username of the user and `<new_system_path>` is the path to the new system (e.g. `/mnt/new_system`).
+run `./WIP/migration/kwallet-mig.sh <username> <old_system_path>` from new install, where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
 
 
 ### WIFI
