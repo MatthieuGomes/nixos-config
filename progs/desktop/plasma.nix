@@ -30,9 +30,23 @@ in (tools.fullModule rec {
   Home = {
     programs.plasma = {
       enable = true;
-      configFile.kdeglobals.General = {
-        TerminalApplication = "ghostty";
-        TerminalService = "com.mitchellh.ghostty.desktop";
+      configFile = {
+        kdeglobals = {
+          General = {
+            TerminalApplication = "ghostty";
+            TerminalService = "com.mitchellh.ghostty.desktop";
+            ColorScheme = "KlassyDark";
+          };
+          KDE = {
+            LookAndFeelPackage = "org.kde.breezedark.desktop";
+            widgetStyle = "Klassy";
+          };
+        };
+        plasmarc = {
+          Theme = {
+            name = "kite-light";
+          };
+        };
       };
       window-rules = [
         (tools.ifEnabled config "config.progs.editors.vscode" {
