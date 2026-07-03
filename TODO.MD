@@ -80,3 +80,5 @@
         [ ] kwallet migration
         [ ] wifi migration
         [ ] bluetooth migration
+[ ] Browser
+    [ ] Add a default browser setting to choose between firefox, chromium and zen
