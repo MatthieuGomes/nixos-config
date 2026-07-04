@@ -100,7 +100,7 @@ Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/
 From new install, run : 
 
 ```shell
-./migration/ssh.sh <old_system_path> y <username>
+./migration/ssh.sh <old_system_path> <username>
 ```
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
