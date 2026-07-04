@@ -176,4 +176,4 @@ From new install, run :
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
 
-
+Then go to your phone/device > KDEConnect > Pair new device. The device should automatically connect itself to the PC.

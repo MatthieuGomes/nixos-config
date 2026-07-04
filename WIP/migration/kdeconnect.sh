@@ -16,4 +16,5 @@ sudo mv $KDECONNECT/../config-tmp $KDECONNECT/config
 
 sudo chown -R $USER:$GROUP $KDECONNECT
 
-sudo systemctl restart home-manager-$USER.service
+sudo kill $(pgrep kdeconnectd)
+kdeconnect-cli --refresh
