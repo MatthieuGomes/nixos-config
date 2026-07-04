@@ -41,6 +41,10 @@ in (tools.fullModule rec {
         ];
         userSettings =
           {
+            "telemetry.feedback.enabled" = false;
+            "telemetry.editStats.enabled" = false;
+            "telemetry.telemetryLevel" = "off";
+
             "http.proxySupport" = "off";
             "security.workspace.trust.untrustedFiles" = "open";
 
