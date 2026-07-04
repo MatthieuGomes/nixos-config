@@ -146,9 +146,12 @@ From new install, run :
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
 
+
 ### KDE connect
 
-If the hostname changed, you'll need to pair the device at least once with the new hostname
+If the hostname changed, you'll need to pair the device at least once with the new hostname 
+
+!!! NOT 100 % SURE IT WORKS, needs more testing !!!
 
 #### Manually
 
@@ -168,7 +171,7 @@ If the hostname changed, you'll need to pair the device at least once with the n
 From new install, run : 
 
 ```shell
-./migration/zsh.sh <old_system_path> <username>
+./migration/kdeconnect.sh <old_system_path> <username>
 ```
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
