@@ -1,4 +1,5 @@
 -- require("githead"):setup()
+-- require("kdeconnect-send"):setup()
 
 -- Adds the owner + the group to the status bar
 Status:children_add(function()

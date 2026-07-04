@@ -82,3 +82,6 @@
         [ ] bluetooth migration
 [ ] Browser
     [ ] Add a default browser setting to choose between firefox, chromium and zen
+[ ] Yazi 
+    [ ] Adding/fixing KDEConnect send
+    [ ] Fixing + adding githead
