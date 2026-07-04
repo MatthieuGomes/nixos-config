@@ -123,7 +123,7 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
     - Delete file
 
 
-### SSH
+### zsh history
 #### Manually
 
 - From old : 
@@ -131,6 +131,7 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
     - Note the permissions
 
 - From new : 
+    - Remove `~/.zsh_history`
     - Paste copied files in `~/.zsh_history`
     - `sudo chown -R <username>:<group> ~/.zsh_history`
     - `sudo chmod <permissions> ~/.zsh_history`
