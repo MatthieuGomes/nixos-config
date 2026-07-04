@@ -177,3 +177,32 @@ From new install, run :
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
 
 Then go to your phone/device > KDEConnect > Pair new device. The device should automatically connect itself to the PC.
+
+
+### Bluetooth 
+
+!!! WORK ONLY WITH MONO BLUETOOTH ADAPTER
+
+#### Manually
+
+- From old : 
+    - Copy files inside `/var/lib/bluetooth/<mac-address>/`
+    - Note the permissions
+
+- From new : 
+    - `sudo systemctl stop bluetooth.service`
+    - Remove files in `/var/lib/bluetooth/<mac-address>/`
+    - Paste copied files in `/var/lib/bluetooth/<mac-address>/`
+    - `sudo chown -R root:root ~/var/lib/bluetooth/<mac-address>/<files>`
+    - `sudo chmod <permissions> /var/lib/bluetooth/<mac-address>/<files>`
+    - `sudo systemctl restart bluetooth.service`
+
+#### Automatically
+
+From new install, run : 
+
+```shell
+./migration/bluetooth.sh <old_system_path>
+```
+
+Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
