@@ -50,6 +50,7 @@ in (tools.fullModule rec {
 
             "window.newWindowProfile" = "Default";
             "workbench.colorTheme" = "Dark Modern";
+            "window.dialogStyle" = "custom";
             "window.zoomLevel" = -1;
             "editor.minimap.enabled" = false;
             "editor.wordWrap" = "on";
