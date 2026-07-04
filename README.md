@@ -123,16 +123,28 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
     - Delete file
 
 
-### zsh history
+### SSH
+#### Manually
 
-- On old : 
+- From old : 
     - Copy `~/.zsh_history`
     - Note the permissions
 
-- On new :
-    - Paste copied file in `~`
-    - `chown <username>:<group> ~/.zsh_history`
-    - `chmod <permissions> ~/.zsh_history`
+- From new : 
+    - Paste copied files in `~/.zsh_history`
+    - `sudo chown -R <username>:<group> ~/.zsh_history`
+    - `sudo chmod <permissions> ~/.zsh_history`
+
+#### Automatically
+
+From new install, run : 
+
+```shell
+./migration/zsh.sh <old_system_path> <username>
+```
+
+Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
+
 
 
 
