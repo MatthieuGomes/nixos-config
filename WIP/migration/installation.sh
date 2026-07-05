@@ -17,4 +17,4 @@ sudo nixos-install --root ${NEW_MNT_POINT} --flake ${NEW_MNT_POINT}/etc/nixos#Ni
 
 sudo nixos-enter --root ${NEW_MNT_POINT} --command "passwd ${NEW_USER}"
 sudo nixos-enter --root ${NEW_MNT_POINT} --command "chown -R ${NEW_USER}:users /etc/nixos/"
-sudo nixos-enter --root ${NEW_MNT_POINT} --command "su matthieu && cd /etc/nixos/ && direnv allow"
+# sudo nixos-enter --root ${NEW_MNT_POINT} --command "cd /etc/nixos/ && direnv allow"
