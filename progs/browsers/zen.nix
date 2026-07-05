@@ -67,6 +67,28 @@ in (tools.fullModule rec {
         AutofillCreditCardsEnabled = false;
         DisableFirefoxStudies = true;
         DisableFormHistory = true;
+        DisablePasswordReveal = true;
+        DisableFirefoxScreenshots = true;
+        DisableForgetButton = true;
+        DisableMasterPasswordCreation = true;
+        DisableProfileImport = true;
+        DisableProfileRefresh = true;
+        DisableSetDesktopBackground = true;
+        OfferToSaveLogins = false;
+        OfferToSaveLoginsDefault = false;
+        PasswordManagerEnabled = false;
+        PrimaryPassword = false;
+        SkipTermsOfUse = true;
+        DontCheckDefaultBrowser = true;
+        OverrideFirstRunPage = true;
+        DisableRemoteImprovements = true;
+        DisableFeedbackCommands = true;
+        AIControls = {
+          Default = {
+            Value = "blocked";
+            Locked = true;
+          };
+        };
         GenerativeAI = {
           Enabled = false;
         };
