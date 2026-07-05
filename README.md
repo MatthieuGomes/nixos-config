@@ -1,6 +1,20 @@
 # Installation and migration guide
 ## Installation
 
+### Clean
+
+#### Manually
+
+- Create a `NewNixOs` folder in `mnt` if it doesn't exist yet
+- Reformat the partition you want to install your new NixOS install in with the label `NixOS` (in `ext4`)
+- Reformat the partition you want to put the new bootloader in with the label `NBOOTLOADER` (in `fat32`)
+
+#### Automatically
+
+```shell
+./WIP/migration/clean.sh
+``` 
+
 
 ## Migration
 
