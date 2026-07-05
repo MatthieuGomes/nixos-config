@@ -1,8 +1,8 @@
 # Installation and migration guide
+
 ## Installation
 
-### Clean
-
+### Clean (MANDATORY)
 #### Manually
 
 - Create a `NewNixOs` folder in `mnt` if it doesn't exist yet
@@ -17,7 +17,6 @@
 
 
 ### Installation
-
 #### Manually
 
 - Mount the partition you want to install your new NixOS install in on `/mnt/NewNixOs`
@@ -108,7 +107,7 @@ Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/
 From new install, run : 
 
 ```shell
-./migration/wifi.sh <old_system_path> y <username>
+./WIP/migration/wifi.sh <old_system_path> y <username>
 ```
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
@@ -118,7 +117,7 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
 From new install, run : 
 
 ```shell
-./migration/wifi.sh <old_system_path>
+./WIP/migration/wifi.sh <old_system_path>
 ```
 
 Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
@@ -140,7 +139,7 @@ Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/
 From new install, run : 
 
 ```shell
-./migration/ssh.sh <old_system_path> <username>
+./WIP/migration/ssh.sh <old_system_path> <username>
 ```
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
@@ -181,7 +180,7 @@ Where `<username>` is the username of the user and `<old_system_path>` is the pa
 From new install, run : 
 
 ```shell
-./migration/zsh.sh <old_system_path> <username>
+./WIP/migration/zsh.sh <old_system_path> <username>
 ```
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
@@ -211,7 +210,7 @@ If the hostname changed, you'll need to pair the device at least once with the n
 From new install, run : 
 
 ```shell
-./migration/kdeconnect.sh <old_system_path> <username>
+./WIP/migration/kdeconnect.sh <old_system_path> <username>
 ```
 
 Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
@@ -242,7 +241,7 @@ Then go to your phone/device > KDEConnect > Pair new device. The device should a
 From new install, run : 
 
 ```shell
-./migration/bluetooth.sh <old_system_path>
+./WIP/migration/bluetooth.sh <old_system_path>
 ```
 
 Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
