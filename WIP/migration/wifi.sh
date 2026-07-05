@@ -3,12 +3,11 @@
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 
 OLD_SYSTEM_PATH=$1
-NEED_WALLET=$2
-USER=$3
+USER=$2
 
 CONNECTIONS_PATH="/etc/NetworkManager/system-connections"
 
-if [[ "$NEED_WALLET" == "y" ]]; then 
+if [[ $USER ]]; then 
     source $SCRIPT_DIR/kwallet.sh $USER $OLD_SYSTEM_PATH
 fi
 
