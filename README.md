@@ -43,7 +43,17 @@ Where `<new_sys_part>` is the device corresponding to the partition you want to 
 
 ## Migration
 
-Automatic migrations supposes the old disk is mounted on the new system (cf [Installation](#installation)).
+### Preparation (MANDATORY)
+#### Manually
+
+- Create a `OldNixOS` folder in `mnt` if it doesn't exist yet
+- Mount the partition of the old NixOS install on `/mnt/OldNixOS`
+
+#### Automatically
+
+```shell
+./WIP/migration/prepare.sh
+``` 
 
 ### KWallet
 #### Manually
