@@ -10,10 +10,13 @@
     inherit config lib pkgs-list parentPathAsList tools;
     name = "zen";
     extras = {
-      bitwarden-ID = "446900e4-71c2-419f-a6a7-df9c091e268b";
-      adBlocker-ID = "adblockultimate@adblockultimate.net";
-      plasmaIntegration-ID = "plasma-browser-integration@kde.org";
-      qwant-ID = "qwantcomforfirefox@jetpack";
+      bitwarden = "446900e4-71c2-419f-a6a7-df9c091e268b";
+      adBlocker = "adblockultimate@adblockultimate.net";
+      plasmaIntegration = "plasma-browser-integration@kde.org";
+      qwant = "qwantcomforfirefox@jetpack";
+      qwantSearch = "qwant-search-firefox@qwant.com";
+      hideAI = "Google_AI_Overviews_Blocker@zachbarnes.dev";
+      googleUnlocked = "{1dccf21b-8742-4e2e-be36-47263c80c425}";
     };
     options = {
       enable = lib.mkEnableOption "Enables ${name} program and related settings.";
@@ -95,12 +98,31 @@ in (tools.fullModule rec {
         TranslateEnabled = false;
         DisableSafeMode = true;
         DisableTelemetry = true;
+
+        ExtensionSettings = let
+          mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+            installation_mode = "force_installed";
+          });
+        in
+          mkExtensionSettings {
+            "adblockultimate@adblockultimate.net" = "adblocker-ultimate";
+            "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+            "{1dccf21b-8742-4e2e-be36-47263c80c425}" = "googleunlocked";
+            "Google_AI_Overviews_Blocker@zachbarnes.dev" = "hide-google-ai-overviews";
+            "plasma-browser-integration@kde.org" = "plasma-integration";
+            "qwant-search-firefox@qwant.com" = "qwant-the-search-engine";
+            "qwantcomforfirefox@jetpack" = "qwantcom-for-firefox";
+          };
         Extensions = {
-          Locked = [
-            extras.bitwarden-ID
-            extras.adBlocker-ID
-            extras.plasmaIntegration-ID
-            extras.qwant-ID
+          Locked = with extras; [
+            bitwarden
+            adBlocker
+            plasmaIntegration
+            qwant
+            qwantSearch
+            hideAI
+            googleUnlocked
           ];
         };
         HomePage = {
