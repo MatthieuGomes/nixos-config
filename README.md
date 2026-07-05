@@ -38,9 +38,9 @@ OR
 From new install, run : 
 
 ```shell
-./WIP/migration/kwallet.sh <username> <old_system_path>
+./WIP/migration/kwallet.sh <old_system_path> <username>
 ``` 
-Where `<username>` is the username of the user and `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`).
+Where `<old_system_path>` is the path to the old system mount point (e.g. `/mnt/old_system`) and `<username>` is the username of the user.
 
 
 ### WIFI

@@ -8,7 +8,7 @@ USER=$2
 CONNECTIONS_PATH="/etc/NetworkManager/system-connections"
 
 if [[ $USER ]]; then 
-    source $SCRIPT_DIR/kwallet.sh $USER $OLD_SYSTEM_PATH
+    source $SCRIPT_DIR/kwallet.sh $OLD_SYSTEM_PATH $USER
 fi
 
 sudo rm -rf $CONNECTIONS_PATH/*

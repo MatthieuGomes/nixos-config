@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-USER=$1
-OLD_SYSTEM_PATH=$2
+OLD_SYSTEM_PATH=$1
+USER=$2
 GROUP="users"
 
 KWALLETD_PATH="/home/$USER/.local/share/kwalletd"
