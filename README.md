@@ -16,6 +16,32 @@
 ``` 
 
 
+### Installation
+
+#### Manually
+
+- Mount the partition you want to install your new NixOS install in on `/mnt/NewNixOs`
+- Create a `boot` folder in `/mnt/NewNixOs`
+- Mount the partition you want to put the new bootloader in on `/mnt/NewNixOs/boot`
+- Create a `etc` folder in `/mnt/NewNixOs`
+- `rsync -a` the folder you keep your nixos config in `/mnt/NewNixOs/etc/`
+    - if the folder you keep your nixos confif in is not called `nixos`, rename the `/mnt/NewNixOs/etc/<nixos-config-folder>` folder into `/mnt/NewNixOs/etc/nixos`
+- `sudo nixos-generate-config --root /mnt/NewNixOs`
+- `sudo nixos-install --root /mnt/NewNixOs --flake /mnt/NewNixOs/etc/nixos#NixOS --show-trace`
+- Enter your root password for the new install twice (as asked)
+- `sudo nixos-enter --root /mnt/NewNixOs --command "passwd <username>"` and type twice your user password
+- `sudo nixos-enter --root /mnt/NewNixOs --command "chown -R <username>:users /etc/nixos/"` and type twice your user password
+
+#### Automatically
+
+```shell
+./WIP/migration/installation.sh <new_sys_part> <new_mnt_point> <new_boot_part> <current_nixos_config_folder> <username>
+``` 
+
+Where `<new_sys_part>` is the device corresponding to the partition you want to install your new NixOS in (e.g. `/dev/nvmeXnYpZ`),`<new_mnt_point>` is the path to the new system mount point (e.g. `/mnt/new_system`), `<new_sys_part>` is the device corresponding to the partition you want to put the new bootloader in (e.g. `/dev/nvmeXnYpZ`), `<current_nixos_config_folder>` is the path to thte folder containing the current nixos config, and `<username>` is the username of the user.
+
+
+
 ## Migration
 
 Automatic migrations supposes the old disk is mounted on the new system (cf [Installation](#installation)).
